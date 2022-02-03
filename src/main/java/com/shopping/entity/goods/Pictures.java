@@ -18,4 +18,12 @@ public class Pictures {
 
     private Integer goodsId;
     private String address;
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

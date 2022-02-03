@@ -20,4 +20,11 @@ public class Goods {
     private Double price;
     private Integer stock;
     private Integer goodsStatus;
+
+    public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
+        this.goodsName = goodsName;
+        this.price = price;
+        this.stock = stock;
+        this.goodsStatus = goodsStatus;
+    }
 }

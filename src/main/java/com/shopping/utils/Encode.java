@@ -1,9 +1,10 @@
-package com.look.utils;
+package com.shopping.utils;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 @Component
 public class Encode {
     public String getSHA256StrJava(String str){

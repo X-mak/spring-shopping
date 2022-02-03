@@ -19,4 +19,9 @@ public class AccountRole {
 
     private Integer roleId;
     private Integer accountId;
+
+    public AccountRole(Integer roleId, Integer accountId) {
+        this.roleId = roleId;
+        this.accountId = accountId;
+    }
 }

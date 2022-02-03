@@ -20,4 +20,11 @@ public class Comments {
     private Integer goodsId;
     private String content;
     private Integer stars;
+
+    public Comments(Integer userId, Integer goodsId, String content, Integer stars) {
+        this.userId = userId;
+        this.goodsId = goodsId;
+        this.content = content;
+        this.stars = stars;
+    }
 }

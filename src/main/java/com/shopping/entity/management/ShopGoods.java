@@ -18,4 +18,9 @@ public class ShopGoods {
 
     private Integer shopId;
     private Integer goodsId;
+
+    public ShopGoods(Integer shopId, Integer goodsId) {
+        this.shopId = shopId;
+        this.goodsId = goodsId;
+    }
 }

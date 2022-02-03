@@ -1,4 +1,4 @@
-package com.look.config;
+package com.shopping.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.CrossOrigin;

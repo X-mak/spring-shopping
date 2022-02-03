@@ -17,4 +17,8 @@ public class Shop {
     private Integer id;
 
     private String shopName;
+
+    public Shop(String shopName) {
+        this.shopName = shopName;
+    }
 }
