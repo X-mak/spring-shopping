@@ -17,9 +17,9 @@ public class GoodsClass {
     private Integer id;
 
     private Integer goodsId;
-    private Integer classId;
+    private String classId;
 
-    public GoodsClass(Integer goodsId, Integer classId) {
+    public GoodsClass(Integer goodsId, String classId) {
         this.goodsId = goodsId;
         this.classId = classId;
     }
