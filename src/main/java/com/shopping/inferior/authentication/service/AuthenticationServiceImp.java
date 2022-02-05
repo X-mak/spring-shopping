@@ -86,7 +86,7 @@ public class AuthenticationServiceImp implements AuthenticationService{
     }
 
     public UserInfo getUserById(Integer userId){
-        return userInfoMapper.queryLoginUserInfo(userId);
+        return userInfoMapper.queryLoginUserInfoById(userId);
     }
 
     public int changeBasicInfo(UserInfo userInfo){

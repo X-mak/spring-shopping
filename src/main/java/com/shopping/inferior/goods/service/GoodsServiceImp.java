@@ -1,6 +1,8 @@
 package com.shopping.inferior.goods.service;
 
 import cn.hutool.core.date.DateUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.*;
 import com.shopping.entity.management.ShopGoods;
 import com.shopping.mapper.goods.*;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,13 +72,30 @@ public class GoodsServiceImp implements GoodsService{
 
 
     public Goods getGoods(Integer goodsId){
-        return goodsMapper.selectByPrimaryKey(goodsId);
+        return goodsMapper.queryGoodsById(goodsId);
     }
 
 
-    public List<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order,
-                                        String classId,Integer shopId){
-        return null;
+    public PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order,
+                                            String classId, String shopId){
+        List<Goods> goods = new ArrayList<>();
+        //处理参数
+        if(keyword.equals("")) keyword = "%";
+        else keyword = "%"+keyword+"%";
+        if(classId.equals(""))classId="%";
+        if(shopId.equals(""))shopId="%";
+
+        //分页
+        PageHelper.startPage(pageNum,pageSize,true);
+
+        //根据排序方式使用mapper
+        if(order.equals("date")){
+            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, classId, classId + "__", shopId);
+        }else if(order.equals("sales")){
+            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, classId, classId + "__", shopId);
+        }
+
+        return new PageInfo<>(goods);
     }
 
 

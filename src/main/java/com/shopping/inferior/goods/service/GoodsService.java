@@ -1,5 +1,6 @@
 package com.shopping.inferior.goods.service;
 
+import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface GoodsService {
 
     Goods getGoods(Integer goodsId);
 
-    List<Goods> getGoodsBySearch(Integer pageNum,Integer pageSize,String keyword,String order,String classId,Integer shopId);
+    PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order, String classId, String shopId);
 
     int changePrice(Price price);
 

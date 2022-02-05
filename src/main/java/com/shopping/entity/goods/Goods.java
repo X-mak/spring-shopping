@@ -21,6 +21,10 @@ public class Goods {
     private Integer stock;
     private Integer goodsStatus;
     private Integer sales;
+    @Transient
+    private String shopName;
+    @Transient
+    private String className;
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;
