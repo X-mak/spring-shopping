@@ -1,10 +1,8 @@
 package com.shopping.mapper.goods;
 
 import com.shopping.entity.goods.Goods;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -24,7 +22,11 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(column = "shop_name",property = "shopName"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
-            @Result(column = "class_name",property = "className")
+            @Result(column = "class_name",property = "className"),
+            @Result(column = "id",property = "goodsPictures",
+                    many = @Many(
+                            select = "com.shopping.mapper.goods.PicturesMapper.queryPicturesByGoodsId"
+                    ))
     })
     List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String subClassId,String shopId);
 

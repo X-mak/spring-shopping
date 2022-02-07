@@ -80,10 +80,7 @@ public class GoodsServiceImp implements GoodsService{
                                             String classId, String shopId){
         List<Goods> goods = new ArrayList<>();
         //处理参数
-        if(keyword.equals("")) keyword = "%";
-        else keyword = "%"+keyword+"%";
-        if(classId.equals(""))classId="%";
-        if(shopId.equals(""))shopId="%";
+        if(!keyword.equals("%"))keyword = "%"+keyword+"%";
 
         //分页
         PageHelper.startPage(pageNum,pageSize,true);
