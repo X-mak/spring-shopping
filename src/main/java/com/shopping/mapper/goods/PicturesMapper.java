@@ -18,4 +18,7 @@ public interface PicturesMapper extends Mapper<Pictures> {
             @Result(column = "goods_id",property = "goodsId"),
     })
     List<Pictures> queryPicturesByGoodsId(Integer goodsId);
+
+    @Select("SELECT address FROM pictures WHERE goods_id=#{goodsId} LIMIT 1")
+    String queryPictureAddress(Integer goodsId);
 }

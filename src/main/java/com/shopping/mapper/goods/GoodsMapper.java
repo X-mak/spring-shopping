@@ -23,10 +23,8 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
             @Result(column = "class_name",property = "className"),
-            @Result(column = "id",property = "goodsPictures",
-                    many = @Many(
-                            select = "com.shopping.mapper.goods.PicturesMapper.queryPicturesByGoodsId"
-                    ))
+            @Result(column = "id",property = "picture",
+                    one = @One(select = "com.shopping.mapper.goods.PicturesMapper.queryPictureAddress"))
     })
     List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String subClassId,String shopId);
 
@@ -43,6 +41,16 @@ public interface GoodsMapper extends Mapper<Goods> {
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where g.id=#{id} ")
-    @ResultMap(value = "goodsInfo")
+    @Results(id = "goodsInfoWithPictures",value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "shop_name",property = "shopName"),
+            @Result(column = "goods_name",property = "goodsName"),
+            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "class_name",property = "className"),
+            @Result(column = "id",property = "goodsPictures",
+                    many = @Many(
+                            select = "com.shopping.mapper.goods.PicturesMapper.queryPicturesByGoodsId"
+                    ))
+    })
     Goods queryGoodsById(Integer id);
 }

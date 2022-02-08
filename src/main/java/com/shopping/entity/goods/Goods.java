@@ -28,6 +28,8 @@ public class Goods {
     private String className;
     @Transient
     private List<Pictures> goodsPictures;
+    @Transient
+    private String picture;
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;

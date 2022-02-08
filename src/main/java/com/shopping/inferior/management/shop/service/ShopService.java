@@ -1,5 +1,6 @@
 package com.shopping.inferior.management.shop.service;
 
+import com.github.pagehelper.PageInfo;
 import com.shopping.entity.management.Shop;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ShopService {
 
     int changeShop(Shop shop);
 
-    List<Shop> getShopList(Integer pageNum,Integer pageSize,String userName,String shopName,String order);
+    PageInfo<Shop> getShopList(Integer pageNum, Integer pageSize, String userName, String shopName, String order);
 
-    List<Shop> getMyShopList(Integer pageNum,Integer pageSize,Integer userId);
+    PageInfo<Shop> getMyShopList(Integer pageNum,Integer pageSize,Integer userId);
 }

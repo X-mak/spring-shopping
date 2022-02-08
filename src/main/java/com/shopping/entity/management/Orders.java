@@ -22,6 +22,12 @@ public class Orders {
     private Integer orderNum;
     private String date;
     private Integer orderStatus;
+    @Transient
+    private String userName;
+    @Transient
+    private String goodsName;
+    @Transient
+    private String picture;
 
     public Orders(Integer userId, Integer goodsId, Integer orderNum, Integer orderStatus) {
         this.userId = userId;
