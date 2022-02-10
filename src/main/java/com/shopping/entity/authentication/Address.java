@@ -18,4 +18,11 @@ public class Address {
 
     private Integer userId;
     private String content;
+    private Integer addressStatus;
+
+    public Address(Integer userId, String content, Integer addressStatus) {
+        this.userId = userId;
+        this.content = content;
+        this.addressStatus = addressStatus;
+    }
 }

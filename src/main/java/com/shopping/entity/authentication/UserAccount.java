@@ -18,4 +18,9 @@ public class UserAccount {
 
     private String account;
     private String pwd;
+
+    public UserAccount(String account, String pwd) {
+        this.account = account;
+        this.pwd = pwd;
+    }
 }

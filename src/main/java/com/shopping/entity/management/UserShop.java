@@ -18,4 +18,12 @@ public class UserShop {
 
     private Integer userId;
     private Integer shopId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
 }

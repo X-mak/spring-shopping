@@ -18,4 +18,9 @@ public class Pictures {
 
     private Integer goodsId;
     private String address;
+
+    public Pictures(Integer goodsId, String address) {
+        this.goodsId = goodsId;
+        this.address = address;
+    }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -20,4 +21,21 @@ public class Goods {
     private Double price;
     private Integer stock;
     private Integer goodsStatus;
+    private Integer sales;
+    @Transient
+    private String shopName;
+    @Transient
+    private String className;
+    @Transient
+    private List<Pictures> goodsPictures;
+    @Transient
+    private String picture;
+
+    public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
+        this.goodsName = goodsName;
+        this.price = price;
+        this.stock = stock;
+        this.goodsStatus = goodsStatus;
+        this.sales = 0;
+    }
 }

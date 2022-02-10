@@ -1,5 +1,6 @@
 package com.shopping.entity.management;
 
+import cn.hutool.core.date.DateUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,11 @@ public class ShopGoods {
 
     private Integer shopId;
     private Integer goodsId;
+    private String date;
+
+    public ShopGoods(Integer shopId, Integer goodsId) {
+        this.shopId = shopId;
+        this.goodsId = goodsId;
+        this.date = DateUtil.now();
+    }
 }
