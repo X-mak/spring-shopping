@@ -46,6 +46,7 @@ public class Result<T> {
 
     public static Result error(String msg){
         Result result = new Result();
+        result.setCode("400");
         result.setMsg(msg);
         return result;
     }

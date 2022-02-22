@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -23,9 +24,11 @@ public class UserInfo {
     private String userPhone;
 
     @Transient
-    private String roleName;
+    private List<AccountRole> roleList;
     @Transient
     private String address;
+    @Transient
+    private String token;
 
     public UserInfo(Integer id, String userName, String userPhone) {
         this.id = id;

@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shopping.common.Result;
 import com.shopping.inferior.files.service.FileService;
+import com.shopping.utils.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ public class FileController {
 
     @PostMapping("/{type}")
     public Result<?> upload(MultipartFile file,@PathVariable String type){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
         try{
             String name = fileService.uploadImg(file,type);
             name = "http://localhost:8080/files/"+type+"/"+name;
@@ -60,4 +62,6 @@ public class FileController {
 
     @Autowired
     FileService fileService;
+    @Autowired
+    Authority authority;
 }

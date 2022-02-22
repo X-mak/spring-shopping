@@ -23,6 +23,7 @@ public class OrderServiceImp implements OrderService{
             orders.setDate(DateUtil.now());
             ordersMapper.insertSelective(orders);
             goods.setStock(goods.getStock()-orders.getOrderNum());
+            if (goods.getStock() == 0)goods.setGoodsStatus(0);
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
             e.printStackTrace();
@@ -36,6 +37,7 @@ public class OrderServiceImp implements OrderService{
             Orders orders = ordersMapper.selectByPrimaryKey(id);
             ordersMapper.deleteByPrimaryKey(id);
             Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+            if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
             goods.setStock(goods.getStock()+orders.getOrderNum());
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){

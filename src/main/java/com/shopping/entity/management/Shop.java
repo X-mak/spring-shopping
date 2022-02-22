@@ -26,4 +26,10 @@ public class Shop {
         this.hot = 0;
         this.date = DateUtil.now();
     }
+
+    public Shop(Integer id) {
+        this.id = id;
+        this.hot = 0;
+        this.date = DateUtil.now();
+    }
 }

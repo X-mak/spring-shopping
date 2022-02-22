@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.common.Result;
 import com.shopping.entity.goods.*;
 import com.shopping.inferior.goods.service.GoodsService;
+import com.shopping.utils.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class GoodsController {
 
     @PostMapping
     public Result<?> addGoods(@RequestBody GoodsInfo goodsInfo){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addGoods(goodsInfo);
         if(res == -1)return Result.error("上架失败");
         return Result.success("上架成功");
@@ -41,6 +43,7 @@ public class GoodsController {
 
     @DeleteMapping("/{goodsId}")
     public Result<?> deleteGoods(@PathVariable Integer goodsId){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.deleteGoods(goodsId);
         if(res == -1)return Result.error("删除失败");
         return Result.success("删除成功");
@@ -48,6 +51,7 @@ public class GoodsController {
 
     @PutMapping("/info")
     public Result<?> changeGoodsInfo(@RequestBody Goods goods){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changeGoodsBasicInfo(goods);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");
@@ -55,6 +59,7 @@ public class GoodsController {
 
     @PutMapping("/price")
     public Result<?> changeGoodsPrice(@RequestBody Price price){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changePrice(price);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");
@@ -62,6 +67,7 @@ public class GoodsController {
 
     @PutMapping("/stock")
     public Result<?> changeGoodsStock(@RequestBody Stock stock){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changeStock(stock);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");
@@ -69,6 +75,7 @@ public class GoodsController {
 
     @PutMapping("/class")
     public Result<?> changeGoodsClass(@RequestBody GoodsClass goodsClass){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changeClass(goodsClass);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");
@@ -83,6 +90,7 @@ public class GoodsController {
 
     @PostMapping("/pictures")
     public Result<?> addPictures(@RequestParam Integer goodsId,@RequestBody List<String> pictures){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addPictures(goodsId, pictures);
         if(res == -1)return Result.error("添加失败");
         return Result.success("添加成功");
@@ -91,4 +99,6 @@ public class GoodsController {
 
     @Autowired
     GoodsService goodsService;
+    @Autowired
+    Authority authority;
 }

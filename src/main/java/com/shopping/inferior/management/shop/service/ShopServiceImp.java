@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class ShopServiceImp {
 
     public int addShop(Shop shop){
-
+        return 0;
     }
 }
