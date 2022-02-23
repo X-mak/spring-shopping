@@ -23,7 +23,9 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public Result<?> deleteOrders(@PathVariable Integer id,@RequestParam Integer goodsId){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        int res = orderService.deleteOrders(id, goodsId);
+        int res = -1;
+        if(authority.hasRights("seller"))res = orderService.deleteOrders(id, goodsId,3);
+        else res = orderService.deleteOrders(id, goodsId,1);
         if(res == -1)return Result.error("未知错误!");
         else return Result.success("删除成功!");
     }

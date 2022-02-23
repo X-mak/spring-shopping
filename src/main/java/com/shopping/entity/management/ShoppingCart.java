@@ -18,4 +18,10 @@ public class ShoppingCart {
 
     private Integer userId;
     private Integer goodsId;
+    private Integer num;
+
+    public ShoppingCart(Integer userId, Integer goodsId) {
+        this.userId = userId;
+        this.goodsId = goodsId;
+    }
 }

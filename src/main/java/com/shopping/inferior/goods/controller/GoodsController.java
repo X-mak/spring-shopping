@@ -16,7 +16,7 @@ public class GoodsController {
 
     @PostMapping
     public Result<?> addGoods(@RequestBody GoodsInfo goodsInfo){
-        if(!authority.hasRights("seller"))return Result.error("no way");
+        //if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addGoods(goodsInfo);
         if(res == -1)return Result.error("上架失败");
         return Result.success("上架成功");
