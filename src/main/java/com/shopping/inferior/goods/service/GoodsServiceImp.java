@@ -25,8 +25,13 @@ public class GoodsServiceImp implements GoodsService{
             stockMapper.insertSelective(new Stock(goods.getId(),goodsInfo.getStock()));
             priceMapper.insertSelective(new Price(goods.getId(),goodsInfo.getPrice()));
             shopGoodsMapper.insertSelective(new ShopGoods(goodsInfo.getShopId(),goods.getId()));
+            int i = 0;
             for(String address : goodsInfo.getGoodsPictures()){
-                picturesMapper.insertSelective(new Pictures(goods.getId(),address));
+                if(i == 0)
+                    picturesMapper.insertSelective(new Pictures(goods.getId(),address,1));
+                else
+                    picturesMapper.insertSelective(new Pictures(goods.getId(),address,0));
+                i++;
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -152,7 +157,7 @@ public class GoodsServiceImp implements GoodsService{
     public int addPictures(Integer goodsId,List<String> pictures){
         try{
             for(String address : pictures){
-                picturesMapper.insertSelective(new Pictures(goodsId,address));
+                picturesMapper.insertSelective(new Pictures(goodsId,address,0));
             }
         }catch (Exception e){
             e.printStackTrace();

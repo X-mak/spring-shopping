@@ -53,4 +53,26 @@ public interface GoodsMapper extends Mapper<Goods> {
                     ))
     })
     Goods queryGoodsById(Integer id);
+
+
+    @Select("SELECT g.*,sc.num,p.address FROM shoppingcart sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON " +
+            "p.goods_id = g.id  WHERE sc.user_id = #{userId} AND p.status = 1")
+    @Results(id = "goodsInCart",value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "goods_name",property = "goodsName"),
+            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "address",property = "picture")
+    })
+    List<Goods> queryGoodsInCart(Integer userId);
+
+
+    @Select("SELECT g.*,p.address FROM collections c LEFT JOIN goods g ON g.id = c.goods_id LEFT JOIN " +
+            "pictures p ON p.goods_id = g.id WHERE c.user_id = #{userId}")
+    @Results(id = "goodsInCollections",value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "goods_name",property = "goodsName"),
+            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "address",property = "picture")
+    })
+    List<Goods> queryGoodsInCollections(Integer userId);
 }

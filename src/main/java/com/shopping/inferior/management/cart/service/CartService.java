@@ -11,5 +11,5 @@ public interface CartService {
 
     int updateCartGoods(Integer id,Integer num);
 
-    PageInfo<Goods> getCartGoods();
+    PageInfo<Goods> getCartGoods(Integer pageNum,Integer pageSize);
 }

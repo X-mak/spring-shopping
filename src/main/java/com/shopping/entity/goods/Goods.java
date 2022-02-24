@@ -30,6 +30,10 @@ public class Goods {
     private List<Pictures> goodsPictures;
     @Transient
     private String picture;
+    @Transient
+    private Integer num;
+    @Transient
+    private boolean collected;
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;

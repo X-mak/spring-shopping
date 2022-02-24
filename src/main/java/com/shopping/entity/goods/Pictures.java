@@ -18,9 +18,16 @@ public class Pictures {
 
     private Integer goodsId;
     private String address;
+    private Integer status;
 
     public Pictures(Integer goodsId, String address) {
         this.goodsId = goodsId;
         this.address = address;
+    }
+
+    public Pictures(Integer goodsId, String address, Integer status) {
+        this.goodsId = goodsId;
+        this.address = address;
+        this.status = status;
     }
 }
