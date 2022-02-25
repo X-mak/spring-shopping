@@ -8,10 +8,11 @@ import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.CollectionsMapper;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class CollectionsServiceImp {
+@Service
+public class CollectionsServiceImp implements CollectionsService{
 
     public int collectMany(List<Collections> collectionsList){
         try{

@@ -55,8 +55,11 @@ public interface GoodsMapper extends Mapper<Goods> {
     Goods queryGoodsById(Integer id);
 
 
-    @Select("SELECT g.*,sc.num,p.address FROM shoppingcart sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON " +
-            "p.goods_id = g.id  WHERE sc.user_id = #{userId} AND p.status = 1")
+    @Select("SELECT g.*,sc.num,p.address ," +
+            "CASE WHEN c.user_id=1 THEN TRUE ELSE FALSE END AS collected " +
+            "FROM shoppingcart sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON " +
+            "p.goods_id = g.id  LEFT JOIN collections c ON c.goods_id=g.id " +
+            "WHERE sc.user_id = 1 AND p.status = 1")
     @Results(id = "goodsInCart",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),

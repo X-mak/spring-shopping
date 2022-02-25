@@ -33,7 +33,7 @@ public class Goods {
     @Transient
     private Integer num;
     @Transient
-    private boolean collected;
+    private Integer collected;
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;
