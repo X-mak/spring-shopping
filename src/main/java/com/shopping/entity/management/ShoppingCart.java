@@ -14,11 +14,11 @@ import javax.persistence.*;
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，购物车编号
 
-    private Integer userId;
-    private Integer goodsId;
-    private Integer num;
+    private Integer userId; //用户编号
+    private Integer goodsId;    //商品编号
+    private Integer num;    //购物车数量
 
     public ShoppingCart(Integer userId, Integer goodsId) {
         this.userId = userId;

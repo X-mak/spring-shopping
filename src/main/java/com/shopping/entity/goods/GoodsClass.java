@@ -14,10 +14,10 @@ import javax.persistence.*;
 public class GoodsClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，商品类别关联编号
 
-    private Integer goodsId;
-    private String classId;
+    private Integer goodsId;    //商品编号
+    private String classId; //类别编号
 
     public GoodsClass(Integer goodsId, String classId) {
         this.goodsId = goodsId;

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Result</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class Result implements Serializable{
+
+    private String code; //响应代码，400为错误，200为正确
+    private String msg; //响应提示信息,若为搜索请求,则为页码总数
+    private Goods data; //响应数据
+
+    public String getCode(){
+        return code;
+    }
+
+    public void setCode(String code){
+        this.code = code;
+    }
+
+    public String getMsg(){
+        return msg;
+    }
+
+    public void setMsg(String msg){
+        this.msg = msg;
+    }
+
+    public Goods getData(){
+        return data;
+    }
+
+    public void setData(Goods data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class Goods implements Serializable{
+
+    private int id; //主键，商品编号
+    private String goodsName; //商品名
+    private double price; //商品价格
+    private int stock; //商品库存
+    private int goodsStatus; //商品状态，1为销售中，0为已下架
+    private int sales; //销量
+    private String shopName; //商铺名
+    private String className; //类别
+    private Pictures[] goodsPictures; //商品的所有图片
+    private String picture; //商品的默认图片
+    private int num; //商品的数量
+    private int collected; //商品收藏状态，1为已收藏，0为未收藏
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getGoodsName(){
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName){
+        this.goodsName = goodsName;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public int getStock(){
+        return stock;
+    }
+
+    public void setStock(int stock){
+        this.stock = stock;
+    }
+
+    public int getGoodsStatus(){
+        return goodsStatus;
+    }
+
+    public void setGoodsStatus(int goodsStatus){
+        this.goodsStatus = goodsStatus;
+    }
+
+    public int getSales(){
+        return sales;
+    }
+
+    public void setSales(int sales){
+        this.sales = sales;
+    }
+
+    public String getShopName(){
+        return shopName;
+    }
+
+    public void setShopName(String shopName){
+        this.shopName = shopName;
+    }
+
+    public String getClassName(){
+        return className;
+    }
+
+    public void setClassName(String className){
+        this.className = className;
+    }
+
+    public Pictures[] getGoodsPictures(){
+        return goodsPictures;
+    }
+
+    public void setGoodsPictures(Pictures[] goodsPictures){
+        this.goodsPictures = goodsPictures;
+    }
+
+    public String getPicture(){
+        return picture;
+    }
+
+    public void setPicture(String picture){
+        this.picture = picture;
+    }
+
+    public int getNum(){
+        return num;
+    }
+
+    public void setNum(int num){
+        this.num = num;
+    }
+
+    public int getCollected(){
+        return collected;
+    }
+
+    public void setCollected(int collected){
+        this.collected = collected;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class Pictures implements Serializable{
+
+    private int id; //主键，图片编号
+    private int goodsId; //商品编号
+    private String address; //图片地址
+    private int status; //图片状态，1为默认地址，0为备用地址
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getGoodsId(){
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId){
+        this.goodsId = goodsId;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public int getStatus(){
+        return status;
+    }
+
+    public void setStatus(int status){
+        this.status = status;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

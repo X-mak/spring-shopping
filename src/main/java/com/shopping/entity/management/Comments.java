@@ -15,20 +15,20 @@ import javax.persistence.*;
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，评论编号
 
-    private Integer userId;
-    private Integer goodsId;
-    private String content;
-    private Integer stars;
-    private String date;
-    private Integer hot;
+    private Integer userId; //用户编号
+    private Integer goodsId;    //商品编号
+    private String content; //评论内容
+    private Integer stars;  //评论星数
+    private String date;    //评论日期
+    private Integer hot;    //评论热度
     @Transient
-    private String userName;
+    private String userName;    //评论人姓名
     @Transient
-    private String goodsName;
+    private String goodsName;   //评论的商品名
     @Transient
-    private String own;
+    private String own; //评论所有权，1为自己的评论，0为他人的评论
 
     public Comments(Integer userId, Integer goodsId, String content, Integer stars) {
         this.userId = userId;

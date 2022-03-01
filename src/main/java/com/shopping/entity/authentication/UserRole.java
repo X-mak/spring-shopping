@@ -14,6 +14,6 @@ import javax.persistence.*;
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String roleName;
+    private Integer id; //主键，角色编号
+    private String roleName;    //角色姓名
 }

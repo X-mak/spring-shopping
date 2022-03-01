@@ -14,11 +14,11 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，地址编号
 
-    private Integer userId;
-    private String content;
-    private Integer addressStatus;
+    private Integer userId; //用户编号
+    private String content; //具体地址内容
+    private Integer addressStatus;  //地址状态，1为默认地址，0为备用地址
 
     public Address(Integer userId, String content, Integer addressStatus) {
         this.userId = userId;

@@ -17,18 +17,18 @@ import java.util.List;
 @Table(name = "userinfo")
 public class UserInfo {
     @Id
-    private Integer id;
+    private Integer id; //主键，用户编号
 
-    private String userName;
-    private Integer userStatus;
-    private String userPhone;
+    private String userName;    //用户姓名
+    private Integer userStatus; //用户状态，1为已审核，0为未审核
+    private String userPhone;   //用户电话号码
 
     @Transient
-    private List<AccountRole> roleList;
+    private List<AccountRole> roleList; //用户权限列表
     @Transient
-    private String address;
+    private String address; //用户默认地址
     @Transient
-    private String token;
+    private String token;   //用户当前token
 
     public UserInfo(Integer id, String userName, String userPhone) {
         this.id = id;

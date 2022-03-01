@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "classes")
 public class Classes {
     @Id
-    private String id;
+    private String id;  //主键，类别编号
 
-    private String className;
+    private String className;   //类别名
 }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Result</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class Result implements Serializable{
+
+    private String code; //响应代码，400为错误，200为正确
+    private String msg; //响应提示信息,若为搜索请求,则为页码总数
+    private Orders data; //响应数据
+
+    public String getCode(){
+        return code;
+    }
+
+    public void setCode(String code){
+        this.code = code;
+    }
+
+    public String getMsg(){
+        return msg;
+    }
+
+    public void setMsg(String msg){
+        this.msg = msg;
+    }
+
+    public Orders getData(){
+        return data;
+    }
+
+    public void setData(Orders data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class Orders implements Serializable{
+
+    private int id; //主键，订单编号
+    private int userId; //用户编号
+    private int goodsId; //商品编号
+    private int orderNum; //订单数量
+    private String date; //订单日期
+    private int orderStatus; //订单状态
+    private String userName; //下单人姓名
+    private String goodsName; //购买的商品名
+    private String picture; //购买的商品的默认图片地址
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
+
+    public int getGoodsId(){
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId){
+        this.goodsId = goodsId;
+    }
+
+    public int getOrderNum(){
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum){
+        this.orderNum = orderNum;
+    }
+
+    public String getDate(){
+        return date;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public int getOrderStatus(){
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus){
+        this.orderStatus = orderStatus;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public String getGoodsName(){
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName){
+        this.goodsName = goodsName;
+    }
+
+    public String getPicture(){
+        return picture;
+    }
+
+    public void setPicture(String picture){
+        this.picture = picture;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

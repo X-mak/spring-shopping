@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.shopping.common.Result;
 import com.shopping.inferior.files.service.FileService;
 import com.shopping.utils.Authority;
+import io.github.yedaxia.apidocs.ApiDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,13 +19,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/file")
 public class FileController {
-
+    /**
+     * 上传文件
+     * @param file  文件流
+     * @param type  文件类型，goodsImg/userImg
+     * @return
+     */
+    @ApiDoc(stringResult = "{code:‘string//200为正确，400为出错’,     msg: 'string//提示信息',    data:'string//上传后的地址'}")
     @PostMapping("/{type}")
     public Result<?> upload(MultipartFile file,@PathVariable String type){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         try{
             String name = fileService.uploadImg(file,type);
-            name = "http://localhost:8080/files/"+type+"/"+name;
+            name = "http://localhost:8980/files/"+type+"/"+name;
             return Result.success(name,"上传成功!");
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,7 +39,13 @@ public class FileController {
         }
     }
 
+    /**
+     * 下载文件
+     * @param type  文件类型，goodsImg/userImg
+     * @param flag  文件地址
+     */
     @GetMapping("/{type}/{flag}")
+    @ApiDoc(result = Result.class)
     public void download(@PathVariable String type, @PathVariable String flag, HttpServletResponse response){
         //type决定下载的文件类型
         //userImg：用户头像上传

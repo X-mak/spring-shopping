@@ -14,8 +14,8 @@ import javax.persistence.*;
 public class Collections {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，收藏品编号
 
-    private Integer userId;
-    private Integer goodsId;
+    private Integer userId; //用户编号
+    private Integer goodsId;    //商品编号
 }

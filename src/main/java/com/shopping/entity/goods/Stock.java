@@ -15,11 +15,11 @@ import javax.persistence.*;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，库存编号
 
-    private Integer goodsId;
-    private Integer num;
-    private String date;
+    private Integer goodsId;    //商品编号
+    private Integer num;    //商品数量
+    private String date;    //变动日期
 
     public Stock(Integer goodsId, Integer num) {
         this.goodsId = goodsId;
