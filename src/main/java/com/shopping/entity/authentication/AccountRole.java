@@ -15,10 +15,10 @@ import javax.persistence.*;
 public class AccountRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，关联类编号
 
-    private Integer roleId;
-    private Integer accountId;
+    private Integer roleId; //角色编号
+    private Integer accountId;  //账号编号
 
     public AccountRole(Integer roleId, Integer accountId) {
         this.roleId = roleId;

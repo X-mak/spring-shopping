@@ -14,10 +14,10 @@ import javax.persistence.*;
 public class UserShop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; //主键，用户商铺关联编号
 
-    private Integer userId;
-    private Integer shopId;
+    private Integer userId; //用户编号
+    private Integer shopId; //商铺编号
 
     public Integer getUserId() {
         return userId;

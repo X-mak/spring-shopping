@@ -9,7 +9,7 @@ public interface OrderService {
 
     int addOrders(Orders orders);
 
-    int deleteOrders(Integer id,Integer goodsId);
+    int deleteOrders(Integer id,Integer goodsId,Integer status);
 
     int changeOrders(Orders orders);
 

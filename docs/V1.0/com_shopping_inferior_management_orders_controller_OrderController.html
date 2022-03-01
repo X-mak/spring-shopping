@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>OrderController</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="PR.prettyPrint()">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                shopping
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V1.0<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="book with-summary">
+    <div class="book-summary">
+<div class="search-box form-group">
+    <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
+    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+</div>
+<div id="accordion" class="catalog">
+        <div class="panel">
+            <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
+                <i class="glyphicon glyphicon-align-justify"></i> AuthenticationController
+            </div>
+            <div id="collapse0" class="collapse in " aria-labelledby="heading0">
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#addUser">
+                         用户注册
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#checkLogin">
+                         用户登录
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changePwd">
+                        用户修改密码
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#getUser">
+                        获取用户信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changeInfo">
+                        修改用户信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#addAddress">
+                        新增地址
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changeAddress">
+                        修改地址
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                <i class="glyphicon glyphicon-align-justify"></i> FileController
+            </div>
+            <div id="collapse1" class="collapse " aria-labelledby="heading1">
+                    <a class="catalog-item" href="com_shopping_inferior_files_controller_FileController.html#upload">
+                        上传文件
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_files_controller_FileController.html#download">
+                        下载文件
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
+                <i class="glyphicon glyphicon-align-justify"></i> GoodsController
+            </div>
+            <div id="collapse2" class="collapse " aria-labelledby="heading2">
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#addGoods">
+                        新增商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#getSelectedGoods">
+                        搜索商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo">
+                        获取商品信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods">
+                        删除商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo">
+                        修改商品基本信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsPrice">
+                        修改商品价格
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsStock">
+                        修改商品库存
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsClass">
+                        修改商品类别
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#getClass">
+                        获取商品类别列表
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#addPictures">
+                        新增图片
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading3" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse3" aria-controls="collapse3">
+                <i class="glyphicon glyphicon-align-justify"></i> CartController
+            </div>
+            <div id="collapse3" class="collapse " aria-labelledby="heading3">
+                    <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#addCartGoods">
+                        购物车添加商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods">
+                        购物车删除商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods">
+                        更新购物车商品数量
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#getCartGoods">
+                        获取购物车列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading4" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse4" aria-controls="collapse4">
+                <i class="glyphicon glyphicon-align-justify"></i> CollectionsController
+            </div>
+            <div id="collapse4" class="collapse " aria-labelledby="heading4">
+                    <a class="catalog-item" href="com_shopping_inferior_management_collections_controller_CollectionsController.html#collectGoods">
+                        收藏商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect">
+                        取消收藏
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_collections_controller_CollectionsController.html#getMyCollections">
+                        获取个人收藏列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading5" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse5" aria-controls="collapse5">
+                <i class="glyphicon glyphicon-align-justify"></i> OrderController
+            </div>
+            <div id="collapse5" class="collapse in " aria-labelledby="heading5">
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#addOrders">
+                        新增订单
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#deleteOrders">
+                        删除订单
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#changeOrders">
+                        更新订单状态
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#getOrdersListByUser">
+                        获取订单列表
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder">
+                        获取订单
+                    </a>
+            </div>
+        </div>
+</div>    </div>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+                <div class="d-flex justify-content-between">
+                    <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
+                            class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="page-inner">
+                    <div class="action-list">
+                        <div class="action-item">
+<h2 id="addOrders"><a href="#">新增订单 </a></h2>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/order/addOrders</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"id":"int //主键，订单编号",
+	"userId":"int //用户编号",
+	"goodsId":"int //商品编号",
+	"orderNum":"int //订单数量",
+	"date":"string //订单日期",
+	"orderStatus":"int //订单状态",
+	"userName":"string //下单人姓名",
+	"goodsName":"string //购买的商品名",
+	"picture":"string //购买的商品的默认图片地址"
+}</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"string //响应代码，400为错误，200为正确",
+	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
+	"data":{}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_orders_controller_OrderController_addOrders_Result.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_orders_controller_OrderController_addOrders_Result.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="deleteOrders"><a href="#">删除订单 </a></h2>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/order/{id}</code>
+        <span class="label label-default">DELETE</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>int</td>
+                        <td>是</td>
+                        <td>订单编号</td>
+                    </tr>
+                    <tr>
+                        <td>goodsId</td>
+                        <td>int</td>
+                        <td>是</td>
+                        <td>商品编号</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"string //响应代码，400为错误，200为正确",
+	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
+	"data":{}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_orders_controller_OrderController_deleteOrders_Result.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_orders_controller_OrderController_deleteOrders_Result.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="changeOrders"><a href="#">更新订单状态 </a></h2>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/order/changeOrders</code>
+        <span class="label label-default">PUT</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"id":"int //主键，订单编号",
+	"userId":"int //用户编号",
+	"goodsId":"int //商品编号",
+	"orderNum":"int //订单数量",
+	"date":"string //订单日期",
+	"orderStatus":"int //订单状态",
+	"userName":"string //下单人姓名",
+	"goodsName":"string //购买的商品名",
+	"picture":"string //购买的商品的默认图片地址"
+}</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"string //响应代码，400为错误，200为正确",
+	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
+	"data":{}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_orders_controller_OrderController_changeOrders_Result.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_orders_controller_OrderController_changeOrders_Result.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getOrdersListByUser"><a href="#">获取订单列表 </a></h2>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/order/userList/{pageNum}</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>pageNum</td>
+                        <td>int</td>
+                        <td>是</td>
+                        <td>页码</td>
+                    </tr>
+                    <tr>
+                        <td>pageSize</td>
+                        <td>int</td>
+                        <td>否</td>
+                        <td>单页大小</td>
+                    </tr>
+                    <tr>
+                        <td>userId</td>
+                        <td>int</td>
+                        <td>是</td>
+                        <td>用户编号</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>int</td>
+                        <td>否</td>
+                        <td>订单状态</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"string //响应代码，400为错误，200为正确",
+	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
+	"data":[{
+		"id":"int //主键，订单编号",
+		"userId":"int //用户编号",
+		"goodsId":"int //商品编号",
+		"orderNum":"int //订单数量",
+		"date":"string //订单日期",
+		"orderStatus":"int //订单状态",
+		"userName":"string //下单人姓名",
+		"goodsName":"string //购买的商品名",
+		"picture":"string //购买的商品的默认图片地址"
+	}]
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_orders_controller_OrderController_getOrdersListByUser_Result.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_orders_controller_OrderController_getOrdersListByUser_Result.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getOneOrder"><a href="#">获取订单 </a></h2>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/order/{id}</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>int</td>
+                        <td>是</td>
+                        <td>订单编号</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"string //响应代码，400为错误，200为正确",
+	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
+	"data":{
+		"id":"int //主键，订单编号",
+		"userId":"int //用户编号",
+		"goodsId":"int //商品编号",
+		"orderNum":"int //订单数量",
+		"date":"string //订单日期",
+		"orderStatus":"int //订单状态",
+		"userName":"string //下单人姓名",
+		"goodsName":"string //购买的商品名",
+		"picture":"string //购买的商品的默认图片地址"
+	}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_orders_controller_OrderController_getOneOrder_Result.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_orders_controller_OrderController_getOneOrder_Result.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+<script>
+
+    var search_source_data = [
+            {name: 'AuthenticationController. 用户注册', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#addUser'},
+            {name: 'AuthenticationController. 用户登录', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#checkLogin'},
+            {name: 'AuthenticationController.用户修改密码', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changePwd'},
+            {name: 'AuthenticationController.获取用户信息', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#getUser'},
+            {name: 'AuthenticationController.修改用户信息', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changeInfo'},
+            {name: 'AuthenticationController.新增地址', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#addAddress'},
+            {name: 'AuthenticationController.修改地址', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changeAddress'},
+            {name: 'FileController.上传文件', url: 'com_shopping_inferior_files_controller_FileController.html#upload'},
+            {name: 'FileController.下载文件', url: 'com_shopping_inferior_files_controller_FileController.html#download'},
+            {name: 'GoodsController.新增商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addGoods'},
+            {name: 'GoodsController.搜索商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getSelectedGoods'},
+            {name: 'GoodsController.获取商品信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo'},
+            {name: 'GoodsController.删除商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods'},
+            {name: 'GoodsController.修改商品基本信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo'},
+            {name: 'GoodsController.修改商品价格', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsPrice'},
+            {name: 'GoodsController.修改商品库存', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsStock'},
+            {name: 'GoodsController.修改商品类别', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsClass'},
+            {name: 'GoodsController.获取商品类别列表', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getClass'},
+            {name: 'GoodsController.新增图片', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addPictures'},
+            {name: 'CartController.购物车添加商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#addCartGoods'},
+            {name: 'CartController.购物车删除商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods'},
+            {name: 'CartController.更新购物车商品数量', url: 'com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods'},
+            {name: 'CartController.获取购物车列表', url: 'com_shopping_inferior_management_cart_controller_CartController.html#getCartGoods'},
+            {name: 'CollectionsController.收藏商品', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#collectGoods'},
+            {name: 'CollectionsController.取消收藏', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect'},
+            {name: 'CollectionsController.获取个人收藏列表', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#getMyCollections'},
+            {name: 'OrderController.新增订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#addOrders'},
+            {name: 'OrderController.删除订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#deleteOrders'},
+            {name: 'OrderController.更新订单状态', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#changeOrders'},
+            {name: 'OrderController.获取订单列表', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOrdersListByUser'},
+            {name: 'OrderController.获取订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder'},
+    ];
+
+
+
+    $('.toggle-catalog').click(function () {
+        $('.book').toggleClass('with-summary');
+    });
+
+    $('#inputSearch').autocomplete({hint: false}, [
+        {
+            source: function (query, callback) {
+                var result = [];
+                for(var i = 0; i !== search_source_data.length; i++){
+                    if(search_source_data[i].name.indexOf(query) !== -1){
+                        result.push(search_source_data[i]);
+                    }
+                }
+                callback(result);
+            },
+            displayKey: 'name',
+            templates: {
+                suggestion: function (suggestion) {
+                    return suggestion.name;
+                }
+            }
+        }
+    ]).on('autocomplete:selected', function (event, suggestion, dataset, context) {
+        self.location = suggestion.url;
+    });
+</script>
+</body>
+</html>

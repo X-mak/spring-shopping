@@ -1,8 +1,11 @@
 package com.shopping.inferior.authentication.service;
 
 import com.shopping.entity.authentication.*;
+import com.shopping.entity.management.Shop;
 import com.shopping.mapper.authentication.*;
+import com.shopping.mapper.management.ShopMapper;
 import com.shopping.utils.Encode;
+import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -32,17 +35,16 @@ public class AuthenticationServiceImp implements AuthenticationService{
             userAccountMapper.insertSelective(userAccount);
             int userId = userAccount.getId();
             UserInfo userInfo = new UserInfo(userId,registerUser.getUserName(), registerUser.getUserPhone());
-            if(registerUser.getUserRole().equals("买家")){
-                accountRoleMapper.insertSelective(new AccountRole(1,userId));
-            }
-            if(registerUser.getUserRole().equals("卖家")){
+            accountRoleMapper.insertSelective(new AccountRole(1,userId));
+            if(registerUser.getUserRole().equals("seller")){
                 userInfo.setUserStatus(0);
                 accountRoleMapper.insertSelective(new AccountRole(2,userId));
-            }else if(registerUser.getUserRole().equals("管理员")){
+                shopMapper.insertSelective(new Shop(userAccount.getId()));
+            }else if(registerUser.getUserRole().equals("admin")){
                 accountRoleMapper.insertSelective(new AccountRole(3,userId));
             }
             userInfoMapper.insertSelective(userInfo);
-            if(registerUser.getAddress()!=null || registerUser.getAddress()!=""){
+            if(registerUser.getAddress()!=null && !registerUser.getAddress().equals("")){
                 addressMapper.insertSelective(new Address(userId, registerUser.getAddress(),1));
             }
 
@@ -57,11 +59,11 @@ public class AuthenticationServiceImp implements AuthenticationService{
         Example example = new Example(UserAccount.class);
         example.createCriteria().andEqualTo("account",userAccount.getAccount());
         UserAccount selectedAccount = userAccountMapper.selectByExample(example).get(0);
+
         String encodePwd = encode.getSHA256StrJava(userAccount.getPwd());
         if(selectedAccount == null || ! encodePwd.equals(selectedAccount.getPwd().substring(64)))
             return null;
-
-        return userInfoMapper.queryLoginUserInfo(userAccount.getAccount());
+        return TokenUtils.getToken(selectedAccount);
     }
 
     public int changePwd(UserAccount userAccount,String newPwd){
@@ -76,8 +78,9 @@ public class AuthenticationServiceImp implements AuthenticationService{
 
             //修改密码
             String randomNum = (int)((Math.random()*9+1)*100)+"";
-            userAccount.setPwd(encode.getSHA256StrJava(randomNum)+encode.getSHA256StrJava(newPwd));
-            userAccountMapper.updateByPrimaryKeySelective(userAccount);
+            String newEncodePwd = encode.getSHA256StrJava(randomNum)+encode.getSHA256StrJava(newPwd);
+            selectedAccount.setPwd(newEncodePwd);
+            userAccountMapper.updateByPrimaryKeySelective(selectedAccount);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -131,6 +134,8 @@ public class AuthenticationServiceImp implements AuthenticationService{
     UserInfoMapper userInfoMapper;
     @Autowired
     UserRoleMapper userRoleMapper;
+    @Autowired
+    ShopMapper shopMapper;
     @Autowired
     Encode encode;
 }

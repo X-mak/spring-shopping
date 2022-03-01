@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Result</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface Result : NSObject
+
+//响应代码，400为错误，200为正确
+@property (nonatomic, assign) NSString code;
+//响应提示信息,若为搜索请求,则为页码总数
+@property (nonatomic, assign) NSString msg;
+//响应数据
+@property (nonatomic, strong) Classes[] data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface Classes : NSObject
+
+//主键，类别编号
+@property (nonatomic, assign) NSString id;
+//类别名
+@property (nonatomic, assign) NSString className;
+
+
+@end
+</xmp>
+</pre>
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>
