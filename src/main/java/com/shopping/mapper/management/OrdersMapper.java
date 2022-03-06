@@ -13,7 +13,7 @@ public interface OrdersMapper extends Mapper<Orders> {
 
     @Select("SELECT o.id,o.order_status,o.date,o.order_num,o.goods_id,u.user_name,g.goods_name FROM orders o LEFT JOIN " +
             "userinfo u ON u.id=o.user_id LEFT JOIN goods g ON g.id=o.goods_id LEFT JOIN shopgoods s ON g.id=s.goods_id " +
-            "WHERE s.shop_id=1 AND o.order_status='1' ORDER BY o.date DESC")
+            "WHERE s.shop_id=#{shopId} AND o.order_status='1' ORDER BY o.date DESC")
     @Results(id = "ordersInfo",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "order_status",property = "orderStatus"),
@@ -28,7 +28,7 @@ public interface OrdersMapper extends Mapper<Orders> {
 
     @Select("SELECT o.id,o.order_status,o.date,o.order_num,o.goods_id,u.user_name,g.goods_name FROM orders o LEFT JOIN " +
             "userinfo u ON u.id=o.user_id LEFT JOIN goods g ON g.id=o.goods_id  " +
-            "WHERE u.id=1 AND o.order_status='1' ORDER BY o.date DESC")
+            "WHERE u.id=#{userId} AND o.order_status='1' ORDER BY o.date DESC")
     @ResultMap(value = "ordersInfo")
     List<Orders> queryOrdersByUser(Integer userId,Integer status);
 
