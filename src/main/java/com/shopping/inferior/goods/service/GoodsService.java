@@ -26,4 +26,6 @@ public interface GoodsService {
     List<Classes> getClasses(String classId);
 
     int addPictures(Integer goodsId,List<String> pictures);
+
+
 }

@@ -21,6 +21,7 @@ public class Goods {
     private Double price;   //商品价格
     private Integer stock;  //商品库存
     private Integer goodsStatus;    //商品状态，1为销售中，0为已下架
+    private String introduction;    //商品简介
     private Integer sales;  //销量
     @Transient
     private String shopName;    //商铺名

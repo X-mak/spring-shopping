@@ -22,7 +22,7 @@ public class GoodsController {
     @ApiDoc(result = Result.class)
     @PostMapping
     public Result<?> addGoods(@RequestBody GoodsInfo goodsInfo){
-        //if(!authority.hasRights("seller"))return Result.error("no way");
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addGoods(goodsInfo);
         if(res == -1)return Result.error("上架失败");
         return Result.success("上架成功");
@@ -68,7 +68,6 @@ public class GoodsController {
     /**
      * 删除商品
      * @param goodsId   商品编号
-     * @return
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("/{goodsId}")

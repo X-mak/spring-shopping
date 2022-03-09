@@ -29,6 +29,19 @@ public class OrderController {
     }
 
     /**
+     * 批量新增订单
+     * @param ordersList    订单信息列表
+     */
+    @ApiDoc(result = Result.class)
+    @PostMapping("/list")
+    public Result<?> addOrdersList(@RequestBody List<Orders> ordersList){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
+        int res = orderService.addOrders(ordersList);
+        if(res == -1)return Result.error("未知错误!");
+        else return Result.success("下单成功!");
+    }
+
+    /**
      * 删除订单
      * @param id    订单编号
      * @param goodsId   商品编号

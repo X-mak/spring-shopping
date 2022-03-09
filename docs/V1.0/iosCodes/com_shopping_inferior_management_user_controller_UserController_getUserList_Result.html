@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Result</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface Result : NSObject
+
+//响应代码，400为错误，200为正确
+@property (nonatomic, assign) NSString code;
+//响应提示信息,若为搜索请求,则为页码总数
+@property (nonatomic, assign) NSString msg;
+//响应数据
+@property (nonatomic, strong) UserInfo[] data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface UserInfo : NSObject
+
+//主键，用户编号
+@property (nonatomic, strong) NSInteger id;
+//用户姓名
+@property (nonatomic, assign) NSString userName;
+//用户状态，1为已审核，0为未审核
+@property (nonatomic, strong) NSInteger userStatus;
+//用户电话号码
+@property (nonatomic, assign) NSString userPhone;
+//用户权限列表
+@property (nonatomic, strong) AccountRole[] roleList;
+//用户默认地址
+@property (nonatomic, assign) NSString address;
+//用户当前token
+@property (nonatomic, assign) NSString token;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface AccountRole : NSObject
+
+//主键，关联类编号
+@property (nonatomic, strong) NSInteger id;
+//角色编号
+@property (nonatomic, strong) NSInteger roleId;
+//账号编号
+@property (nonatomic, strong) NSInteger accountId;
+
+
+@end
+</xmp>
+</pre>
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

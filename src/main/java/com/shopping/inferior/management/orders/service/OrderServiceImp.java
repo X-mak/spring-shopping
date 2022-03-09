@@ -74,6 +74,23 @@ public class OrderServiceImp implements OrderService{
         return ordersMapper.queryOrdersById(id);
     }
 
+    public int addOrders(List<Orders> ordersList){
+        try{
+            for(Orders orders:ordersList){
+                Goods goods = goodsMapper.selectByPrimaryKey(orders.getGoodsId());
+                if(goods.getStock() < orders.getOrderNum())return 0;
+                orders.setDate(DateUtil.now());
+                ordersMapper.insertSelective(orders);
+                goods.setStock(goods.getStock()-orders.getOrderNum());
+                if (goods.getStock() == 0)goods.setGoodsStatus(0);
+                goodsMapper.updateByPrimaryKeySelective(goods);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return 1;
+    }
     @Autowired
     OrdersMapper ordersMapper;
     @Autowired

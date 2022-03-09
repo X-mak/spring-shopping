@@ -16,12 +16,4 @@ public interface AuthenticationService {
     //-1为数据库出错，0为账号或密码错误，1为正常执行
     int changePwd(UserAccount userAccount,String newPwd);
 
-    //null为没有此账号
-    UserInfo getUserById(Integer userId);
-
-    int changeBasicInfo(UserInfo userInfo);
-
-    int addAddress(Address address);
-
-    int changeAddress(Address address);
 }

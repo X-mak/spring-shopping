@@ -19,4 +19,5 @@ public interface OrderService {
 
     Orders getOrdersById(Integer id);
 
+    int addOrders(List<Orders> ordersList);
 }
