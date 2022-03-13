@@ -1,0 +1,168 @@
+CREATE TABLE `userrole`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	role_name VARCHAR(20),
+	PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `useraccount`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	account VARCHAR(20) BINARY,
+	pwd VARCHAR(130) BINARY,
+	PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `accountrole`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	role_id INT(10),
+	account_id INT(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(role_id) REFERENCES userrole(id),
+	FOREIGN KEY(account_id) REFERENCES useraccount(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `userinfo`(
+	id INT(10),
+	user_name VARCHAR(20),
+	user_status INT(1),
+	user_phone VARCHAR(11),
+	PRIMARY KEY(id),
+	FOREIGN KEY(id) REFERENCES useraccount(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `address`(
+	id INT(10)AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	content VARCHAR(100),
+	address_status INT(1),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id)REFERENCES userinfo(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `goods`(
+	id INT(10)AUTO_INCREMENT NOT NULL,
+	goods_name VARCHAR(30),
+	price DOUBLE,
+	stock INT(10),
+	goods_status INT(1),
+	introduction VARCHAR(120),
+	sales INT(10),
+	PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `shop`(
+	id INT(10)AUTO_INCREMENT NOT NULL,
+	shop_name VARCHAR(30),
+	hot INT(10),
+	date DATETIME,
+	PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `usershop`(
+	id INT(10)AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	shop_id INT(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES userinfo(id),
+	FOREIGN KEY(shop_id) REFERENCES shop(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `shopgoods`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	shop_id INT(10),
+	goods_id INT(10),
+	date datetime,
+	PRIMARY KEY(id),
+	FOREIGN KEY(shop_id) REFERENCES shop(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `pictures`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	goods_id INT(10),
+	address VARCHAR(60),
+	status INT(1),
+	PRIMARY KEY(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `stock`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	goods_id INT(10),
+	num INT(10),
+	DATE DATETIME,
+	PRIMARY KEY(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `price`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	goods_id INT(10),
+	price DOUBLE,
+	DATE DATETIME,
+	PRIMARY KEY(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `orders`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	goods_id INT(10),
+	order_num INT(5),
+	date datetime,
+	order_status INT(1),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES userinfo(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	goods_id INT(10),
+	content VARCHAR(200),
+	stars INT(1),
+	date DATETIME,
+	hot INT(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES userinfo(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `classes`(
+	id VARCHAR(4),
+	class_name VARCHAR(10),
+	PRIMARY KEY(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `goodsclass`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	goods_id INT(10),
+	class_id VARCHAR(4),
+	PRIMARY KEY(id),
+	FOREIGN KEY(goods_id)REFERENCES goods(id),
+	FOREIGN KEY(class_id)REFERENCES classes(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `collections`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	goods_id INT(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES userinfo(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `shoppingcart`(
+	id INT(10) AUTO_INCREMENT NOT NULL,
+	user_id INT(10),
+	goods_id INT(10),
+	num INT(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES userinfo(id),
+	FOREIGN KEY(goods_id) REFERENCES goods(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO userinfo(role_name) VALUES ('buyer');
+INSERT INTO userinfo(role_name) VALUES ('seller');
+INSERT INTO userinfo(role_name) VALUES ('admin');
