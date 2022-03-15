@@ -62,15 +62,13 @@
 
 - 总览
 
-![image-20220309194919381](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309194919381.png)
-
-
+![](\img-folder\image-20220309194919381.png)
 
 
 
 - 用户安全控制
 
-![image-20220309195010507](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195010507.png)
+![](/img-folder/image-20220309195010507.png)
 
 
 
@@ -78,7 +76,7 @@
 
 - 用户信息
 
-![image-20220309195109706](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195109706.png)
+![](/img-folder/image-20220309195109706.png)
 
 
 
@@ -86,7 +84,7 @@
 
 - 商品信息
 
-![image-20220309195211463](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195211463.png)
+![](/img-folder/image-20220309195211463.png)
 
 
 
@@ -94,7 +92,7 @@
 
 - 事务相关
 
-![image-20220309195315403](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195315403.png)
+![](/img-folder/image-20220309195315403.png)
 
 
 
@@ -108,29 +106,29 @@
 
 - 用户安全接口
 
-![image-20220309195525329](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195525329.png)
+![](/img-folder/image-20220309195525329.png)
 
 - 文件接口
 
-![image-20220309195714120](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195714120.png)
+![](/img-folder/image-20220309195714120.png)
 
 - 商品接口
 
-![image-20220309195829485](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195829485.png)
+![](/img-folder/image-20220309195829485.png)
 
 - 购物车接口
 
-![image-20220309195842359](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195842359.png)
+![](/img-folder/image-20220309195842359.png)
 
 - 收藏品接口
 
-![image-20220309195853740](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195853740.png)
+![](/img-folder/image-20220309195853740.png)
 
 - 订单接口
 
-![image-20220309195905654](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195905654.png)
+![](/img-folder/image-20220309195905654.png)
 
 - 用户信息接口
 
-![image-20220309195926704](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220309195926704.png)
+![](/img-folder/image-20220309195926704.png)
 
