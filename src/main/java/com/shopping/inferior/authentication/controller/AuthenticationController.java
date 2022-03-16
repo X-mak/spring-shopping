@@ -22,7 +22,7 @@ public class AuthenticationController {
      *
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addUser(@RequestBody RegisterUser registerUser){
         int res = authenticationService.addUser(registerUser);
         if(res == 1)return Result.success("注册成功!");
@@ -37,7 +37,7 @@ public class AuthenticationController {
      * @return Result<UserInfo>
      */
     @ApiDoc
-    @GetMapping
+    @GetMapping("")
     public Result<UserInfo> checkLogin(@RequestParam String account,@RequestParam String pwd){
         UserInfo userInfo = authenticationService.checkLogin(new UserAccount(account, pwd));
         if(userInfo == null)return Result.error("账号名或密码错误!");

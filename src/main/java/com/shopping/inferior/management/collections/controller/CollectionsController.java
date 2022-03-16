@@ -21,7 +21,7 @@ public class CollectionsController {
      * @param collectionsList   收藏信息列表
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> collectGoods(@RequestBody List<Collections> collectionsList){
         int res = collectionsService.collectMany(collectionsList);
         if(res == 1)return Result.success("收藏成功!");
@@ -33,7 +33,7 @@ public class CollectionsController {
      * @param id    收藏编号
      */
     @ApiDoc(result = Result.class)
-    @DeleteMapping
+    @DeleteMapping("")
     public Result<?> cancelCollect(@RequestParam Integer id){
         int res = collectionsService.cancelCollect(id);
         if(res == 1)return Result.success("取消成功!");

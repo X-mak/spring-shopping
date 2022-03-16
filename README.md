@@ -62,7 +62,7 @@
 
 - 总览
 
-![](\img-folder\image-20220309194919381.png)
+![](/img-folder/image-20220309194919381.png)
 
 
 

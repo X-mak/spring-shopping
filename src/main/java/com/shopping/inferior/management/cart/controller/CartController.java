@@ -20,7 +20,7 @@ public class CartController {
      * @param goodsId   商品编号
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addCartGoods(@RequestParam Integer goodsId){
 
         int res = cartService.addCartGoods(goodsId);
@@ -33,7 +33,7 @@ public class CartController {
      * @param id    购物车编号
      */
     @ApiDoc(result = Result.class)
-    @DeleteMapping
+    @DeleteMapping("")
     public Result<?> deleteCartGoods(@RequestParam Integer id){
 
         int res = cartService.deleteCartGoods(id);
@@ -47,7 +47,7 @@ public class CartController {
      * @param num   修改后数量
      */
     @ApiDoc(result = Result.class)
-    @PutMapping
+    @PutMapping("")
     public Result<?> updateCartGoods(@RequestParam Integer id,
                                      @RequestParam Integer num){
         int res = cartService.updateCartGoods(id, num);

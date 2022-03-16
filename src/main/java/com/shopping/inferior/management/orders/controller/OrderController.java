@@ -20,7 +20,7 @@ public class OrderController {
      * @param orders    订单信息
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addOrders(@RequestBody Orders orders){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.addOrders(orders);
@@ -53,7 +53,7 @@ public class OrderController {
         int res = -1;
         if(authority.hasRights("seller"))res = orderService.deleteOrders(id, goodsId,3);
         else res = orderService.deleteOrders(id, goodsId,1);
-        if(res == -1)return Result.error("未知错误!");
+        if(res == -1)return Result.error("删除失败!");
         else return Result.success("删除成功!");
     }
 
@@ -62,7 +62,7 @@ public class OrderController {
      * @param orders    订单信息
      */
     @ApiDoc(result = Result.class)
-    @PutMapping
+    @PutMapping("")
     public Result<?> changeOrders(@RequestBody Orders orders){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.changeOrders(orders);
@@ -80,7 +80,7 @@ public class OrderController {
      * @return Result<List<Orders>>
      */
     @ApiDoc
-    @GetMapping("/userList/{pageNum}")
+    @GetMapping("/list/{pageNum}")
     public Result<List<Orders>> getOrdersListByUser(@PathVariable Integer pageNum,
                                             @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                             @RequestParam String userId,

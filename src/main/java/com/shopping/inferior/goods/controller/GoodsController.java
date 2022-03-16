@@ -20,7 +20,7 @@ public class GoodsController {
      * @param goodsInfo 商品信息
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addGoods(@RequestBody GoodsInfo goodsInfo){
         if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addGoods(goodsInfo);
@@ -46,8 +46,9 @@ public class GoodsController {
                                       @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                       @PathVariable Integer pageNum,
                                       @RequestParam(required = false,defaultValue = "date") String order,
-                                      @RequestParam(required = false,defaultValue = "%") String shopId){
-        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId, shopId);
+                                      @RequestParam(required = false,defaultValue = "%") String shopId,
+                                      @RequestParam(required = false,defaultValue = "1") String status){
+        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId, shopId,status);
         if(goodsBySearch.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(goodsBySearch.getList(),goodsBySearch.getTotal()+"");
     }
