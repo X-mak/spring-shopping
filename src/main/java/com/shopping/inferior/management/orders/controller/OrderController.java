@@ -20,10 +20,23 @@ public class OrderController {
      * @param orders    订单信息
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addOrders(@RequestBody Orders orders){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.addOrders(orders);
+        if(res == -1)return Result.error("未知错误!");
+        else return Result.success("下单成功!");
+    }
+
+    /**
+     * 批量新增订单
+     * @param ordersList    订单信息列表
+     */
+    @ApiDoc(result = Result.class)
+    @PostMapping("/list")
+    public Result<?> addOrdersList(@RequestBody List<Orders> ordersList){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
+        int res = orderService.addOrders(ordersList);
         if(res == -1)return Result.error("未知错误!");
         else return Result.success("下单成功!");
     }
@@ -40,7 +53,7 @@ public class OrderController {
         int res = -1;
         if(authority.hasRights("seller"))res = orderService.deleteOrders(id, goodsId,3);
         else res = orderService.deleteOrders(id, goodsId,1);
-        if(res == -1)return Result.error("未知错误!");
+        if(res == -1)return Result.error("删除失败!");
         else return Result.success("删除成功!");
     }
 
@@ -49,7 +62,7 @@ public class OrderController {
      * @param orders    订单信息
      */
     @ApiDoc(result = Result.class)
-    @PutMapping
+    @PutMapping("")
     public Result<?> changeOrders(@RequestBody Orders orders){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.changeOrders(orders);
@@ -63,16 +76,24 @@ public class OrderController {
      * @param pageSize  单页大小
      * @param userId    用户编号
      * @param status    订单状态
+     * @param shopId    卖家编号
      * @return Result<List<Orders>>
      */
     @ApiDoc
-    @GetMapping("/userList/{pageNum}")
+    @GetMapping("/list/{pageNum}")
     public Result<List<Orders>> getOrdersListByUser(@PathVariable Integer pageNum,
                                             @RequestParam(required = false,defaultValue = "10") Integer pageSize,
-                                            @RequestParam Integer userId,
-                                            @RequestParam(required = false,defaultValue = "%") Integer status){
+                                            @RequestParam String userId,
+                                            @RequestParam(required = false,defaultValue = "%") Integer status,
+                                            @RequestParam(required = false) String shopId      ){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        PageInfo<Orders> ordersListByUser = orderService.getOrdersListByUser(pageNum, pageSize, userId, status);
+        PageInfo<Orders> ordersListByUser = null;
+        if(userId!=null && shopId == null)
+            ordersListByUser = orderService.getOrdersListByUser(pageNum, pageSize, Integer.parseInt(userId), status);
+        else if(userId == null && shopId != null)
+            ordersListByUser = orderService.getOrdersListByShop(pageNum,pageSize,Integer.parseInt(shopId),status);
+        else return Result.error("错误的请求格式");
+
         return Result.success(ordersListByUser.getList(),ordersListByUser.getTotal()+"");
     }
 

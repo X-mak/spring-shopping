@@ -36,8 +36,9 @@ public class AuthenticationServiceImp implements AuthenticationService{
             int userId = userAccount.getId();
             UserInfo userInfo = new UserInfo(userId,registerUser.getUserName(), registerUser.getUserPhone());
             accountRoleMapper.insertSelective(new AccountRole(1,userId));
+            userInfo.setUserStatus(-1);
             if(registerUser.getUserRole().equals("seller")){
-                userInfo.setUserStatus(0);
+                userInfo.setUserStatus(1);
                 accountRoleMapper.insertSelective(new AccountRole(2,userId));
                 shopMapper.insertSelective(new Shop(userAccount.getId()));
             }else if(registerUser.getUserRole().equals("admin")){
@@ -81,42 +82,6 @@ public class AuthenticationServiceImp implements AuthenticationService{
             String newEncodePwd = encode.getSHA256StrJava(randomNum)+encode.getSHA256StrJava(newPwd);
             selectedAccount.setPwd(newEncodePwd);
             userAccountMapper.updateByPrimaryKeySelective(selectedAccount);
-        }catch (Exception e){
-            e.printStackTrace();
-            return -1;
-        }
-        return 1;
-    }
-
-    public UserInfo getUserById(Integer userId){
-        return userInfoMapper.queryLoginUserInfoById(userId);
-    }
-
-    public int changeBasicInfo(UserInfo userInfo){
-        try{
-            userInfoMapper.insertSelective(userInfo);
-        }catch (Exception e){
-            e.printStackTrace();
-            return -1;
-        }
-        return 1;
-    }
-
-
-    public int addAddress(Address address){
-        try{
-            addressMapper.insertSelective(address);
-        }catch (Exception e){
-            e.printStackTrace();
-            return -1;
-        }
-        return 1;
-    }
-
-
-    public int changeAddress(Address address) {
-        try{
-            addressMapper.updateByPrimaryKeySelective(address);
         }catch (Exception e){
             e.printStackTrace();
             return -1;

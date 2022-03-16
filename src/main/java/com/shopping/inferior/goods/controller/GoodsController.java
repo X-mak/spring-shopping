@@ -20,9 +20,9 @@ public class GoodsController {
      * @param goodsInfo 商品信息
      */
     @ApiDoc(result = Result.class)
-    @PostMapping
+    @PostMapping("")
     public Result<?> addGoods(@RequestBody GoodsInfo goodsInfo){
-        //if(!authority.hasRights("seller"))return Result.error("no way");
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.addGoods(goodsInfo);
         if(res == -1)return Result.error("上架失败");
         return Result.success("上架成功");
@@ -46,8 +46,9 @@ public class GoodsController {
                                       @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                       @PathVariable Integer pageNum,
                                       @RequestParam(required = false,defaultValue = "date") String order,
-                                      @RequestParam(required = false,defaultValue = "%") String shopId){
-        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId, shopId);
+                                      @RequestParam(required = false,defaultValue = "%") String shopId,
+                                      @RequestParam(required = false,defaultValue = "1") String status){
+        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId, shopId,status);
         if(goodsBySearch.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(goodsBySearch.getList(),goodsBySearch.getTotal()+"");
     }
@@ -68,7 +69,6 @@ public class GoodsController {
     /**
      * 删除商品
      * @param goodsId   商品编号
-     * @return
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("/{goodsId}")

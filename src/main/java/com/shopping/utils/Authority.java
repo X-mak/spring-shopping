@@ -10,18 +10,18 @@ public class Authority {
     public boolean hasRights(String role){
 
         //获取角色编号
-        int role_id = 0;
+        int roleId = 0;
         if(role.equals("buyer")){
-            role_id = 1;
+            roleId = 1;
         }else if(role.equals("seller")){
-            role_id = 2;
+            roleId = 2;
         }else if(role.equals("admin")){
-            role_id = 3;
+            roleId = 3;
         }
         UserInfo loginUser = TokenUtils.getLoginUser();
         if(loginUser==null)return false;
         for(AccountRole accountRole : loginUser.getRoleList()){
-            if(accountRole.getRoleId() == role_id)return true;
+            if(accountRole.getRoleId() == roleId)return true;
         }
         return false;
     }

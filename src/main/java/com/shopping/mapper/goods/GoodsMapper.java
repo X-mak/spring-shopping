@@ -15,7 +15,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where (sh.shop_name like #{keyword} or g.goods_name like #{keyword} or c.class_name like #{keyword}) " +
-            "and (c.id like #{classId} or c.id like #{subClassId}) AND sh.id LIKE #{shopId}" +
+            "and (c.id like #{classId} or c.id like #{subClassId}) AND sh.id LIKE #{shopId} AND g.goods_status LIKE #{status}" +
             "order by sg.date desc")
     @Results(id = "goodsInfo",value = {
             @Result(id = true,column = "id",property = "id"),
@@ -26,16 +26,16 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(column = "id",property = "picture",
                     one = @One(select = "com.shopping.mapper.goods.PicturesMapper.queryPictureAddress"))
     })
-    List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String subClassId,String shopId);
+    List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String subClassId,String shopId,String status);
 
     @Select("select sh.shop_name,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where (sh.shop_name like #{keyword} or g.goods_name like #{keyword} or c.class_name like #{keyword}) " +
-            "and (c.id like #{classId} or c.id like #{subClassId}) AND sh.id LIKE #{shopId}" +
+            "and (c.id like #{classId} or c.id like #{subClassId}) AND sh.id LIKE #{shopId} AND g.goods_status LIKE #{status}" +
             "order by g.sales desc")
     @ResultMap(value = "goodsInfo")
-    List<Goods> querySelectedGoodsOrderBySales(String keyword,String classId,String subClassId,String shopId);
+    List<Goods> querySelectedGoodsOrderBySales(String keyword,String classId,String subClassId,String shopId,String status);
 
     @Select("select sh.shop_name,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +

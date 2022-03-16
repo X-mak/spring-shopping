@@ -82,7 +82,7 @@ public class GoodsServiceImp implements GoodsService{
 
 
     public PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order,
-                                            String classId, String shopId){
+                                            String classId, String shopId,String status){
         List<Goods> goods = new ArrayList<>();
         //处理参数
         if(!keyword.equals("%"))keyword = "%"+keyword+"%";
@@ -92,9 +92,9 @@ public class GoodsServiceImp implements GoodsService{
 
         //根据排序方式使用mapper
         if(order.equals("date")){
-            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, classId, classId + "__", shopId);
+            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, classId, classId + "__", shopId,status);
         }else if(order.equals("sales")){
-            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, classId, classId + "__", shopId);
+            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, classId, classId + "__", shopId,status);
         }
 
         return new PageInfo<>(goods);

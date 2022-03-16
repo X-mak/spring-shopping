@@ -23,6 +23,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V1.0<span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                            <li><a href="../inf/index.html">inf</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,18 +51,6 @@
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changePwd">
                         用户修改密码
-                    </a>
-                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#getUser">
-                        获取用户信息
-                    </a>
-                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changeInfo">
-                        修改用户信息
-                    </a>
-                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#addAddress">
-                        新增地址
-                    </a>
-                    <a class="catalog-item" href="com_shopping_inferior_authentication_controller_AuthenticationController.html#changeAddress">
-                        修改地址
                     </a>
             </div>
         </div>
@@ -163,6 +152,9 @@
                     <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#addOrders">
                         新增订单
                     </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#addOrdersList">
+                        批量新增订单
+                    </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#deleteOrders">
                         删除订单
                     </a>
@@ -174,6 +166,35 @@
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder">
                         获取订单
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading6" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse6" aria-controls="collapse6">
+                <i class="glyphicon glyphicon-align-justify"></i> UserController
+            </div>
+            <div id="collapse6" class="collapse " aria-labelledby="heading6">
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#getUser">
+                        获取用户信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#changeInfo">
+                        修改用户信息
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#addAddress">
+                        新增地址
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#changeAddress">
+                        修改地址
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#getAddressList">
+                        获取用户地址列表
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#deleteAddress">
+                        删除地址
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#getUserList">
+                        获取用户列表
                     </a>
             </div>
         </div>
@@ -193,7 +214,7 @@
 <h2 id="collectGoods"><a href="#">收藏商品 </a></h2>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>/collections/collectGoods</code>
+    <code>/collections/</code>
         <span class="label label-default">POST</span>
 </p>
         <p><strong>请求体</strong> <span class="badge">application/json</span></p>
@@ -221,7 +242,7 @@
 <h2 id="cancelCollect"><a href="#">取消收藏 </a></h2>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>/collections/cancelCollect</code>
+    <code>/collections/</code>
         <span class="label label-default">DELETE</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -292,6 +313,7 @@
 		"price":"double //商品价格",
 		"stock":"int //商品库存",
 		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
+		"introduction":"string //商品简介",
 		"sales":"int //销量",
 		"shopName":"string //商铺名",
 		"className":"string //类别",
@@ -331,10 +353,6 @@
             {name: 'AuthenticationController. 用户注册', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#addUser'},
             {name: 'AuthenticationController. 用户登录', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#checkLogin'},
             {name: 'AuthenticationController.用户修改密码', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changePwd'},
-            {name: 'AuthenticationController.获取用户信息', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#getUser'},
-            {name: 'AuthenticationController.修改用户信息', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changeInfo'},
-            {name: 'AuthenticationController.新增地址', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#addAddress'},
-            {name: 'AuthenticationController.修改地址', url: 'com_shopping_inferior_authentication_controller_AuthenticationController.html#changeAddress'},
             {name: 'FileController.上传文件', url: 'com_shopping_inferior_files_controller_FileController.html#upload'},
             {name: 'FileController.下载文件', url: 'com_shopping_inferior_files_controller_FileController.html#download'},
             {name: 'GoodsController.新增商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addGoods'},
@@ -355,10 +373,18 @@
             {name: 'CollectionsController.取消收藏', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect'},
             {name: 'CollectionsController.获取个人收藏列表', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#getMyCollections'},
             {name: 'OrderController.新增订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#addOrders'},
+            {name: 'OrderController.批量新增订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#addOrdersList'},
             {name: 'OrderController.删除订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#deleteOrders'},
             {name: 'OrderController.更新订单状态', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#changeOrders'},
             {name: 'OrderController.获取订单列表', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOrdersListByUser'},
             {name: 'OrderController.获取订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder'},
+            {name: 'UserController.获取用户信息', url: 'com_shopping_inferior_management_user_controller_UserController.html#getUser'},
+            {name: 'UserController.修改用户信息', url: 'com_shopping_inferior_management_user_controller_UserController.html#changeInfo'},
+            {name: 'UserController.新增地址', url: 'com_shopping_inferior_management_user_controller_UserController.html#addAddress'},
+            {name: 'UserController.修改地址', url: 'com_shopping_inferior_management_user_controller_UserController.html#changeAddress'},
+            {name: 'UserController.获取用户地址列表', url: 'com_shopping_inferior_management_user_controller_UserController.html#getAddressList'},
+            {name: 'UserController.删除地址', url: 'com_shopping_inferior_management_user_controller_UserController.html#deleteAddress'},
+            {name: 'UserController.获取用户列表', url: 'com_shopping_inferior_management_user_controller_UserController.html#getUserList'},
     ];
 
 
