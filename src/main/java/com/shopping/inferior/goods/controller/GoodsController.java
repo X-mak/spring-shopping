@@ -36,6 +36,7 @@ public class GoodsController {
      * @param pageNum   页码
      * @param order     排序方式，date/sales
      * @param shopId    商铺编号
+     * @param status    商品状态
      * @return Result<List<Goods>>
      *
      */

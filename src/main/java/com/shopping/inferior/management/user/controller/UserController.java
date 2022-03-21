@@ -80,7 +80,7 @@ public class UserController {
     @GetMapping("/address/list/{pageNum}")
     public Result<List<Address>> getAddressList(@PathVariable Integer pageNum,
                                                 @RequestParam Integer userId,
-                                                @RequestParam Integer pageSize){
+                                                @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         PageInfo<Address> address = userService.getAddress(userId, pageNum, pageSize);
         if(address.getTotal() == 0)return Result.error("查询结果为空!");
@@ -111,7 +111,8 @@ public class UserController {
      */
     @ApiDoc
     @GetMapping("/list/{pageNum}")
-    public Result<List<UserInfo>> getUserList(@PathVariable Integer pageNum,@RequestParam Integer pageSize){
+    public Result<List<UserInfo>> getUserList(@PathVariable Integer pageNum,
+                                              @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         PageInfo<UserInfo> users = userService.getUsers(pageNum, pageSize);
         if(users.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(users.getList(),users.getTotal()+"");
