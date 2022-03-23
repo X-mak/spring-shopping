@@ -11,21 +11,19 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "orders")
-public class Orders {
+@Table(name = "collecteditem")
+public class CollectedItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; //主键，订单编号
+    private Integer id; //主键，收藏品编号
 
     private Integer userId; //用户编号
-    private String date;    //订单日期
-    private Integer status;    //订单状态
-    @Transient
-    private String userName;    //下单人姓名
+    private Integer goodsId;    //商品编号
+    private String date;    //收藏日期
 
-    public Orders(Integer userId, Integer status) {
+    public CollectedItem(Integer userId, Integer goodsId) {
         this.userId = userId;
-        this.status = status;
+        this.goodsId = goodsId;
         this.date = DateUtil.now();
     }
 }
