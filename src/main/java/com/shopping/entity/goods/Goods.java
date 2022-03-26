@@ -26,6 +26,8 @@ public class Goods {
     @Transient
     private String shopName;    //商铺名
     @Transient
+    private Integer shopId;     //商铺编号
+    @Transient
     private String className;   //类别
     @Transient
     private List<Pictures> goodsPictures;   //商品的所有图片

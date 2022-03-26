@@ -2,6 +2,7 @@ package com.shopping.inferior.management.orders.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.shopping.common.Result;
+import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
 import com.shopping.inferior.management.orders.service.OrderService;
 import com.shopping.utils.Authority;
@@ -17,13 +18,13 @@ public class OrderController {
 
     /**
      * 新增订单
-     * @param orders    订单信息
+     * @param orderItem    订单信息
      */
     @ApiDoc(result = Result.class)
     @PostMapping("")
-    public Result<?> addOrders(@RequestBody Orders orders){
+    public Result<?> addOrders(@RequestBody OrderItem orderItem){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        int res = orderService.addOrders(orders);
+        int res = orderService.addOrders(orderItem);
         if(res == -1)return Result.error("未知错误!");
         else return Result.success("下单成功!");
     }
@@ -44,15 +45,14 @@ public class OrderController {
     /**
      * 删除订单
      * @param id    订单编号
-     * @param goodsId   商品编号
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("/{id}")
-    public Result<?> deleteOrders(@PathVariable Integer id,@RequestParam Integer goodsId){
+    public Result<?> deleteOrders(@PathVariable Integer id{
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = -1;
-        if(authority.hasRights("seller"))res = orderService.deleteOrders(id, goodsId,3);
-        else res = orderService.deleteOrders(id, goodsId,1);
+        if(authority.hasRights("seller"))res = orderService.deleteOrders(id,3);
+        else res = orderService.deleteOrders(id,1);
         if(res == -1)return Result.error("删除失败!");
         else return Result.success("删除成功!");
     }

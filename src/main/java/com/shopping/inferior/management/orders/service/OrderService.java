@@ -1,15 +1,16 @@
 package com.shopping.inferior.management.orders.service;
 
 import com.github.pagehelper.PageInfo;
+import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
 
 import java.util.List;
 
 public interface OrderService {
 
-    int addOrders(Orders orders);
+    int addOrders(OrderItem orderItem);
 
-    int deleteOrders(Integer id,Integer goodsId,Integer status);
+    int deleteOrders(Integer id,Integer status);
 
     int changeOrders(Orders orders);
 
@@ -19,5 +20,5 @@ public interface OrderService {
 
     Orders getOrdersById(Integer id);
 
-    int addOrders(List<Orders> ordersList);
+    int addOrders(List<OrderItem> ordersList);
 }

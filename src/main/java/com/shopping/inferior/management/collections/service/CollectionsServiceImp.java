@@ -3,9 +3,10 @@ package com.shopping.inferior.management.collections.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.Goods;
+import com.shopping.entity.management.CollectedItem;
 import com.shopping.entity.management.Collections;
 import com.shopping.mapper.goods.GoodsMapper;
-import com.shopping.mapper.management.CollectionsMapper;
+import com.shopping.mapper.management.CollectedItemMapper;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,11 @@ import java.util.List;
 @Service
 public class CollectionsServiceImp implements CollectionsService{
 
-    public int collectMany(List<Collections> collectionsList){
+    public int collectMany(List<CollectedItem> collectedList){
         try{
-            for(Collections c : collectionsList){
-                collectionsMapper.insertSelective(c);
+            for(CollectedItem c : collectedList){
+//                collectionsMapper.insertSelective(c);
+                collectedItemMapper.insertSelective(c);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -28,7 +30,7 @@ public class CollectionsServiceImp implements CollectionsService{
 
     public int cancelCollect(Integer id){
         try{
-            collectionsMapper.deleteByPrimaryKey(id);
+            collectedItemMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -44,7 +46,7 @@ public class CollectionsServiceImp implements CollectionsService{
     }
 
     @Autowired
-    CollectionsMapper collectionsMapper;
+    CollectedItemMapper collectedItemMapper;
     @Autowired
     GoodsMapper goodsMapper;
 }

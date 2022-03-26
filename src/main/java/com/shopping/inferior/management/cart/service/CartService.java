@@ -5,7 +5,7 @@ import com.shopping.entity.goods.Goods;
 
 public interface CartService {
 
-    int addCartGoods(Integer goodsId);
+    int addCartGoods(Integer goodsId,Integer num);
 
     int deleteCartGoods(Integer id);
 
