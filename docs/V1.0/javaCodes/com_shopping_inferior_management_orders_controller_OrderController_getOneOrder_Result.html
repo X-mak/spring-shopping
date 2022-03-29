@@ -47,13 +47,9 @@ public class Orders implements Serializable{
 
     private int id; //主键，订单编号
     private int userId; //用户编号
-    private int goodsId; //商品编号
-    private int orderNum; //订单数量
     private String date; //订单日期
-    private int orderStatus; //订单状态
+    private int status; //订单状态
     private String userName; //下单人姓名
-    private String goodsName; //购买的商品名
-    private String picture; //购买的商品的默认图片地址
 
     public int getId(){
         return id;
@@ -71,22 +67,6 @@ public class Orders implements Serializable{
         this.userId = userId;
     }
 
-    public int getGoodsId(){
-        return goodsId;
-    }
-
-    public void setGoodsId(int goodsId){
-        this.goodsId = goodsId;
-    }
-
-    public int getOrderNum(){
-        return orderNum;
-    }
-
-    public void setOrderNum(int orderNum){
-        this.orderNum = orderNum;
-    }
-
     public String getDate(){
         return date;
     }
@@ -95,12 +75,12 @@ public class Orders implements Serializable{
         this.date = date;
     }
 
-    public int getOrderStatus(){
-        return orderStatus;
+    public int getStatus(){
+        return status;
     }
 
-    public void setOrderStatus(int orderStatus){
-        this.orderStatus = orderStatus;
+    public void setStatus(int status){
+        this.status = status;
     }
 
     public String getUserName(){
@@ -109,22 +89,6 @@ public class Orders implements Serializable{
 
     public void setUserName(String userName){
         this.userName = userName;
-    }
-
-    public String getGoodsName(){
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName){
-        this.goodsName = goodsName;
-    }
-
-    public String getPicture(){
-        return picture;
-    }
-
-    public void setPicture(String picture){
-        this.picture = picture;
     }
 
 }

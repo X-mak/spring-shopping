@@ -53,6 +53,7 @@ public class Goods implements Serializable{
     private String introduction; //商品简介
     private int sales; //销量
     private String shopName; //商铺名
+    private int shopId; //商铺编号
     private String className; //类别
     private Pictures[] goodsPictures; //商品的所有图片
     private String picture; //商品的默认图片
@@ -121,6 +122,14 @@ public class Goods implements Serializable{
 
     public void setShopName(String shopName){
         this.shopName = shopName;
+    }
+
+    public int getShopId(){
+        return shopId;
+    }
+
+    public void setShopId(int shopId){
+        this.shopId = shopId;
     }
 
     public String getClassName(){

@@ -22,7 +22,8 @@ public class CartController {
     @ApiDoc(result = Result.class)
     @PostMapping("")
     public Result<?> addCartGoods(@RequestParam Integer goodsId,@RequestParam Integer num){
-
+        if(authority.hasRights("buyer"))
+            return Result.error("no way");
         int res = cartService.addCartGoods(goodsId,num);
         if(res == 1)return Result.success("添加成功!");
         else return Result.error("添加失败!");

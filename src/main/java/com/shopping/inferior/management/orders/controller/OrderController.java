@@ -35,7 +35,7 @@ public class OrderController {
      */
     @ApiDoc(result = Result.class)
     @PostMapping("/list")
-    public Result<?> addOrdersList(@RequestBody List<Orders> ordersList){
+    public Result<?> addOrdersList(@RequestBody List<OrderItem> ordersList){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.addOrders(ordersList);
         if(res == -1)return Result.error("未知错误!");
@@ -48,7 +48,7 @@ public class OrderController {
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("/{id}")
-    public Result<?> deleteOrders(@PathVariable Integer id{
+    public Result<?> deleteOrders(@PathVariable Integer id){
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = -1;
         if(authority.hasRights("seller"))res = orderService.deleteOrders(id,3);

@@ -219,15 +219,12 @@
 </p>
         <p><strong>请求体</strong> <span class="badge">application/json</span></p>
         <pre class="prettyprint lang-json">{
-	"id":"int //主键，订单编号",
-	"userId":"int //用户编号",
+	"id":"int //主键，订单商品编号",
+	"orderId":"int //订单编号",
 	"goodsId":"int //商品编号",
-	"orderNum":"int //订单数量",
-	"date":"string //订单日期",
-	"orderStatus":"int //订单状态",
-	"userName":"string //下单人姓名",
-	"goodsName":"string //购买的商品名",
-	"picture":"string //购买的商品的默认图片地址"
+	"num":"int //商品数量",
+	"picture":"string //商品图片",
+	"shopId":"int //商铺编号"
 }</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -253,15 +250,12 @@
 </p>
         <p><strong>请求体</strong> <span class="badge">application/json</span></p>
         <pre class="prettyprint lang-json">[{
-	"id":"int //主键，订单编号",
-	"userId":"int //用户编号",
+	"id":"int //主键，订单商品编号",
+	"orderId":"int //订单编号",
 	"goodsId":"int //商品编号",
-	"orderNum":"int //订单数量",
-	"date":"string //订单日期",
-	"orderStatus":"int //订单状态",
-	"userName":"string //下单人姓名",
-	"goodsName":"string //购买的商品名",
-	"picture":"string //购买的商品的默认图片地址"
+	"num":"int //商品数量",
+	"picture":"string //商品图片",
+	"shopId":"int //商铺编号"
 }]</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -299,12 +293,6 @@
                         <td>是</td>
                         <td>订单编号</td>
                     </tr>
-                    <tr>
-                        <td>goodsId</td>
-                        <td>int</td>
-                        <td>是</td>
-                        <td>商品编号</td>
-                    </tr>
         </table>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -332,13 +320,9 @@
         <pre class="prettyprint lang-json">{
 	"id":"int //主键，订单编号",
 	"userId":"int //用户编号",
-	"goodsId":"int //商品编号",
-	"orderNum":"int //订单数量",
 	"date":"string //订单日期",
-	"orderStatus":"int //订单状态",
-	"userName":"string //下单人姓名",
-	"goodsName":"string //购买的商品名",
-	"picture":"string //购买的商品的默认图片地址"
+	"status":"int //订单状态",
+	"userName":"string //下单人姓名"
 }</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -408,13 +392,9 @@
 	"data":[{
 		"id":"int //主键，订单编号",
 		"userId":"int //用户编号",
-		"goodsId":"int //商品编号",
-		"orderNum":"int //订单数量",
 		"date":"string //订单日期",
-		"orderStatus":"int //订单状态",
-		"userName":"string //下单人姓名",
-		"goodsName":"string //购买的商品名",
-		"picture":"string //购买的商品的默认图片地址"
+		"status":"int //订单状态",
+		"userName":"string //下单人姓名"
 	}]
 }</pre>
         <div class="form-group">
@@ -455,13 +435,9 @@
 	"data":{
 		"id":"int //主键，订单编号",
 		"userId":"int //用户编号",
-		"goodsId":"int //商品编号",
-		"orderNum":"int //订单数量",
 		"date":"string //订单日期",
-		"orderStatus":"int //订单状态",
-		"userName":"string //下单人姓名",
-		"goodsName":"string //购买的商品名",
-		"picture":"string //购买的商品的默认图片地址"
+		"status":"int //订单状态",
+		"userName":"string //下单人姓名"
 	}
 }</pre>
         <div class="form-group">

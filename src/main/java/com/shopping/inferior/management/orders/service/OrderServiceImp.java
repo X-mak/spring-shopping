@@ -118,8 +118,7 @@ public class OrderServiceImp implements OrderService{
                 //判断发货地址是否相同
                 if(hashMap.containsKey(item.getShopId())){
                     //同一个店铺则链表增加
-                    List<OrderItem> orderItems = hashMap.get(item.getShopId());
-                    orderItems.add(item);
+                    hashMap.get(item.getShopId()).add(item);
                 }else{
                     //不同店铺则新建
                     hashMap.put(item.getGoodsId(), new ArrayList<OrderItem>());
@@ -133,6 +132,7 @@ public class OrderServiceImp implements OrderService{
                 ordersMapper.insertSelective(orders);
                 for(OrderItem item : next){
                     //生成订单项
+                    item.setOrderId(orders.getId());
                     orderItemMapper.insertSelective(item);
                 }
             }
