@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface GoodsMapper extends Mapper<Goods> {
 
-    @Select("select sh.shop_name,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
+    @Select("select sh.id AS shop_id,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where (sh.shop_name like #{keyword} or g.goods_name like #{keyword} or c.class_name like #{keyword}) " +
@@ -19,7 +19,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "order by sg.date desc")
     @Results(id = "goodsInfo",value = {
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "shop_name",property = "shopName"),
+            @Result(column = "shop_id",property = "shopId"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
             @Result(column = "class_name",property = "className"),
@@ -28,7 +28,7 @@ public interface GoodsMapper extends Mapper<Goods> {
     })
     List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String subClassId,String shopId,String status);
 
-    @Select("select sh.shop_name,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
+    @Select("select sh.id AS shop_id,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where (sh.shop_name like #{keyword} or g.goods_name like #{keyword} or c.class_name like #{keyword}) " +
@@ -37,13 +37,13 @@ public interface GoodsMapper extends Mapper<Goods> {
     @ResultMap(value = "goodsInfo")
     List<Goods> querySelectedGoodsOrderBySales(String keyword,String classId,String subClassId,String shopId,String status);
 
-    @Select("select sh.shop_name,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
+    @Select("select sh.id AS shop_id,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
             "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
             "shop sh on sh.id = sg.shop_id " +
             "where g.id=#{id} ")
     @Results(id = "goodsInfoWithPictures",value = {
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "shop_name",property = "shopName"),
+            @Result(column = "shop_id",property = "shopId"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
             @Result(column = "class_name",property = "className"),
@@ -55,21 +55,23 @@ public interface GoodsMapper extends Mapper<Goods> {
     Goods queryGoodsById(Integer id);
 
 
-    @Select("SELECT g.*,sc.num,p.address ," +
-            "CASE WHEN c.user_id=1 THEN TRUE ELSE FALSE END AS collected " +
-            "FROM shoppingcart sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON " +
-            "p.goods_id = g.id  LEFT JOIN collections c ON c.goods_id=g.id " +
-            "WHERE sc.user_id = 1 AND p.status = 1")
+    @Select("SELECT g.*,sc.num,p.address ,sh.id AS shop_id, " +
+            "            CASE WHEN c.user_id= #{userId} THEN TRUE ELSE FALSE END AS collected  " +
+            "            FROM cartitem sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON  " +
+            "            p.goods_id = g.id  LEFT JOIN collecteditem c ON c.goods_id=g.id LEFT JOIN  shopgoods sg ON " +
+            "            sg.goods_id = g.id LEFT JOIN  shop sh ON sh.id = sg.shop_id " +
+            "            WHERE sc.user_id = #{userId} AND p.status = 1")
     @Results(id = "goodsInCart",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
-            @Result(column = "address",property = "picture")
+            @Result(column = "address",property = "picture"),
+            @Result(column = "shop_id",property = "shopId")
     })
     List<Goods> queryGoodsInCart(Integer userId);
 
 
-    @Select("SELECT g.*,p.address FROM collections c LEFT JOIN goods g ON g.id = c.goods_id LEFT JOIN " +
+    @Select("SELECT g.*,p.address FROM collecteditem c LEFT JOIN goods g ON g.id = c.goods_id LEFT JOIN " +
             "pictures p ON p.goods_id = g.id WHERE c.user_id = #{userId}")
     @Results(id = "goodsInCollections",value = {
             @Result(id = true,column = "id",property = "id"),

@@ -22,7 +22,7 @@ public class UserServiceImp implements UserService{
 
     public int changeBasicInfo(UserInfo userInfo){
         try{
-            userInfoMapper.insertSelective(userInfo);
+            userInfoMapper.updateByPrimaryKeySelective(userInfo);
         }catch (Exception e){
             e.printStackTrace();
             return -1;

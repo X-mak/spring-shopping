@@ -57,9 +57,15 @@ public class AuthenticationServiceImp implements AuthenticationService{
     }
 
     public UserInfo checkLogin(UserAccount userAccount){
+
         Example example = new Example(UserAccount.class);
         example.createCriteria().andEqualTo("account",userAccount.getAccount());
-        UserAccount selectedAccount = userAccountMapper.selectByExample(example).get(0);
+        UserAccount selectedAccount = new UserAccount();
+        try{
+            selectedAccount = userAccountMapper.selectByExample(example).get(0);
+        }catch (Exception e){
+            return null;
+        }
 
         String encodePwd = encode.getSHA256StrJava(userAccount.getPwd());
         if(selectedAccount == null || ! encodePwd.equals(selectedAccount.getPwd().substring(64)))

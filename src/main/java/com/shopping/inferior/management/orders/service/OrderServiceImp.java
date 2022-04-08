@@ -4,25 +4,31 @@ import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.Goods;
+import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
 import com.shopping.mapper.goods.GoodsMapper;
+import com.shopping.mapper.management.OrderItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
+import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class OrderServiceImp implements OrderService{
 
-    public int addOrders(Orders orders){
+    public int addOrders(OrderItem orderItem){
         //是否有库存
-        Goods goods = goodsMapper.selectByPrimaryKey(orders.getGoodsId());
-        if(goods.getStock() < orders.getOrderNum())return 0;
+        Goods goods = goodsMapper.selectByPrimaryKey(orderItem.getGoodsId());
+        if(goods.getStock() < orderItem.getNum())return 0;
         try{
-            orders.setDate(DateUtil.now());
+            Orders orders = new Orders(orderItem.getOrderId(),0);
             ordersMapper.insertSelective(orders);
-            goods.setStock(goods.getStock()-orders.getOrderNum());
+            goods.setStock(goods.getStock()-orderItem.getNum());
+            orderItem.setOrderId(orders.getId());
+            orderItemMapper.insertSelective(orderItem);
             if (goods.getStock() == 0)goods.setGoodsStatus(0);
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
@@ -32,15 +38,35 @@ public class OrderServiceImp implements OrderService{
         return 1;
     }
 
-    public int deleteOrders(Integer id,Integer goodsId,Integer status){
+    public int deleteOrders(Integer id,Integer status){
         try{
+            //检验权限
             Orders orders = ordersMapper.selectByPrimaryKey(id);
-            if(orders.getOrderStatus() > status)return 0;
-            ordersMapper.deleteByPrimaryKey(id);
-            Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
-            if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
-            goods.setStock(goods.getStock()+orders.getOrderNum());
-            goodsMapper.updateByPrimaryKeySelective(goods);
+            if(orders.getStatus() > status)return 0;
+
+            Example example = new Example(OrderItem.class);
+            example.createCriteria().andEqualTo("orderId",id);
+            List<OrderItem> orderItems = orderItemMapper.selectByExample(example);
+            //遍历大订单
+            for(OrderItem item : orderItems){
+                //返回库存
+                Goods goods = goodsMapper.selectByPrimaryKey(item.getGoodsId());
+                if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
+                goods.setStock(goods.getStock()+item.getNum());
+                goodsMapper.updateByPrimaryKeySelective(goods);
+
+                //删除单项订单
+                orderItemMapper.deleteByPrimaryKey(item);
+            }
+            //删除大订单
+            ordersMapper.deleteByPrimaryKey(orders);
+//            Orders orders = ordersMapper.selectByPrimaryKey(id);
+//            if(orders.getStatus() > status)return 0;
+//            ordersMapper.deleteByPrimaryKey(id);
+//            Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+//            if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
+//            goods.setStock(goods.getStock()+orders.getOrderNum());
+//            goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -58,13 +84,13 @@ public class OrderServiceImp implements OrderService{
         return 1;
     }
 
-    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, Integer status){
-        PageHelper.startPage(pageNum,pageSize,true);
-        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
-        return new PageInfo<>(orders);
-    }
+//    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, String status){
+//        PageHelper.startPage(pageNum,pageSize,true);
+//        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
+//        return new PageInfo<>(orders);
+//    }
 
-    public PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, Integer status){
+    public PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, String status){
         PageHelper.startPage(pageNum,pageSize,true);
         List<Orders> orders = ordersMapper.queryOrdersByUser(userId, status);
         return new PageInfo<>(orders);
@@ -74,16 +100,41 @@ public class OrderServiceImp implements OrderService{
         return ordersMapper.queryOrdersById(id);
     }
 
-    public int addOrders(List<Orders> ordersList){
+    public int addOrders(List<OrderItem> ordersList){
         try{
-            for(Orders orders:ordersList){
-                Goods goods = goodsMapper.selectByPrimaryKey(orders.getGoodsId());
-                if(goods.getStock() < orders.getOrderNum())return 0;
-                orders.setDate(DateUtil.now());
+//            for(Orders orders:ordersList){
+//                Goods goods = goodsMapper.selectByPrimaryKey(orders.getGoodsId());
+//                if(goods.getStock() < orders.getOrderNum())return 0;
+//                orders.setDate(DateUtil.now());
+//                ordersMapper.insertSelective(orders);
+//                goods.setStock(goods.getStock()-orders.getOrderNum());
+//                if (goods.getStock() == 0)goods.setGoodsStatus(0);
+//                goodsMapper.updateByPrimaryKeySelective(goods);
+//           }
+            Integer userId = TokenUtils.getLoginUser().getId();
+            Map<Integer,List<OrderItem>> hashMap = new HashMap<Integer,List<OrderItem>>();
+            //遍历小订单
+            for (OrderItem item : ordersList){
+                //判断发货地址是否相同
+                if(hashMap.containsKey(item.getShopId())){
+                    //同一个店铺则链表增加
+                    hashMap.get(item.getShopId()).add(item);
+                }else{
+                    //不同店铺则新建
+                    hashMap.put(item.getGoodsId(), new ArrayList<OrderItem>());
+                }
+            }
+
+            //遍历哈希表
+            for (List<OrderItem> next : hashMap.values()) {
+                //生成新的大订单
+                Orders orders = new Orders(userId, 0);
                 ordersMapper.insertSelective(orders);
-                goods.setStock(goods.getStock()-orders.getOrderNum());
-                if (goods.getStock() == 0)goods.setGoodsStatus(0);
-                goodsMapper.updateByPrimaryKeySelective(goods);
+                for(OrderItem item : next){
+                    //生成订单项
+                    item.setOrderId(orders.getId());
+                    orderItemMapper.insertSelective(item);
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -91,8 +142,11 @@ public class OrderServiceImp implements OrderService{
         }
         return 1;
     }
+
     @Autowired
     OrdersMapper ordersMapper;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    OrderItemMapper orderItemMapper;
 }

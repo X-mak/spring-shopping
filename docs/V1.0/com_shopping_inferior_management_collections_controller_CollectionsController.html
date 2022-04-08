@@ -221,7 +221,8 @@
         <pre class="prettyprint lang-json">[{
 	"id":"int //主键，收藏品编号",
 	"userId":"int //用户编号",
-	"goodsId":"int //商品编号"
+	"goodsId":"int //商品编号",
+	"date":"string //收藏日期"
 }]</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -279,7 +280,7 @@
 <h2 id="getMyCollections"><a href="#">获取个人收藏列表 </a></h2>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>/collections/list</code>
+    <code>/collections/list/{pageNum}</code>
         <span class="label label-default">GET</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -316,6 +317,7 @@
 		"introduction":"string //商品简介",
 		"sales":"int //销量",
 		"shopName":"string //商铺名",
+		"shopId":"int //商铺编号",
 		"className":"string //类别",
 		"goodsPictures":[{
 			"id":"int //主键，图片编号",

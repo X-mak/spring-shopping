@@ -21,9 +21,10 @@ public class CartController {
      */
     @ApiDoc(result = Result.class)
     @PostMapping("")
-    public Result<?> addCartGoods(@RequestParam Integer goodsId){
-
-        int res = cartService.addCartGoods(goodsId);
+    public Result<?> addCartGoods(@RequestParam Integer goodsId,@RequestParam Integer num){
+        if(authority.hasRights("buyer"))
+            return Result.error("no way");
+        int res = cartService.addCartGoods(goodsId,num);
         if(res == 1)return Result.success("添加成功!");
         else return Result.error("添加失败!");
     }
@@ -35,7 +36,7 @@ public class CartController {
     @ApiDoc(result = Result.class)
     @DeleteMapping("")
     public Result<?> deleteCartGoods(@RequestParam Integer id){
-
+        if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = cartService.deleteCartGoods(id);
         if(res == 1)return Result.success("删除成功!");
         else return Result.error("删除失败!");
@@ -50,6 +51,7 @@ public class CartController {
     @PutMapping("")
     public Result<?> updateCartGoods(@RequestParam Integer id,
                                      @RequestParam Integer num){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = cartService.updateCartGoods(id, num);
         if(res == 1)return Result.success("更新成功!");
         else return Result.error("更新失败!");
@@ -66,6 +68,7 @@ public class CartController {
     public Result<List<Goods>> getCartGoods(@RequestParam Integer pageNum,
                                      @RequestParam(required = false,defaultValue = "10") Integer pageSize
                                   ){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
         PageInfo<Goods> cartGoods = cartService.getCartGoods(pageNum, pageSize);
         if (cartGoods.getSize()==0)return Result.error("暂无数据!");
         return Result.success(cartGoods.getList(),cartGoods.getTotal()+"");
