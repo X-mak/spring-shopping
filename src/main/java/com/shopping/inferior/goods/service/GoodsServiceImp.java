@@ -48,12 +48,16 @@ public class GoodsServiceImp implements GoodsService{
             example.createCriteria().andEqualTo("goodsId",goodsId);
             goodsClassMapper.deleteByExample(example);
             example = new Example(Stock.class);
+            example.createCriteria().andEqualTo("goodsId",goodsId);
             stockMapper.deleteByExample(example);
             example = new Example(Price.class);
+            example.createCriteria().andEqualTo("goodsId",goodsId);
             priceMapper.deleteByExample(example);
             example = new Example(Pictures.class);
+            example.createCriteria().andEqualTo("goodsId",goodsId);
             picturesMapper.deleteByExample(example);
             example = new Example(ShopGoods.class);
+            example.createCriteria().andEqualTo("goodsId",goodsId);
             shopGoodsMapper.deleteByExample(example);
             goodsMapper.deleteByPrimaryKey(goodsId);
         }catch (Exception e){

@@ -50,6 +50,7 @@ public class Orders implements Serializable{
     private String date; //订单日期
     private int status; //订单状态
     private String userName; //下单人姓名
+    private OrderItem[] orderItems; //订单项
 
     public int getId(){
         return id;
@@ -89,6 +90,85 @@ public class Orders implements Serializable{
 
     public void setUserName(String userName){
         this.userName = userName;
+    }
+
+    public OrderItem[] getOrderItems(){
+        return orderItems;
+    }
+
+    public void setOrderItems(OrderItem[] orderItems){
+        this.orderItems = orderItems;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class OrderItem implements Serializable{
+
+    private int id; //主键，订单商品编号
+    private int orderId; //订单编号
+    private int goodsId; //商品编号
+    private int num; //商品数量
+    private String picture; //商品图片
+    private int shopId; //店铺编号
+    private String goodsName; //商品名
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getOrderId(){
+        return orderId;
+    }
+
+    public void setOrderId(int orderId){
+        this.orderId = orderId;
+    }
+
+    public int getGoodsId(){
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId){
+        this.goodsId = goodsId;
+    }
+
+    public int getNum(){
+        return num;
+    }
+
+    public void setNum(int num){
+        this.num = num;
+    }
+
+    public String getPicture(){
+        return picture;
+    }
+
+    public void setPicture(String picture){
+        this.picture = picture;
+    }
+
+    public int getShopId(){
+        return shopId;
+    }
+
+    public void setShopId(int shopId){
+        this.shopId = shopId;
+    }
+
+    public String getGoodsName(){
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName){
+        this.goodsName = goodsName;
     }
 
 }

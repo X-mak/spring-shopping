@@ -24,17 +24,19 @@ public interface OrdersMapper extends Mapper<Orders> {
             @Result(column = "goods_id",property = "picture",
                     one = @One(select = "com.shopping.mapper.goods.PicturesMapper.queryPictureAddress"))
     })
-    List<Orders> queryOrdersByShop(Integer shopId,Integer status);
+    List<Orders> queryOrdersByShop(Integer shopId,String status);
 
-    @Select("SELECT o.id,o.order_status,o.date,o.order_num,o.goods_id,u.user_name,g.goods_name FROM orders o LEFT JOIN " +
-            "userinfo u ON u.id=o.user_id LEFT JOIN goods g ON g.id=o.goods_id  " +
-            "WHERE u.id=#{userId} AND o.order_status='1' ORDER BY o.date DESC")
-    @ResultMap(value = "ordersInfo")
-    List<Orders> queryOrdersByUser(Integer userId,Integer status);
+    @Select("SELECT * FROM orders  WHERE user_id = #{userId} AND STATUS LIKE #{status}")
+    @Results(id = "bigOrder",value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "user_id",property = "userId"),
+            @Result(column = "id",property = "orderItems",
+                    many = @Many(select = "com.shopping.mapper.management.OrderItemMapper.queryItemsByOrderId"))
+    })
+    List<Orders> queryOrdersByUser(Integer userId,String status);
 
-    @Select("SELECT o.id,o.order_status,o.date,o.order_num,o.goods_id,u.user_name,g.goods_name " +
-            "FROM orders o LEFT JOIN userinfo u ON u.id=o.user_id LEFT JOIN goods g ON g.id=o.goods_id WHERE o.id=#{id}")
-    @ResultMap(value = "ordersInfo")
+    @Select("SELECT * FROM orders  WHERE id = #{id}")
+    @ResultMap(value = "bigOrder")
     Orders queryOrdersById(Integer id);
 
 }

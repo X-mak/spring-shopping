@@ -14,9 +14,9 @@ public interface OrderService {
 
     int changeOrders(Orders orders);
 
-    PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, Integer status);
+    //PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, String status);
 
-    PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, Integer status);
+    PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, String status);
 
     Orders getOrdersById(Integer id);
 

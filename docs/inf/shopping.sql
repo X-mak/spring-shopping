@@ -80,7 +80,7 @@ CREATE TABLE `shopgoods`(
 CREATE TABLE `pictures`(
 	id INT(10) AUTO_INCREMENT NOT NULL,
 	goods_id INT(10),
-	address VARCHAR(60),
+	address VARCHAR(120),
 	status INT(1),
 	PRIMARY KEY(id),
 	FOREIGN KEY(goods_id) REFERENCES goods(id)

@@ -84,13 +84,13 @@ public class OrderServiceImp implements OrderService{
         return 1;
     }
 
-    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, Integer status){
-        PageHelper.startPage(pageNum,pageSize,true);
-        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
-        return new PageInfo<>(orders);
-    }
+//    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, String status){
+//        PageHelper.startPage(pageNum,pageSize,true);
+//        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
+//        return new PageInfo<>(orders);
+//    }
 
-    public PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, Integer status){
+    public PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, String status){
         PageHelper.startPage(pageNum,pageSize,true);
         List<Orders> orders = ordersMapper.queryOrdersByUser(userId, status);
         return new PageInfo<>(orders);

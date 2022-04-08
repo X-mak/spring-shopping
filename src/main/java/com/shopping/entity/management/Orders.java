@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +23,8 @@ public class Orders {
     private Integer status;    //订单状态
     @Transient
     private String userName;    //下单人姓名
+    @Transient
+    private List<OrderItem> orderItems; //订单项
 
     public Orders(Integer userId, Integer status) {
         this.userId = userId;

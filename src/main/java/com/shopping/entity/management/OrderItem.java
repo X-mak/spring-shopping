@@ -23,5 +23,7 @@ public class OrderItem {
     @Transient
     private String picture; //商品图片
     @Transient
-    private Integer shopId; //商铺编号
+    private Integer shopId; //店铺编号
+    @Transient
+    private String goodsName; //商品名
 }

@@ -92,7 +92,7 @@
 
 - 事务相关
 
-![image-20220329090818543](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220329090818543.png)
+![](/img-folder/image-20220309195315403.png)
 
 
 

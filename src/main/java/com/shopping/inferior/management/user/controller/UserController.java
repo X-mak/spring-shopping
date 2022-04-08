@@ -113,6 +113,7 @@ public class UserController {
     @GetMapping("/list/{pageNum}")
     public Result<List<UserInfo>> getUserList(@PathVariable Integer pageNum,
                                               @RequestParam(required = false,defaultValue = "10") Integer pageSize){
+        if(!authority.hasRights("seller"))return Result.error("no way");
         PageInfo<UserInfo> users = userService.getUsers(pageNum, pageSize);
         if(users.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(users.getList(),users.getTotal()+"");
