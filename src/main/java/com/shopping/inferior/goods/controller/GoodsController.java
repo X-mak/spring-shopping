@@ -113,7 +113,7 @@ public class GoodsController {
     @ApiDoc(result = Result.class)
     @PutMapping("/stock")
     public Result<?> changeGoodsStock(@RequestBody Stock stock){
-        if(!authority.hasRights("seller"))return Result.error("no way");
+        //if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changeStock(stock);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");

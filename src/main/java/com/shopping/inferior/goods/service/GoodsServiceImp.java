@@ -125,7 +125,7 @@ public class GoodsServiceImp implements GoodsService{
             stock.setDate(DateUtil.now());
             stockMapper.insertSelective(stock);
             Goods goods = new Goods();
-            goods.setId(stock.getId());goods.setStock(stock.getNum());
+            goods.setId(stock.getGoodsId());goods.setStock(stock.getNum());
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
             e.printStackTrace();
