@@ -60,12 +60,6 @@
 
 ### 持久层类图分析
 
-- 总览
-
-!(/img-folder/image-20220309194919381.png)
-
-![image-20220329090518647](C:\Users\23108\AppData\Roaming\Typora\typora-user-images\image-20220329090518647.png)
-
 - 用户安全控制
 
 ![](/img-folder/image-20220309195010507.png)
@@ -114,7 +108,7 @@
 
 - 商品接口
 
-![](/img-folder/image-20220309195829485.png)
+![](/img-folder/image-20220309195811873.png)
 
 - 购物车接口
 

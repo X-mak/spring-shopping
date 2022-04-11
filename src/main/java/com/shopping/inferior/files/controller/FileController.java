@@ -17,7 +17,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/files")
 public class FileController {
     /**
      * 上传文件
@@ -28,7 +28,6 @@ public class FileController {
     @ApiDoc(stringResult = "{code:‘string//200为正确，400为出错’,     msg: 'string//提示信息',    data:'string//上传后的地址'}")
     @PostMapping("/{type}")
     public Result<?> upload(MultipartFile file,@PathVariable String type){
-        if(!authority.hasRights("buyer"))return Result.error("no way");
         try{
             String name = fileService.uploadImg(file,type);
             name = "http://localhost:8980/files/"+type+"/"+name;
