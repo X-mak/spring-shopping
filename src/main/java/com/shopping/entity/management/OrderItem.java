@@ -19,11 +19,12 @@ public class OrderItem {
     private Integer orderId;    //订单编号
     private Integer goodsId;    //商品编号
     private Integer num;    //商品数量
-
+    private Double price;   //单件商品价格
     @Transient
     private String picture; //商品图片
     @Transient
     private Integer shopId; //店铺编号
     @Transient
     private String goodsName; //商品名
+
 }

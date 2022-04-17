@@ -14,6 +14,7 @@ public class GoodsInfo {
     private String classId; //类别编号
     private String className;   //类别名
     private Integer shopId; //商铺编号
+    private String introduction;    //商品简介
     private Integer sales;  //销量
     private List<String> goodsPictures; //商品图片
 

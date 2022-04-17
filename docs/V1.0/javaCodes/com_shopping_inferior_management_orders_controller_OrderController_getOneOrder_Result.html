@@ -51,6 +51,7 @@ public class Orders implements Serializable{
     private int status; //订单状态
     private String userName; //下单人姓名
     private OrderItem[] orderItems; //订单项
+    private double totalPrice; //总价
 
     public int getId(){
         return id;
@@ -100,6 +101,14 @@ public class Orders implements Serializable{
         this.orderItems = orderItems;
     }
 
+    public double getTotalPrice(){
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice){
+        this.totalPrice = totalPrice;
+    }
+
 }
 </pre>
 
@@ -111,6 +120,7 @@ public class OrderItem implements Serializable{
     private int orderId; //订单编号
     private int goodsId; //商品编号
     private int num; //商品数量
+    private double price; //单件商品价格
     private String picture; //商品图片
     private int shopId; //店铺编号
     private String goodsName; //商品名
@@ -145,6 +155,14 @@ public class OrderItem implements Serializable{
 
     public void setNum(int num){
         this.num = num;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
     }
 
     public String getPicture(){

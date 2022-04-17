@@ -45,4 +45,13 @@ public class Goods {
         this.goodsStatus = goodsStatus;
         this.sales = 0;
     }
+
+    public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus, String introduction) {
+        this.goodsName = goodsName;
+        this.price = price;
+        this.stock = stock;
+        this.goodsStatus = goodsStatus;
+        this.introduction = introduction;
+        this.sales = 0;
+    }
 }

@@ -74,7 +74,8 @@ public class OrderController {
      * 获取订单列表
      * @param pageNum   页码
      * @param pageSize  单页大小
-     * @param userId    用户编号
+     * @param buyerId    买家用户编号
+     * @param sellerId    卖家用户编号
      * @param status    订单状态
      * @return Result<List<Orders>>
      */
@@ -82,12 +83,18 @@ public class OrderController {
     @GetMapping("/list/{pageNum}")
     public Result<List<Orders>> getOrdersListByUser(@PathVariable Integer pageNum,
                                             @RequestParam(required = false,defaultValue = "10") Integer pageSize,
-                                            @RequestParam String userId,
+                                            @RequestParam(required = false,defaultValue = "") String buyerId,
+                                            @RequestParam(required = false,defaultValue = "") String sellerId,
                                             @RequestParam(required = false,defaultValue = "%") String status){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        PageInfo<Orders> ordersListByUser = null;
-        ordersListByUser = orderService.getOrdersListByUser(pageNum, pageSize, Integer.parseInt(userId), status);
-        return Result.success(ordersListByUser.getList(),ordersListByUser.getTotal()+"");
+        PageInfo<Orders> ordersList = new PageInfo<>();
+        if(!buyerId.equals("") && sellerId.equals(""))
+            ordersList = orderService.getOrdersListByUser(pageNum, pageSize, Integer.parseInt(buyerId), status);
+        else if(buyerId.equals("") && !sellerId.equals(""))
+            orderService.getOrdersListByShop(pageNum,pageSize,Integer.parseInt(sellerId),status);
+        else
+            return Result.error("错误的请求格式!");
+        return Result.success(ordersList.getList(),ordersList.getTotal()+"");
     }
 
     /**

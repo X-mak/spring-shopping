@@ -25,6 +25,8 @@ public class Orders {
     private String userName;    //下单人姓名
     @Transient
     private List<OrderItem> orderItems; //订单项
+    @Transient
+    private Double totalPrice;  //总价
 
     public Orders(Integer userId, Integer status) {
         this.userId = userId;

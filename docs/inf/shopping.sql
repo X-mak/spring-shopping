@@ -118,6 +118,7 @@ CREATE TABLE `orderitem`(
 	order_id INT(10),
 	goods_id INT(10),
 	num INT(10),
+	price DOUBLE,
 	PRIMARY KEY(id),
 	FOREIGN KEY(order_id) REFERENCES orders(id),
 	FOREIGN KEY(goods_id) REFERENCES goods(id)
@@ -171,6 +172,20 @@ CREATE TABLE `cartitem`(
 	FOREIGN KEY(goods_id) REFERENCES goods(id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `postsale`(
+	id INT(10)NOT NULL AUTO_INCREMENT,
+	order_item_id INT(10),
+	topic VARCHAR(40),
+	introduction VARCHAR(200),
+	picture VARCHAR(120),
+	STATUS INT(1),
+	PRIMARY KEY(id),
+	FOREIGN KEY(order_item_id)REFERENCES orderitem(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 INSERT INTO userrole(role_name) VALUES ('buyer');
 INSERT INTO userrole(role_name) VALUES ('seller');
 INSERT INTO userrole(role_name) VALUES ('admin');
+INSERT INTO classes VALUES ('01','食物');
+INSERT INTO classes VALUES ('0101','水果');
+

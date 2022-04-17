@@ -19,7 +19,7 @@ public class GoodsServiceImp implements GoodsService{
 
     public int addGoods(GoodsInfo goodsInfo){
         try{
-            Goods goods = new Goods(goodsInfo.getGoodsName(),goodsInfo.getPrice(),goodsInfo.getStock(),1);
+            Goods goods = new Goods(goodsInfo.getGoodsName(),goodsInfo.getPrice(),goodsInfo.getStock(),1,goodsInfo.getIntroduction());
             goodsMapper.insertSelective(goods);
             goodsClassMapper.insertSelective(new GoodsClass(goods.getId(),goodsInfo.getClassId()));
             stockMapper.insertSelective(new Stock(goods.getId(),goodsInfo.getStock()));

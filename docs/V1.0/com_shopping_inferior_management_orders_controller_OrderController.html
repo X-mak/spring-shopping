@@ -172,9 +172,29 @@
         <div class="panel">
             <div id="heading6" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse6" aria-controls="collapse6">
-                <i class="glyphicon glyphicon-align-justify"></i> UserController
+                <i class="glyphicon glyphicon-align-justify"></i> PostSaleController
             </div>
             <div id="collapse6" class="collapse " aria-labelledby="heading6">
+                    <a class="catalog-item" href="com_shopping_inferior_management_postSale_controller_PostSaleController.html#addRequisition">
+                        新增售后申请单
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_postSale_controller_PostSaleController.html#deleteRequisition">
+                        删除售后申请单
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_postSale_controller_PostSaleController.html#changeRequisition">
+                        更新售后申请单
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_postSale_controller_PostSaleController.html#getRequisition">
+                        获取申请单列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading7" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse7" aria-controls="collapse7">
+                <i class="glyphicon glyphicon-align-justify"></i> UserController
+            </div>
+            <div id="collapse7" class="collapse " aria-labelledby="heading7">
                     <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#getUser">
                         获取用户信息
                     </a>
@@ -223,6 +243,7 @@
 	"orderId":"int //订单编号",
 	"goodsId":"int //商品编号",
 	"num":"int //商品数量",
+	"price":"double //单件商品价格",
 	"picture":"string //商品图片",
 	"shopId":"int //店铺编号",
 	"goodsName":"string //商品名"
@@ -255,6 +276,7 @@
 	"orderId":"int //订单编号",
 	"goodsId":"int //商品编号",
 	"num":"int //商品数量",
+	"price":"double //单件商品价格",
 	"picture":"string //商品图片",
 	"shopId":"int //店铺编号",
 	"goodsName":"string //商品名"
@@ -330,10 +352,12 @@
 		"orderId":"int //订单编号",
 		"goodsId":"int //商品编号",
 		"num":"int //商品数量",
+		"price":"double //单件商品价格",
 		"picture":"string //商品图片",
 		"shopId":"int //店铺编号",
 		"goodsName":"string //商品名"
-	}]
+	}],
+	"totalPrice":"double //总价"
 }</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -378,10 +402,16 @@
                         <td>单页大小</td>
                     </tr>
                     <tr>
-                        <td>userId</td>
+                        <td>buyerId</td>
                         <td>string</td>
-                        <td>是</td>
-                        <td>用户编号</td>
+                        <td>否</td>
+                        <td>买家用户编号</td>
+                    </tr>
+                    <tr>
+                        <td>sellerId</td>
+                        <td>string</td>
+                        <td>否</td>
+                        <td>卖家用户编号</td>
                     </tr>
                     <tr>
                         <td>status</td>
@@ -405,10 +435,12 @@
 			"orderId":"int //订单编号",
 			"goodsId":"int //商品编号",
 			"num":"int //商品数量",
+			"price":"double //单件商品价格",
 			"picture":"string //商品图片",
 			"shopId":"int //店铺编号",
 			"goodsName":"string //商品名"
-		}]
+		}],
+		"totalPrice":"double //总价"
 	}]
 }</pre>
         <div class="form-group">
@@ -457,10 +489,12 @@
 			"orderId":"int //订单编号",
 			"goodsId":"int //商品编号",
 			"num":"int //商品数量",
+			"price":"double //单件商品价格",
 			"picture":"string //商品图片",
 			"shopId":"int //店铺编号",
 			"goodsName":"string //商品名"
-		}]
+		}],
+		"totalPrice":"double //总价"
 	}
 }</pre>
         <div class="form-group">
@@ -513,6 +547,10 @@
             {name: 'OrderController.更新订单状态', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#changeOrders'},
             {name: 'OrderController.获取订单列表', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOrdersListByUser'},
             {name: 'OrderController.获取订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder'},
+            {name: 'PostSaleController.新增售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#addRequisition'},
+            {name: 'PostSaleController.删除售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#deleteRequisition'},
+            {name: 'PostSaleController.更新售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#changeRequisition'},
+            {name: 'PostSaleController.获取申请单列表', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#getRequisition'},
             {name: 'UserController.获取用户信息', url: 'com_shopping_inferior_management_user_controller_UserController.html#getUser'},
             {name: 'UserController.修改用户信息', url: 'com_shopping_inferior_management_user_controller_UserController.html#changeInfo'},
             {name: 'UserController.新增地址', url: 'com_shopping_inferior_management_user_controller_UserController.html#addAddress'},

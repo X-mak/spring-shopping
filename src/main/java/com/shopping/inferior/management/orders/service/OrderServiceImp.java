@@ -24,7 +24,8 @@ public class OrderServiceImp implements OrderService{
         Goods goods = goodsMapper.selectByPrimaryKey(orderItem.getGoodsId());
         if(goods.getStock() < orderItem.getNum())return 0;
         try{
-            Orders orders = new Orders(orderItem.getOrderId(),0);
+            Integer userId = TokenUtils.getLoginUser().getId();
+            Orders orders = new Orders(userId,0);
             ordersMapper.insertSelective(orders);
             goods.setStock(goods.getStock()-orderItem.getNum());
             orderItem.setOrderId(orders.getId());
@@ -84,11 +85,11 @@ public class OrderServiceImp implements OrderService{
         return 1;
     }
 
-//    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, String status){
-//        PageHelper.startPage(pageNum,pageSize,true);
-//        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
-//        return new PageInfo<>(orders);
-//    }
+    public PageInfo<Orders> getOrdersListByShop(Integer pageNum, Integer pageSize, Integer shopId, String status){
+        PageHelper.startPage(pageNum,pageSize,true);
+        List<Orders> orders = ordersMapper.queryOrdersByShop(shopId, status);
+        return new PageInfo<>(orders);
+    }
 
     public PageInfo<Orders> getOrdersListByUser(Integer pageNum, Integer pageSize, Integer userId, String status){
         PageHelper.startPage(pageNum,pageSize,true);
