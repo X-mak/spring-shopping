@@ -1,9 +1,9 @@
 package com.shopping.inferior.authentication.service;
 
 import com.shopping.entity.authentication.*;
-import com.shopping.entity.management.Shop;
+import com.shopping.entity.data.UserEx;
 import com.shopping.mapper.authentication.*;
-import com.shopping.mapper.management.ShopMapper;
+import com.shopping.mapper.data.UserExMapper;
 import com.shopping.utils.Encode;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +40,12 @@ public class AuthenticationServiceImp implements AuthenticationService{
             if(registerUser.getUserRole().equals("seller")){
                 userInfo.setUserStatus(1);
                 accountRoleMapper.insertSelective(new AccountRole(2,userId));
-                shopMapper.insertSelective(new Shop(userAccount.getId()));
             }else if(registerUser.getUserRole().equals("admin")){
                 accountRoleMapper.insertSelective(new AccountRole(3,userId));
             }
             userInfoMapper.insertSelective(userInfo);
             if(registerUser.getAddress()!=null && !registerUser.getAddress().equals("")){
-                addressMapper.insertSelective(new Address(userId, registerUser.getAddress(),1));
+                userExMapper.insertSelective(new UserEx(userId,1,registerUser.getAddress(),1));
             }
 
         }catch (Exception e){
@@ -98,15 +97,13 @@ public class AuthenticationServiceImp implements AuthenticationService{
     @Autowired
     AccountRoleMapper accountRoleMapper;
     @Autowired
-    AddressMapper addressMapper;
-    @Autowired
     UserAccountMapper userAccountMapper;
     @Autowired
     UserInfoMapper userInfoMapper;
     @Autowired
     UserRoleMapper userRoleMapper;
     @Autowired
-    ShopMapper shopMapper;
-    @Autowired
     Encode encode;
+    @Autowired
+    UserExMapper userExMapper;
 }

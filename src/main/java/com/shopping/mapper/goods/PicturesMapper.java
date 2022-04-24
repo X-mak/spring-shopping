@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface PicturesMapper extends Mapper<Pictures> {
 
-    @Select("select * from pictures where goods_id=#{goodsId}")
+    @Select("SELECT * FROM goods_picture_vw where goods_id=#{goodsId}")
     @Results(id = "singlePicture",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_id",property = "goodsId"),

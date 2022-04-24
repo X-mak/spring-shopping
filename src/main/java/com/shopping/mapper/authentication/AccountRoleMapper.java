@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface AccountRoleMapper extends Mapper<AccountRole> {
-    @Select("SELECT * FROM accountrole WHERE account_id = #{userId}")
+    @Select("SELECT * FROM account_role WHERE account_id = #{userId}")
     @Results(value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "role_id",property = "roleId"),

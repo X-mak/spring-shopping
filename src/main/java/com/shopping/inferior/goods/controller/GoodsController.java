@@ -31,7 +31,6 @@ public class GoodsController {
     /**
      * 搜索商品
      * @param keyword   搜索关键字
-     * @param classId   类别编号
      * @param pageSize  单页数量
      * @param pageNum   页码
      * @param order     排序方式，date/sales
@@ -43,13 +42,12 @@ public class GoodsController {
     @ApiDoc
     @GetMapping("/list/{pageNum}")
     public Result<List<Goods>> getSelectedGoods(@RequestParam(required = false,defaultValue = "%") String keyword,
-                                      @RequestParam(required = false,defaultValue = "%") String classId,
                                       @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                       @PathVariable Integer pageNum,
                                       @RequestParam(required = false,defaultValue = "date") String order,
                                       @RequestParam(required = false,defaultValue = "%") String shopId,
                                       @RequestParam(required = false,defaultValue = "1") String status){
-        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId, shopId,status);
+        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, shopId,status);
         if(goodsBySearch.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(goodsBySearch.getList(),goodsBySearch.getTotal()+"");
     }
@@ -67,18 +65,6 @@ public class GoodsController {
         return Result.success(goods,"查询成功!");
     }
 
-    /**
-     * 删除商品
-     * @param goodsId   商品编号
-     */
-    @ApiDoc(result = Result.class)
-    @DeleteMapping("/{goodsId}")
-    public Result<?> deleteGoods(@PathVariable Integer goodsId){
-        if(!authority.hasRights("seller"))return Result.error("no way");
-        int res = goodsService.deleteGoods(goodsId);
-        if(res == -1)return Result.error("删除失败");
-        return Result.success("删除成功");
-    }
 
     /**
      * 修改商品基本信息
@@ -113,7 +99,7 @@ public class GoodsController {
     @ApiDoc(result = Result.class)
     @PutMapping("/stock")
     public Result<?> changeGoodsStock(@RequestBody Stock stock){
-        //if(!authority.hasRights("seller"))return Result.error("no way");
+        if(!authority.hasRights("seller"))return Result.error("no way");
         int res = goodsService.changeStock(stock);
         if(res == -1)return Result.error("更新失败");
         return Result.success("更新成功");

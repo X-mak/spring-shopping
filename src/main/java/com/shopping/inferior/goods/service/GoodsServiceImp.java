@@ -1,12 +1,13 @@
 package com.shopping.inferior.goods.service;
 
-import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.shopping.entity.data.GoodsEx;
+import com.shopping.entity.data.UserGoods;
 import com.shopping.entity.goods.*;
-import com.shopping.entity.management.ShopGoods;
+import com.shopping.mapper.data.GoodsExMapper;
+import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.*;
-import com.shopping.mapper.management.ShopGoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -22,15 +23,21 @@ public class GoodsServiceImp implements GoodsService{
             Goods goods = new Goods(goodsInfo.getGoodsName(),goodsInfo.getPrice(),goodsInfo.getStock(),1,goodsInfo.getIntroduction());
             goodsMapper.insertSelective(goods);
             goodsClassMapper.insertSelective(new GoodsClass(goods.getId(),goodsInfo.getClassId()));
-            stockMapper.insertSelective(new Stock(goods.getId(),goodsInfo.getStock()));
-            priceMapper.insertSelective(new Price(goods.getId(),goodsInfo.getPrice()));
-            shopGoodsMapper.insertSelective(new ShopGoods(goodsInfo.getShopId(),goods.getId()));
+            Integer id = 1;
+
+
+            goodsExMapper.insertSelective(new GoodsEx(goods.getId(),1,goodsInfo.getStock()+"",0));
+            goodsExMapper.insertSelective(new GoodsEx(goods.getId(),2,goodsInfo.getPrice()+"",0));
+            userGoodsMapper.insertSelective(new UserGoods(id,goods.getId(),3));
+
+//            stockMapper.insertSelective(new Stock(goods.getId(),goodsInfo.getStock()));
+//            priceMapper.insertSelective(new Price(goods.getId(),goodsInfo.getPrice()));
             int i = 0;
             for(String address : goodsInfo.getGoodsPictures()){
                 if(i == 0)
-                    picturesMapper.insertSelective(new Pictures(goods.getId(),address,1));
+                    goodsExMapper.insertSelective(new GoodsEx(goods.getId(),3,address,1));
                 else
-                    picturesMapper.insertSelective(new Pictures(goods.getId(),address,0));
+                    goodsExMapper.insertSelective(new GoodsEx(goods.getId(),3,address,0));
                 i++;
             }
         }catch (Exception e){
@@ -47,18 +54,12 @@ public class GoodsServiceImp implements GoodsService{
             Example example = new Example(GoodsClass.class);
             example.createCriteria().andEqualTo("goodsId",goodsId);
             goodsClassMapper.deleteByExample(example);
-            example = new Example(Stock.class);
+            example = new Example(GoodsEx.class);
             example.createCriteria().andEqualTo("goodsId",goodsId);
-            stockMapper.deleteByExample(example);
-            example = new Example(Price.class);
+            goodsExMapper.deleteByExample(example);
+            example = new Example(UserGoods.class);
             example.createCriteria().andEqualTo("goodsId",goodsId);
-            priceMapper.deleteByExample(example);
-            example = new Example(Pictures.class);
-            example.createCriteria().andEqualTo("goodsId",goodsId);
-            picturesMapper.deleteByExample(example);
-            example = new Example(ShopGoods.class);
-            example.createCriteria().andEqualTo("goodsId",goodsId);
-            shopGoodsMapper.deleteByExample(example);
+            userGoodsMapper.deleteByExample(example);
             goodsMapper.deleteByPrimaryKey(goodsId);
         }catch (Exception e){
             e.printStackTrace();
@@ -86,7 +87,7 @@ public class GoodsServiceImp implements GoodsService{
 
 
     public PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order,
-                                            String classId, String shopId,String status){
+                                            String shopId,String status){
         List<Goods> goods = new ArrayList<>();
         //处理参数
         if(!keyword.equals("%"))keyword = "%"+keyword+"%";
@@ -96,9 +97,9 @@ public class GoodsServiceImp implements GoodsService{
 
         //根据排序方式使用mapper
         if(order.equals("date")){
-            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, classId, classId + "__", shopId,status);
+            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, shopId,status);
         }else if(order.equals("sales")){
-            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, classId, classId + "__", shopId,status);
+            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, shopId,status);
         }
 
         return new PageInfo<>(goods);
@@ -107,8 +108,8 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changePrice(Price price){
         try{
-            price.setDate(DateUtil.now());
-            priceMapper.insertSelective(price);
+            GoodsEx goodsEx = new GoodsEx(price.getGoodsId(),2,price.getPrice()+"",0);
+            goodsExMapper.insertSelective(goodsEx);
             Goods goods = new Goods();
             goods.setId(price.getGoodsId());goods.setPrice(price.getPrice());
             goodsMapper.updateByPrimaryKeySelective(goods);
@@ -122,8 +123,8 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changeStock(Stock stock){
         try{
-            stock.setDate(DateUtil.now());
-            stockMapper.insertSelective(stock);
+            GoodsEx goodsEx = new GoodsEx(stock.getGoodsId(),1,stock.getNum()+"",0);
+            goodsExMapper.insertSelective(goodsEx);
             Goods goods = new Goods();
             goods.setId(stock.getGoodsId());goods.setStock(stock.getNum());
             goodsMapper.updateByPrimaryKeySelective(goods);
@@ -161,7 +162,7 @@ public class GoodsServiceImp implements GoodsService{
     public int addPictures(Integer goodsId,List<String> pictures){
         try{
             for(String address : pictures){
-                picturesMapper.insertSelective(new Pictures(goodsId,address,0));
+                goodsExMapper.insertSelective(new GoodsEx(goodsId,3,address,0));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -176,6 +177,8 @@ public class GoodsServiceImp implements GoodsService{
     GoodsClassMapper goodsClassMapper;
     @Autowired
     ClassesMapper classesMapper;
+
+
     @Autowired
     PicturesMapper picturesMapper;
     @Autowired
@@ -183,5 +186,7 @@ public class GoodsServiceImp implements GoodsService{
     @Autowired
     StockMapper stockMapper;
     @Autowired
-    ShopGoodsMapper shopGoodsMapper;
+    UserGoodsMapper userGoodsMapper;
+    @Autowired
+    GoodsExMapper goodsExMapper;
 }

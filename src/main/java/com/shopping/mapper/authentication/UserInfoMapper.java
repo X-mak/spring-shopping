@@ -9,26 +9,28 @@ import java.util.List;
 
 @Repository
 public interface UserInfoMapper extends Mapper<UserInfo> {
-    @Select("SELECT u.*,a.content FROM userinfo u LEFT JOIN address a ON a.user_id=u.id LEFT JOIN useraccount ua ON ua.id=u.id " +
-            "WHERE ua.account=#{userAccount} AND a.address_status=1")
+    @Select("SELECT u.id,u.user_name,u.user_status,u.user_phone,ue.value FROM user_info u " +
+            "LEFT JOIN user_ex ue ON ue.user_id = u.id LEFT JOIN user_account ua ON ua.id=u.id " +
+            "WHERE ue.property_id=1 AND ue.status=1 AND ua.account=#{userAccount}")
     @Results(id = "loginUserInfo",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "user_name",property = "userName"),
             @Result(column = "user_status",property = "userStatus"),
             @Result(column = "user_phone",property = "userPhone"),
-            @Result(column = "content",property = "address"),
+            @Result(column = "value",property = "address"),
             @Result(column = "id",property = "roleList",
                     many = @Many(select = "com.shopping.mapper.authentication.AccountRoleMapper.selectAccountRoleByAccount"))
 
     })
     UserInfo queryLoginUserInfo(String userAccount);
 
-    @Select("SELECT u.*,a.content FROM userinfo u LEFT JOIN address a ON a.user_id=u.id " +
-            "WHERE u.id=#{userId} AND a.address_status=1")
+    @Select("SELECT u.id,u.user_name,u.user_status,u.user_phone,ue.value FROM user_info u " +
+            "LEFT JOIN user_ex ue ON ue.user_id = u.id WHERE " +
+            "ue.property_id=1 AND ue.status=1 AND u.id=#{userId}")
     @ResultMap(value = "loginUserInfo")
     UserInfo queryLoginUserInfoById(Integer userId);
 
-    @Select("SELECT ua.id,ua.account,u.user_name FROM userinfo u LEFT JOIN useraccount ua ON u.id=ua.id " +
+    @Select("SELECT ua.id,ua.account,u.user_name FROM user_info u LEFT JOIN user_account ua ON u.id=ua.id " +
             " WHERE u.user_status IS NULL OR u.user_status = -1")
     @Results(id = "basicUser",value = {
             @Result(id = true,column = "id",property = "id"),

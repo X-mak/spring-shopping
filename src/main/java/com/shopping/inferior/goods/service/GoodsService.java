@@ -15,7 +15,7 @@ public interface GoodsService {
 
     Goods getGoods(Integer goodsId);
 
-    PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order, String classId, String shopId,String status);
+    PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order, String shopId,String status);
 
     int changePrice(Price price);
 

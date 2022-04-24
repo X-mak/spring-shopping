@@ -4,12 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.authentication.Address;
 import com.shopping.entity.authentication.UserInfo;
+import com.shopping.entity.data.UserEx;
 import com.shopping.mapper.authentication.*;
-import com.shopping.mapper.management.ShopMapper;
-import com.shopping.utils.Encode;
+import com.shopping.mapper.data.UserExMapper;
+import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -33,7 +33,8 @@ public class UserServiceImp implements UserService{
 
     public int addAddress(Address address){
         try{
-            addressMapper.insertSelective(address);
+            Integer userId = TokenUtils.getLoginUser().getId();
+            userExMapper.insertSelective(new UserEx(userId,1,address.getContent(),address.getAddressStatus()));
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -44,7 +45,8 @@ public class UserServiceImp implements UserService{
 
     public int changeAddress(Address address) {
         try{
-            addressMapper.updateByPrimaryKeySelective(address);
+            Integer userId = TokenUtils.getLoginUser().getId();
+            userExMapper.updateByPrimaryKeySelective(new UserEx(address.getId(),userId,1,address.getContent(),address.getAddressStatus()));
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -62,9 +64,9 @@ public class UserServiceImp implements UserService{
 
     public int deleteAddress(Integer id){
         try{
-            Address address = addressMapper.selectByPrimaryKey(id);
-            if(address.getAddressStatus()==1)return 0;
-            addressMapper.deleteByPrimaryKey(id);
+            UserEx userEx = userExMapper.selectByPrimaryKey(id);
+            if(userEx.getStatus()==1)return 0;
+            userExMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -84,4 +86,6 @@ public class UserServiceImp implements UserService{
     AddressMapper addressMapper;
     @Autowired
     UserInfoMapper userInfoMapper;
+    @Autowired
+    UserExMapper userExMapper;
 }

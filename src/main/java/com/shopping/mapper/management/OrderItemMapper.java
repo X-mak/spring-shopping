@@ -12,14 +12,14 @@ import java.util.List;
 @Repository
 public interface OrderItemMapper extends Mapper<OrderItem> {
 
-    @Select("SELECT oi.*,p.address,g.goods_name FROM orderitem oi LEFT JOIN orders o ON o.id = oi.order_id " +
-            " LEFT JOIN goods g ON oi.goods_id = g.id LEFT JOIN pictures p ON g.id = p.goods_id WHERE  " +
-            " p.status = 1 AND oi.order_id = #{orderId}")
+    @Select("SELECT oi.*,g.goods_name,g.status,g.picture FROM order_item oi LEFT JOIN goods_vw g ON g.id = oi.goods_id " +
+            "WHERE oi.order_id=#{orderId}")
     @Results(id = "orderItem",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "order_id",property = "orderId"),
             @Result(column = "goods_id",property = "goodsId"),
             @Result(column = "goods_name",property = "goodsName"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "address",property = "picture")
     })
     List<OrderItem> queryItemsByOrderId(Integer orderId);

@@ -2,9 +2,7 @@ package com.shopping.inferior.management.collections.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.shopping.common.Result;
-import com.shopping.entity.goods.Goods;
 import com.shopping.entity.management.CollectedItem;
-import com.shopping.entity.management.Collections;
 import com.shopping.inferior.management.collections.service.CollectionsService;
 import com.shopping.utils.Authority;
 import io.github.yedaxia.apidocs.ApiDoc;
@@ -47,14 +45,14 @@ public class CollectionsController {
      * 获取个人收藏列表
      * @param pageNum   页码
      * @param pageSize  单页大小
-     * @return  Result<List<Goods>>
+     * @return  Result<List<CollectedItem>>
      */
     @ApiDoc
     @GetMapping("/list/{pageNum}")
-    public Result<List<Goods>> getMyCollections(@PathVariable Integer pageNum,
+    public Result<List<CollectedItem>> getMyCollections(@PathVariable Integer pageNum,
                                       @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        PageInfo<Goods> selectedCollections = collectionsService.getSelectedCollections(pageNum, pageSize);
+        PageInfo<CollectedItem> selectedCollections = collectionsService.getSelectedCollections(pageNum, pageSize);
         if(selectedCollections.getSize() == 0)return Result.error("暂无数据!");
         return Result.success(selectedCollections.getList(),selectedCollections.getTotal()+"");
     }
