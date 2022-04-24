@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "goods")
 public class Goods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +22,6 @@ public class Goods {
     private Integer goodsStatus;    //商品状态，1为销售中，0为已下架
     private String introduction;    //商品简介
     private Integer sales;  //销量
-    @Transient
-    private String shopName;    //商铺名
     @Transient
     private Integer shopId;     //商铺编号
     @Transient

@@ -26,8 +26,9 @@ public interface OrdersMapper extends Mapper<Orders> {
     @ResultMap(value = "bigOrder")
     Orders queryOrdersById(Integer id);
 
-    @Select("SELECT o.* FROM orders o LEFT JOIN orderitem oi ON o.id=oi.order_id LEFT JOIN shopgoods sg ON sg.goods_id=oi.goods_id " +
-            " WHERE sg.shop_id = #{shopId} AND o.status LIKE #{status}")
+    @Select("SELECT DISTINCT o.id,o.user_id,o.date,o.status FROM orders o LEFT JOIN order_item oi ON oi.order_id=o.id " +
+            "            LEFT JOIN user_goods ug ON ug.goods_id =oi.goods_id " +
+            "            WHERE ug.property_id=3 AND o.status LIKE #{status} AND ug.user_id=#{shopId}")
     @ResultMap(value = "bigOrder")
     List<Orders> queryOrdersByShop(Integer shopId,String status);
 

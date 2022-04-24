@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface PostSaleMapper extends Mapper<PostSale> {
 
-    @Select("SELECT ps.* FROM postsale ps LEFT JOIN orderitem oi ON oi.id=ps.order_item_id " +
+    @Select("SELECT ps.* FROM post_sale ps LEFT JOIN order_item oi ON oi.id=ps.order_item_id " +
             "LEFT JOIN orders o ON o.id = oi.order_id WHERE o.user_id=#{buyerId} AND "+
             " ps.status LIKE #{status}")
     @Results(id = "saleForm",value = {
@@ -22,7 +22,7 @@ public interface PostSaleMapper extends Mapper<PostSale> {
     })
     List<PostSale> queryPostSalesByBuyer(Integer buyerId,String status);
 
-    @Select("SELECT ps.* FROM postsale ps LEFT JOIN orderitem oi ON oi.id=ps.order_item_id " +
+    @Select("SELECT ps.* FROM post_sale ps LEFT JOIN order_item oi ON oi.id=ps.order_item_id " +
             "LEFT JOIN shopgoods sg ON sg.goods_id=oi.goods_id " +
             "WHERE sg.shop_id = #{sellerId} AND ps.status LIKE #{status}")
     @ResultMap(value = "saleForm")

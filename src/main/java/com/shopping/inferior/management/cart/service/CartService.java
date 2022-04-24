@@ -2,6 +2,7 @@ package com.shopping.inferior.management.cart.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.Goods;
+import com.shopping.entity.management.CartItem;
 
 public interface CartService {
 
@@ -11,5 +12,5 @@ public interface CartService {
 
     int updateCartGoods(Integer id,Integer num);
 
-    PageInfo<Goods> getCartGoods(Integer pageNum,Integer pageSize);
+    PageInfo<CartItem> getCartGoods(Integer pageNum, Integer pageSize);
 }

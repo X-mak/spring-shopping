@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "orderitem")
+@Table(name = "order_item")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +26,7 @@ public class OrderItem {
     private Integer shopId; //店铺编号
     @Transient
     private String goodsName; //商品名
+    @Transient
+    private Integer goodsStatus;    //商品状态
 
 }

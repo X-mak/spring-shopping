@@ -12,11 +12,12 @@ import java.util.List;
 @Repository
 public interface AddressMapper extends Mapper<Address> {
 
-    @Select("SELECT a.* FROM address a WHERE a.user_id = #{userId}")
+    @Select("SELECT * FROM user_address_vw WHERE user_id=#{userId}")
     @Results(id = "address",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "user_id",property = "userId"),
-            @Result(column = "address_status",property = "addressStatus")
+            @Result(column = "address",property = "content"),
+            @Result(column = "status",property = "addressStatus")
     })
     List<Address> queryAddress(Integer userId);
 }

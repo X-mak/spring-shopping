@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "userinfo")
+@Table(name = "user_info")
 public class UserInfo {
     @Id
     private Integer id; //主键，用户编号

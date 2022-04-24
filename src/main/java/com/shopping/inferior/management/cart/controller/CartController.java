@@ -3,6 +3,7 @@ package com.shopping.inferior.management.cart.controller;
 import com.github.pagehelper.PageInfo;
 import com.shopping.common.Result;
 import com.shopping.entity.goods.Goods;
+import com.shopping.entity.management.CartItem;
 import com.shopping.inferior.management.cart.service.CartService;
 import com.shopping.utils.Authority;
 import io.github.yedaxia.apidocs.ApiDoc;
@@ -22,8 +23,7 @@ public class CartController {
     @ApiDoc(result = Result.class)
     @PostMapping("")
     public Result<?> addCartGoods(@RequestParam Integer goodsId,@RequestParam Integer num){
-        if(authority.hasRights("buyer"))
-            return Result.error("no way");
+        if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = cartService.addCartGoods(goodsId,num);
         if(res == 1)return Result.success("添加成功!");
         else return Result.error("添加失败!");
@@ -61,15 +61,15 @@ public class CartController {
      * 获取购物车列表
      * @param pageNum   页码
      * @param pageSize  单页大小
-     * @return  Result<List<Goods>>
+     * @return  Result<List<CartItem>>
      */
     @ApiDoc
-    @GetMapping("/list")
-    public Result<List<Goods>> getCartGoods(@RequestParam Integer pageNum,
+    @GetMapping("/list/{pageNum}")
+    public Result<List<CartItem>> getCartGoods(@PathVariable Integer pageNum,
                                      @RequestParam(required = false,defaultValue = "10") Integer pageSize
                                   ){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        PageInfo<Goods> cartGoods = cartService.getCartGoods(pageNum, pageSize);
+        PageInfo<CartItem> cartGoods = cartService.getCartGoods(pageNum, pageSize);
         if (cartGoods.getSize()==0)return Result.error("暂无数据!");
         return Result.success(cartGoods.getList(),cartGoods.getTotal()+"");
     }

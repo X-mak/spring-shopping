@@ -122,7 +122,9 @@ public class OrderServiceImp implements OrderService{
                     hashMap.get(item.getShopId()).add(item);
                 }else{
                     //不同店铺则新建
-                    hashMap.put(item.getGoodsId(), new ArrayList<OrderItem>());
+                    ArrayList<OrderItem> orderItems = new ArrayList<>();
+                    orderItems.add(item);
+                    hashMap.put(item.getShopId(),orderItems);
                 }
             }
 

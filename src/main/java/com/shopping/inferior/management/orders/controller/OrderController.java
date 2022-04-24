@@ -91,7 +91,7 @@ public class OrderController {
         if(!buyerId.equals("") && sellerId.equals(""))
             ordersList = orderService.getOrdersListByUser(pageNum, pageSize, Integer.parseInt(buyerId), status);
         else if(buyerId.equals("") && !sellerId.equals(""))
-            orderService.getOrdersListByShop(pageNum,pageSize,Integer.parseInt(sellerId),status);
+            ordersList = orderService.getOrdersListByShop(pageNum,pageSize,Integer.parseInt(sellerId),status);
         else
             return Result.error("错误的请求格式!");
         return Result.success(ordersList.getList(),ordersList.getTotal()+"");
