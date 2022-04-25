@@ -59,6 +59,18 @@ public class CollectionsController {
         return Result.success(selectedCollections.getList(),selectedCollections.getTotal()+"");
     }
 
+    /**
+     * 查看收藏权限
+     * @param goodsId 商品编号
+     */
+    @ApiDoc
+    @GetMapping("")
+    public Result<?> getOwnership(@RequestParam Integer goodsId){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
+        int collected = collectionsService.isCollected(goodsId);
+        if(collected == -1)return Result.error("error");
+        else return Result.success(collected,"");
+    }
 
     @Autowired
     CollectionsService collectionsService;

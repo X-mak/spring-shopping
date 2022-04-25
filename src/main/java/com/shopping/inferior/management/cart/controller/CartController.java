@@ -22,7 +22,7 @@ public class CartController {
     @ApiDoc(result = Result.class)
     @PostMapping("")
     public Result<?> addCartGoods(@RequestParam Integer goodsId,@RequestParam Integer num){
-        if(authority.hasRights("buyer"))
+        if(!authority.hasRights("buyer"))
             return Result.error("no way");
         int res = cartService.addCartGoods(goodsId,num);
         if(res == 1)return Result.success("添加成功!");
@@ -64,8 +64,8 @@ public class CartController {
      * @return  Result<List<Goods>>
      */
     @ApiDoc
-    @GetMapping("/list")
-    public Result<List<Goods>> getCartGoods(@RequestParam Integer pageNum,
+    @GetMapping("/list/{pageNum}")
+    public Result<List<Goods>> getCartGoods(@PathVariable Integer pageNum,
                                      @RequestParam(required = false,defaultValue = "10") Integer pageSize
                                   ){
         if(!authority.hasRights("buyer"))return Result.error("no way");

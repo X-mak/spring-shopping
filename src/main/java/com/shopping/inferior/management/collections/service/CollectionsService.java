@@ -14,4 +14,6 @@ public interface CollectionsService {
     int cancelCollect(Integer id);
 
     PageInfo<Goods> getSelectedCollections(Integer pageNum,Integer pageSize);
+
+    int isCollected(Integer goodsId);
 }

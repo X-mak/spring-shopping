@@ -55,7 +55,7 @@ public interface GoodsMapper extends Mapper<Goods> {
     Goods queryGoodsById(Integer id);
 
 
-    @Select("SELECT g.*,sc.num,p.address ,sh.id AS shop_id, " +
+    @Select("SELECT g.*,sc.num,p.address ,sh.id AS shop_id, sc.id AS cart_id," +
             "            CASE WHEN c.user_id= #{userId} THEN TRUE ELSE FALSE END AS collected  " +
             "            FROM cartitem sc LEFT JOIN goods g ON g.id = sc.goods_id LEFT JOIN pictures p ON  " +
             "            p.goods_id = g.id  LEFT JOIN collecteditem c ON c.goods_id=g.id LEFT JOIN  shopgoods sg ON " +
@@ -66,7 +66,8 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "goods_status",property = "goodsStatus"),
             @Result(column = "address",property = "picture"),
-            @Result(column = "shop_id",property = "shopId")
+            @Result(column = "shop_id",property = "shopId"),
+            @Result(column = "cart_id",property = "cartId")
     })
     List<Goods> queryGoodsInCart(Integer userId);
 

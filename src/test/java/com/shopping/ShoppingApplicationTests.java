@@ -1,6 +1,7 @@
 package com.shopping;
 
 import com.shopping.entity.management.Orders;
+import com.shopping.inferior.management.collections.service.CollectionsService;
 import com.shopping.mapper.management.OrdersMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,13 @@ class ShoppingApplicationTests {
 
     @Test
     void contextLoads() {
-        Orders orders = ordersMapper.queryOrdersById(1);
-        System.out.println(orders);
+
     }
 
     @Autowired
     OrdersMapper ordersMapper;
+    @Autowired
+    CollectionsService collectionsService;
 
 
 }

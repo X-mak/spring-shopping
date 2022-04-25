@@ -4,9 +4,11 @@ import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.Goods;
+import com.shopping.entity.goods.Stock;
 import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
 import com.shopping.mapper.goods.GoodsMapper;
+import com.shopping.mapper.goods.StockMapper;
 import com.shopping.mapper.management.OrderItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
 import com.shopping.utils.TokenUtils;
@@ -32,6 +34,7 @@ public class OrderServiceImp implements OrderService{
             orderItemMapper.insertSelective(orderItem);
             if (goods.getStock() == 0)goods.setGoodsStatus(0);
             goodsMapper.updateByPrimaryKeySelective(goods);
+            stockMapper.insertSelective(new Stock(orderItem.getGoodsId(),orderItem.getNum()));
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -55,7 +58,7 @@ public class OrderServiceImp implements OrderService{
                 if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
                 goods.setStock(goods.getStock()+item.getNum());
                 goodsMapper.updateByPrimaryKeySelective(goods);
-
+                stockMapper.insertSelective(new Stock(goods.getId(),goods.getStock()+item.getNum()));
                 //删除单项订单
                 orderItemMapper.deleteByPrimaryKey(item);
             }
@@ -122,7 +125,9 @@ public class OrderServiceImp implements OrderService{
                     hashMap.get(item.getShopId()).add(item);
                 }else{
                     //不同店铺则新建
-                    hashMap.put(item.getGoodsId(), new ArrayList<OrderItem>());
+                    ArrayList<OrderItem> orderItems = new ArrayList<>();
+                    orderItems.add(item);
+                    hashMap.put(item.getShopId(),orderItems );
                 }
             }
 
@@ -135,6 +140,10 @@ public class OrderServiceImp implements OrderService{
                     //生成订单项
                     item.setOrderId(orders.getId());
                     orderItemMapper.insertSelective(item);
+                    Goods goods = goodsMapper.selectByPrimaryKey(item.getGoodsId());
+                    goods.setStock(goods.getStock()-item.getNum());
+                    goodsMapper.updateByPrimaryKeySelective(goods);
+                    stockMapper.insertSelective(new Stock(item.getGoodsId(),goods.getStock()-item.getNum()));
                 }
             }
         }catch (Exception e){
@@ -150,4 +159,6 @@ public class OrderServiceImp implements OrderService{
     GoodsMapper goodsMapper;
     @Autowired
     OrderItemMapper orderItemMapper;
+    @Autowired
+    StockMapper stockMapper;
 }

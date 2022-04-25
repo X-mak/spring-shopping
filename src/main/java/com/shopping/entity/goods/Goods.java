@@ -37,6 +37,8 @@ public class Goods {
     private Integer num;    //商品的数量
     @Transient
     private Integer collected;  //商品收藏状态，1为已收藏，0为未收藏
+    @Transient
+    private Integer cartId; //gouwuche
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;
