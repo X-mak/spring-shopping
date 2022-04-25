@@ -3,9 +3,11 @@ package com.shopping.inferior.management.orders.service;
 import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.shopping.entity.data.GoodsEx;
 import com.shopping.entity.goods.Goods;
 import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
+import com.shopping.mapper.data.GoodsExMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.OrderItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
@@ -55,7 +57,7 @@ public class OrderServiceImp implements OrderService{
                 if(goods.getGoodsStatus() == 0)goods.setGoodsStatus(1);
                 goods.setStock(goods.getStock()+item.getNum());
                 goodsMapper.updateByPrimaryKeySelective(goods);
-
+                goodsExMapper.insertSelective(new GoodsEx(item.getGoodsId(), 1,goods.getStock()+item.getNum()+"",0));
                 //删除单项订单
                 orderItemMapper.deleteByPrimaryKey(item);
             }
@@ -136,6 +138,10 @@ public class OrderServiceImp implements OrderService{
                 for(OrderItem item : next){
                     //生成订单项
                     item.setOrderId(orders.getId());
+                    Goods goods = goodsMapper.selectByPrimaryKey(item.getGoodsId());
+                    goods.setStock(goods.getStock()-item.getNum());
+                    goodsMapper.insertSelective(goods);
+                    goodsExMapper.insertSelective(new GoodsEx(item.getGoodsId(), 1,goods.getStock()-item.getNum()+"",0));
                     orderItemMapper.insertSelective(item);
                 }
             }
@@ -152,4 +158,6 @@ public class OrderServiceImp implements OrderService{
     GoodsMapper goodsMapper;
     @Autowired
     OrderItemMapper orderItemMapper;
+    @Autowired
+    GoodsExMapper goodsExMapper;
 }

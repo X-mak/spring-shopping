@@ -8,6 +8,7 @@ import com.shopping.entity.goods.*;
 import com.shopping.mapper.data.GoodsExMapper;
 import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.*;
+import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -23,8 +24,7 @@ public class GoodsServiceImp implements GoodsService{
             Goods goods = new Goods(goodsInfo.getGoodsName(),goodsInfo.getPrice(),goodsInfo.getStock(),1,goodsInfo.getIntroduction());
             goodsMapper.insertSelective(goods);
             goodsClassMapper.insertSelective(new GoodsClass(goods.getId(),goodsInfo.getClassId()));
-            Integer id = 1;
-
+            Integer id = TokenUtils.getLoginUser().getId();
 
             goodsExMapper.insertSelective(new GoodsEx(goods.getId(),1,goodsInfo.getStock()+"",0));
             goodsExMapper.insertSelective(new GoodsEx(goods.getId(),2,goodsInfo.getPrice()+"",0));

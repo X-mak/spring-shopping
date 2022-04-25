@@ -52,7 +52,6 @@ public class Goods implements Serializable{
     private int goodsStatus; //商品状态，1为销售中，0为已下架
     private String introduction; //商品简介
     private int sales; //销量
-    private String shopName; //商铺名
     private int shopId; //商铺编号
     private String className; //类别
     private Pictures[] goodsPictures; //商品的所有图片
@@ -114,14 +113,6 @@ public class Goods implements Serializable{
 
     public void setSales(int sales){
         this.sales = sales;
-    }
-
-    public String getShopName(){
-        return shopName;
-    }
-
-    public void setShopName(String shopName){
-        this.shopName = shopName;
     }
 
     public int getShopId(){

@@ -18,7 +18,29 @@
 //响应提示信息,若为搜索请求,则为页码总数
 @property (nonatomic, assign) NSString msg;
 //响应数据
-@property (nonatomic, strong) Goods[] data;
+@property (nonatomic, strong) CollectedItem[] data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface CollectedItem : NSObject
+
+//主键，收藏品编号
+@property (nonatomic, strong) NSInteger id;
+//用户编号
+@property (nonatomic, strong) NSInteger userId;
+//商品编号
+@property (nonatomic, strong) NSInteger goodsId;
+//收藏日期
+@property (nonatomic, assign) NSString date;
+//
+@property (nonatomic, strong) Goods goods;
 
 
 @end
@@ -45,8 +67,6 @@
 @property (nonatomic, assign) NSString introduction;
 //销量
 @property (nonatomic, strong) NSInteger sales;
-//商铺名
-@property (nonatomic, assign) NSString shopName;
 //商铺编号
 @property (nonatomic, strong) NSInteger shopId;
 //类别

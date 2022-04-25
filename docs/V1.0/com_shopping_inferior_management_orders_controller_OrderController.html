@@ -83,9 +83,6 @@
                     <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo">
                         获取商品信息
                     </a>
-                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods">
-                        删除商品
-                    </a>
                     <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo">
                         修改商品基本信息
                     </a>
@@ -246,7 +243,8 @@
 	"price":"double //单件商品价格",
 	"picture":"string //商品图片",
 	"shopId":"int //店铺编号",
-	"goodsName":"string //商品名"
+	"goodsName":"string //商品名",
+	"goodsStatus":"int //商品状态"
 }</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -279,7 +277,8 @@
 	"price":"double //单件商品价格",
 	"picture":"string //商品图片",
 	"shopId":"int //店铺编号",
-	"goodsName":"string //商品名"
+	"goodsName":"string //商品名",
+	"goodsStatus":"int //商品状态"
 }]</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -355,7 +354,8 @@
 		"price":"double //单件商品价格",
 		"picture":"string //商品图片",
 		"shopId":"int //店铺编号",
-		"goodsName":"string //商品名"
+		"goodsName":"string //商品名",
+		"goodsStatus":"int //商品状态"
 	}],
 	"totalPrice":"double //总价"
 }</pre>
@@ -438,7 +438,8 @@
 			"price":"double //单件商品价格",
 			"picture":"string //商品图片",
 			"shopId":"int //店铺编号",
-			"goodsName":"string //商品名"
+			"goodsName":"string //商品名",
+			"goodsStatus":"int //商品状态"
 		}],
 		"totalPrice":"double //总价"
 	}]
@@ -492,7 +493,8 @@
 			"price":"double //单件商品价格",
 			"picture":"string //商品图片",
 			"shopId":"int //店铺编号",
-			"goodsName":"string //商品名"
+			"goodsName":"string //商品名",
+			"goodsStatus":"int //商品状态"
 		}],
 		"totalPrice":"double //总价"
 	}
@@ -527,7 +529,6 @@
             {name: 'GoodsController.新增商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addGoods'},
             {name: 'GoodsController.搜索商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getSelectedGoods'},
             {name: 'GoodsController.获取商品信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo'},
-            {name: 'GoodsController.删除商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods'},
             {name: 'GoodsController.修改商品基本信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo'},
             {name: 'GoodsController.修改商品价格', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsPrice'},
             {name: 'GoodsController.修改商品库存', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsStock'},

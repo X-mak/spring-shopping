@@ -12,7 +12,7 @@ public class Result implements Serializable{
 
     private String code; //响应代码，400为错误，200为正确
     private String msg; //响应提示信息,若为搜索请求,则为页码总数
-    private Goods[] data; //响应数据
+    private CollectedItem[] data; //响应数据
 
     public String getCode(){
         return code;
@@ -30,12 +30,65 @@ public class Result implements Serializable{
         this.msg = msg;
     }
 
-    public Goods[] getData(){
+    public CollectedItem[] getData(){
         return data;
     }
 
-    public void setData(Goods[] data){
+    public void setData(CollectedItem[] data){
         this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class CollectedItem implements Serializable{
+
+    private int id; //主键，收藏品编号
+    private int userId; //用户编号
+    private int goodsId; //商品编号
+    private String date; //收藏日期
+    private Goods goods; //
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getUserId(){
+        return userId;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
+
+    public int getGoodsId(){
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId){
+        this.goodsId = goodsId;
+    }
+
+    public String getDate(){
+        return date;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public Goods getGoods(){
+        return goods;
+    }
+
+    public void setGoods(Goods goods){
+        this.goods = goods;
     }
 
 }
@@ -52,7 +105,6 @@ public class Goods implements Serializable{
     private int goodsStatus; //商品状态，1为销售中，0为已下架
     private String introduction; //商品简介
     private int sales; //销量
-    private String shopName; //商铺名
     private int shopId; //商铺编号
     private String className; //类别
     private Pictures[] goodsPictures; //商品的所有图片
@@ -114,14 +166,6 @@ public class Goods implements Serializable{
 
     public void setSales(int sales){
         this.sales = sales;
-    }
-
-    public String getShopName(){
-        return shopName;
-    }
-
-    public void setShopName(String shopName){
-        this.shopName = shopName;
     }
 
     public int getShopId(){

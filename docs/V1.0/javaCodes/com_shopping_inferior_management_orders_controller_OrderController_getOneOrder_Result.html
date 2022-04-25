@@ -124,6 +124,7 @@ public class OrderItem implements Serializable{
     private String picture; //商品图片
     private int shopId; //店铺编号
     private String goodsName; //商品名
+    private int goodsStatus; //商品状态
 
     public int getId(){
         return id;
@@ -187,6 +188,14 @@ public class OrderItem implements Serializable{
 
     public void setGoodsName(String goodsName){
         this.goodsName = goodsName;
+    }
+
+    public int getGoodsStatus(){
+        return goodsStatus;
+    }
+
+    public void setGoodsStatus(int goodsStatus){
+        this.goodsStatus = goodsStatus;
     }
 
 }

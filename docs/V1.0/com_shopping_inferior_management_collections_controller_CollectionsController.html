@@ -83,9 +83,6 @@
                     <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo">
                         获取商品信息
                     </a>
-                    <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods">
-                        删除商品
-                    </a>
                     <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo">
                         修改商品基本信息
                     </a>
@@ -242,7 +239,27 @@
 	"id":"int //主键，收藏品编号",
 	"userId":"int //用户编号",
 	"goodsId":"int //商品编号",
-	"date":"string //收藏日期"
+	"date":"string //收藏日期",
+	"goods":{
+		"id":"int //主键，商品编号",
+		"goodsName":"string //商品名",
+		"price":"double //商品价格",
+		"stock":"int //商品库存",
+		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
+		"introduction":"string //商品简介",
+		"sales":"int //销量",
+		"shopId":"int //商铺编号",
+		"className":"string //类别",
+		"goodsPictures":[{
+			"id":"int //主键，图片编号",
+			"goodsId":"int //商品编号",
+			"address":"string //图片地址",
+			"status":"int //图片状态，1为默认地址，0为备用地址"
+		}],
+		"picture":"string //商品的默认图片",
+		"num":"int //商品的数量",
+		"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
+	}
 }]</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
@@ -329,25 +346,30 @@
 	"code":"string //响应代码，400为错误，200为正确",
 	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
 	"data":[{
-		"id":"int //主键，商品编号",
-		"goodsName":"string //商品名",
-		"price":"double //商品价格",
-		"stock":"int //商品库存",
-		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
-		"introduction":"string //商品简介",
-		"sales":"int //销量",
-		"shopName":"string //商铺名",
-		"shopId":"int //商铺编号",
-		"className":"string //类别",
-		"goodsPictures":[{
-			"id":"int //主键，图片编号",
-			"goodsId":"int //商品编号",
-			"address":"string //图片地址",
-			"status":"int //图片状态，1为默认地址，0为备用地址"
-		}],
-		"picture":"string //商品的默认图片",
-		"num":"int //商品的数量",
-		"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
+		"id":"int //主键，收藏品编号",
+		"userId":"int //用户编号",
+		"goodsId":"int //商品编号",
+		"date":"string //收藏日期",
+		"goods":{
+			"id":"int //主键，商品编号",
+			"goodsName":"string //商品名",
+			"price":"double //商品价格",
+			"stock":"int //商品库存",
+			"goodsStatus":"int //商品状态，1为销售中，0为已下架",
+			"introduction":"string //商品简介",
+			"sales":"int //销量",
+			"shopId":"int //商铺编号",
+			"className":"string //类别",
+			"goodsPictures":[{
+				"id":"int //主键，图片编号",
+				"goodsId":"int //商品编号",
+				"address":"string //图片地址",
+				"status":"int //图片状态，1为默认地址，0为备用地址"
+			}],
+			"picture":"string //商品的默认图片",
+			"num":"int //商品的数量",
+			"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
+		}
 	}]
 }</pre>
         <div class="form-group">
@@ -380,7 +402,6 @@
             {name: 'GoodsController.新增商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addGoods'},
             {name: 'GoodsController.搜索商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getSelectedGoods'},
             {name: 'GoodsController.获取商品信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getGoodsInfo'},
-            {name: 'GoodsController.删除商品', url: 'com_shopping_inferior_goods_controller_GoodsController.html#deleteGoods'},
             {name: 'GoodsController.修改商品基本信息', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsInfo'},
             {name: 'GoodsController.修改商品价格', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsPrice'},
             {name: 'GoodsController.修改商品库存', url: 'com_shopping_inferior_goods_controller_GoodsController.html#changeGoodsStock'},
