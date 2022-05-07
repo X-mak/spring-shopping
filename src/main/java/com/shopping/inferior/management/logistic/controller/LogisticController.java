@@ -18,9 +18,9 @@ public class LogisticController {
      * @param orderId 订单编号
      * @param status 物流中转次数
      */
-    @ApiDoc
+    @ApiDoc(result = Result.class)
     @GetMapping("")
-    public Result getLogisticInfo(@RequestParam String orderId,
+    public Result<Object> getLogisticInfo(@RequestParam String orderId,
                                           @RequestParam Integer status){
         String logisticInfo = logisticService.getLogisticInfo(orderId, status);
         Object parse = JSON.parse(logisticInfo);

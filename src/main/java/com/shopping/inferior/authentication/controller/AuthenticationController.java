@@ -19,11 +19,10 @@ public class AuthenticationController {
     /**
      *  用户注册
      * @param registerUser 获取方式
-     *
      */
     @ApiDoc(result = Result.class)
     @PostMapping("")
-    public Result<?> addUser(@RequestBody RegisterUser registerUser){
+    public Result addUser(@RequestBody RegisterUser registerUser){
         int res = authenticationService.addUser(registerUser);
         if(res == 1)return Result.success("注册成功!");
         else if(res == 0)return Result.error("存在重复账号!");

@@ -4,6 +4,7 @@ import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.shopping.common.Result;
 import com.shopping.inferior.management.pay.service.PayService;
+import io.github.yedaxia.apidocs.ApiDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,11 @@ import java.net.URLEncoder;
 @RestController
 @RequestMapping("/payment")
 public class PayController {
-
+    /**
+     * 支付接口
+     * @param orderId 订单编号
+     */
+    @ApiDoc(result = Result.class)
     @GetMapping("")
     public String payment(@RequestParam String orderId) throws Exception {
         String s = payService.goAliPay(orderId);

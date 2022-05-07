@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>GoodsController</title>
+    <title>LogisticController</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
@@ -73,7 +73,7 @@
                  aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
                 <i class="glyphicon glyphicon-align-justify"></i> GoodsController
             </div>
-            <div id="collapse2" class="collapse in " aria-labelledby="heading2">
+            <div id="collapse2" class="collapse " aria-labelledby="heading2">
                     <a class="catalog-item" href="com_shopping_inferior_goods_controller_GoodsController.html#addGoods">
                         新增商品
                     </a>
@@ -148,7 +148,7 @@
                  aria-expanded="true" data-target="#collapse5" aria-controls="collapse5">
                 <i class="glyphicon glyphicon-align-justify"></i> LogisticController
             </div>
-            <div id="collapse5" class="collapse " aria-labelledby="heading5">
+            <div id="collapse5" class="collapse in " aria-labelledby="heading5">
                     <a class="catalog-item" href="com_shopping_inferior_management_logistic_controller_LogisticController.html#getLogisticInfo">
                         查询物流进程
                     </a>
@@ -253,46 +253,10 @@
                 <div class="page-inner">
                     <div class="action-list">
                         <div class="action-item">
-<h2 id="addGoods"><a href="#">新增商品 </a></h2>
+<h2 id="getLogisticInfo"><a href="#">查询物流进程 </a></h2>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>/goods/</code>
-        <span class="label label-default">POST</span>
-</p>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">{
-	"id":"int //主键，商品编号",
-	"goodsName":"string //商品名",
-	"price":"double //商品价格",
-	"stock":"int //商品库存",
-	"goodsStatus":"int //商品状态，1为销售中，0为已下架",
-	"classId":"string //类别编号",
-	"className":"string //类别名",
-	"shopId":"int //商铺编号",
-	"introduction":"string //商品简介",
-	"sales":"int //销量",
-	"goodsPictures":"string[] //商品图片"
-}</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_addGoods_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_addGoods_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="getSelectedGoods"><a href="#">搜索商品 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/list/{pageNum}</code>
+    <code>/logistic/</code>
         <span class="label label-default">GET</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -304,335 +268,28 @@
                 <th>描述</th>
             </tr>
                     <tr>
-                        <td>keyword</td>
+                        <td>orderId</td>
                         <td>string</td>
-                        <td>否</td>
-                        <td>搜索关键字</td>
-                    </tr>
-                    <tr>
-                        <td>pageSize</td>
-                        <td>int</td>
-                        <td>否</td>
-                        <td>单页数量</td>
-                    </tr>
-                    <tr>
-                        <td>pageNum</td>
-                        <td>int</td>
                         <td>是</td>
-                        <td>页码</td>
-                    </tr>
-                    <tr>
-                        <td>order</td>
-                        <td>string</td>
-                        <td>否</td>
-                        <td>排序方式，date/sales</td>
-                    </tr>
-                    <tr>
-                        <td>shopId</td>
-                        <td>string</td>
-                        <td>否</td>
-                        <td>商铺编号</td>
+                        <td>订单编号</td>
                     </tr>
                     <tr>
                         <td>status</td>
-                        <td>string</td>
-                        <td>否</td>
-                        <td>商品状态</td>
-                    </tr>
-        </table>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":[{
-		"id":"int //主键，商品编号",
-		"goodsName":"string //商品名",
-		"price":"double //商品价格",
-		"stock":"int //商品库存",
-		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
-		"introduction":"string //商品简介",
-		"sales":"int //销量",
-		"shopId":"int //商铺编号",
-		"className":"string //类别",
-		"goodsPictures":[{
-			"id":"int //主键，图片编号",
-			"goodsId":"int //商品编号",
-			"address":"string //图片地址",
-			"status":"int //图片状态，1为默认地址，0为备用地址"
-		}],
-		"picture":"string //商品的默认图片",
-		"num":"int //商品的数量",
-		"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
-	}]
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_getSelectedGoods_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_getSelectedGoods_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="getGoodsInfo"><a href="#">获取商品信息 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/{id}</code>
-        <span class="label label-default">GET</span>
-</p>
-        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
-        <table class="table table-bordered">
-            <tr>
-                <th>参数名</th>
-                <th>类型</th>
-                <th>必须</th>
-                <th>描述</th>
-            </tr>
-                    <tr>
-                        <td>id</td>
                         <td>int</td>
                         <td>是</td>
-                        <td>商品编号</td>
+                        <td>物流中转次数</td>
                     </tr>
         </table>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
 	"code":"string //响应代码，400为错误，200为正确",
 	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{
-		"id":"int //主键，商品编号",
-		"goodsName":"string //商品名",
-		"price":"double //商品价格",
-		"stock":"int //商品库存",
-		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
-		"introduction":"string //商品简介",
-		"sales":"int //销量",
-		"shopId":"int //商铺编号",
-		"className":"string //类别",
-		"goodsPictures":[{
-			"id":"int //主键，图片编号",
-			"goodsId":"int //商品编号",
-			"address":"string //图片地址",
-			"status":"int //图片状态，1为默认地址，0为备用地址"
-		}],
-		"picture":"string //商品的默认图片",
-		"num":"int //商品的数量",
-		"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
-	}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_getGoodsInfo_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_getGoodsInfo_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="changeGoodsInfo"><a href="#">修改商品基本信息 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/info</code>
-        <span class="label label-default">PUT</span>
-</p>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">{
-	"id":"int //主键，商品编号",
-	"goodsName":"string //商品名",
-	"price":"double //商品价格",
-	"stock":"int //商品库存",
-	"goodsStatus":"int //商品状态，1为销售中，0为已下架",
-	"introduction":"string //商品简介",
-	"sales":"int //销量",
-	"shopId":"int //商铺编号",
-	"className":"string //类别",
-	"goodsPictures":[{
-		"id":"int //主键，图片编号",
-		"goodsId":"int //商品编号",
-		"address":"string //图片地址",
-		"status":"int //图片状态，1为默认地址，0为备用地址"
-	}],
-	"picture":"string //商品的默认图片",
-	"num":"int //商品的数量",
-	"collected":"int //商品收藏状态，1为已收藏，0为未收藏"
-}</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
 	"data":{}
 }</pre>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsInfo_Result.html"><i
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_management_logistic_controller_LogisticController_getLogisticInfo_Result.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsInfo_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="changeGoodsPrice"><a href="#">修改商品价格 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/price</code>
-        <span class="label label-default">PUT</span>
-</p>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">{
-	"id":"int //主键，价格编号",
-	"goodsId":"int //商品编号",
-	"price":"double //价格",
-	"date":"string //变动日期"
-}</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsPrice_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsPrice_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="changeGoodsStock"><a href="#">修改商品库存 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/stock</code>
-        <span class="label label-default">PUT</span>
-</p>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">{
-	"id":"int //主键，库存编号",
-	"goodsId":"int //商品编号",
-	"num":"int //商品数量",
-	"date":"string //变动日期"
-}</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsStock_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsStock_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="changeGoodsClass"><a href="#">修改商品类别 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/class</code>
-        <span class="label label-default">PUT</span>
-</p>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">{
-	"id":"int //主键，商品类别关联编号",
-	"goodsId":"int //商品编号",
-	"classId":"string //类别编号"
-}</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsClass_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_changeGoodsClass_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="getClass"><a href="#">获取商品类别列表 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/class</code>
-        <span class="label label-default">GET</span>
-</p>
-        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
-        <table class="table table-bordered">
-            <tr>
-                <th>参数名</th>
-                <th>类型</th>
-                <th>必须</th>
-                <th>描述</th>
-            </tr>
-                    <tr>
-                        <td>classId</td>
-                        <td>string</td>
-                        <td>是</td>
-                        <td>类别编号</td>
-                    </tr>
-        </table>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":[{
-		"id":"string //主键，类别编号",
-		"className":"string //类别名"
-	}]
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_getClass_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_getClass_Result.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="addPictures"><a href="#">新增图片 </a></h2>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>/goods/pictures</code>
-        <span class="label label-default">POST</span>
-</p>
-        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
-        <table class="table table-bordered">
-            <tr>
-                <th>参数名</th>
-                <th>类型</th>
-                <th>必须</th>
-                <th>描述</th>
-            </tr>
-                    <tr>
-                        <td>goodsId</td>
-                        <td>int</td>
-                        <td>是</td>
-                        <td>商品编号</td>
-                    </tr>
-        </table>
-        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
-        <pre class="prettyprint lang-json">string[]</pre>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"string //响应代码，400为错误，200为正确",
-	"msg":"string //响应提示信息,若为搜索请求,则为页码总数",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_shopping_inferior_goods_controller_GoodsController_addPictures_Result.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_goods_controller_GoodsController_addPictures_Result.html"><i class="fa fa-apple"
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_shopping_inferior_management_logistic_controller_LogisticController_getLogisticInfo_Result.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>

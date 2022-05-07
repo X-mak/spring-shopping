@@ -61,7 +61,7 @@ public class CollectionsController {
      * 查看收藏权限
      * @param goodsId 商品编号
      */
-    @ApiDoc
+    @ApiDoc(result = Result.class)
     @GetMapping("")
     public Result<?> getOwnership(@RequestParam Integer goodsId){
         if(!authority.hasRights("buyer"))return Result.error("no way");
