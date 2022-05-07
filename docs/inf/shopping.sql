@@ -86,7 +86,7 @@ create table `goods_ex`(
 	id int(10) auto_increment not null,
 	goods_id int(10),
 	property_id int(10),
-	value varchar(10),
+	value varchar(120),
 	status int(1),
 	date datetime,
 	primary key(id),
@@ -143,8 +143,8 @@ CREATE TABLE `post_sale`(
 INSERT INTO user_role(role_name) VALUES ('buyer');
 INSERT INTO user_role(role_name) VALUES ('seller');
 INSERT INTO user_role(role_name) VALUES ('admin');
-INSERT INTO classes VALUES ('01','食物');
-INSERT INTO classes VALUES ('0101','水果');
+INSERT INTO classes VALUES ('10','食物');
+INSERT INTO classes VALUES ('1010','水果');
 insert into goods_ex_property(property) values ('stock');
 insert into goods_ex_property(property) values ('price');
 insert into goods_ex_property(property) values ('picture');

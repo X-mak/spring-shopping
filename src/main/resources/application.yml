@@ -19,3 +19,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+logistic:
+  logisticApi: "http://sandboxapi.kdniao.com:8080/kdniaosandbox/gateway/exterfaceInvoke.json"
+  EBusinessID: "test1761737"
+  ApiKey: "e6b20e99-2ae9-47aa-a3ab-1914d48f9f96"

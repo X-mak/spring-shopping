@@ -7,6 +7,7 @@ import com.shopping.entity.management.CollectedItem;
 import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.CollectedItemMapper;
+import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,9 @@ public class CollectionsServiceImp implements CollectionsService{
 
     public int cancelCollect(Integer id){
         try{
-            Example example = new Example(UserGoods.class);
-            example.createCriteria().andEqualTo("id",id).andEqualTo("propertyId",1);
-            userGoodsMapper.deleteByExample(example);
+            if(!accessControlUtil.controlInId(id,1))return -1;
+
+            userGoodsMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -48,10 +49,27 @@ public class CollectionsServiceImp implements CollectionsService{
         return new PageInfo<>(collectedItems);
     }
 
+    public int isCollected(Integer goodsId){
+        Integer id = TokenUtils.getLoginUser().getId();
+        Example example = new Example(CollectedItem.class);
+        try{
+            example.createCriteria().andEqualTo("userId",id).andEqualTo("goodsId",goodsId);
+            List<CollectedItem> collectedItems = collectedItemMapper.selectByExample(example);
+            if(collectedItems.size()>0)
+                return collectedItems.get(0).getId();
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return -1;
+    }
+
     @Autowired
     CollectedItemMapper collectedItemMapper;
     @Autowired
     GoodsMapper goodsMapper;
     @Autowired
     UserGoodsMapper userGoodsMapper;
+    @Autowired
+    AccessControlUtil accessControlUtil;
 }

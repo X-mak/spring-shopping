@@ -6,6 +6,7 @@ import com.shopping.entity.goods.Goods;
 import com.shopping.entity.goods.Pictures;
 import com.shopping.entity.management.CartItem;
 import com.shopping.entity.management.Orders;
+import com.shopping.inferior.management.logistic.service.LogisticService;
 import com.shopping.mapper.authentication.AddressMapper;
 import com.shopping.mapper.authentication.UserInfoMapper;
 import com.shopping.mapper.goods.GoodsMapper;
@@ -23,8 +24,8 @@ class ShoppingApplicationTests {
 
     @Test
     void contextLoads() {
-        List<Address> addresses = addressMapper.queryAddress(1);
-        System.out.println(addresses);
+        String res = logisticService.getLogisticInfo("10",1);
+        System.out.println(res);
     }
 
     @Autowired
@@ -39,5 +40,7 @@ class ShoppingApplicationTests {
     UserInfoMapper userInfoMapper;
     @Autowired
     AddressMapper addressMapper;
+    @Autowired
+    LogisticService logisticService;
 
 }

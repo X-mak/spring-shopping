@@ -3,11 +3,13 @@ package com.shopping.inferior.goods.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shopping.entity.data.GoodsEx;
+import com.shopping.entity.data.UserEx;
 import com.shopping.entity.data.UserGoods;
 import com.shopping.entity.goods.*;
 import com.shopping.mapper.data.GoodsExMapper;
 import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.*;
+import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +74,7 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changeGoodsBasicInfo(Goods goods){
         try{
+            if(!accessControlUtil.controlInUserGoods(goods.getId(),3))return -1;
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
             e.printStackTrace();
@@ -108,6 +111,8 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changePrice(Price price){
         try{
+            if(!accessControlUtil.controlInUserGoods(price.getGoodsId(),3))return -1;
+
             GoodsEx goodsEx = new GoodsEx(price.getGoodsId(),2,price.getPrice()+"",0);
             goodsExMapper.insertSelective(goodsEx);
             Goods goods = new Goods();
@@ -123,6 +128,8 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changeStock(Stock stock){
         try{
+            if(!accessControlUtil.controlInUserGoods(stock.getGoodsId(),3))return -1;
+
             GoodsEx goodsEx = new GoodsEx(stock.getGoodsId(),1,stock.getNum()+"",0);
             goodsExMapper.insertSelective(goodsEx);
             Goods goods = new Goods();
@@ -138,6 +145,8 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changeClass(GoodsClass goodsClass){
         try{
+            if(!accessControlUtil.controlInUserGoods(goodsClass.getGoodsId(),3))return -1;
+
             Example example = new Example(GoodsClass.class);
             example.createCriteria().andEqualTo("goodsId",goodsClass.getGoodsId());
             goodsClassMapper.updateByExampleSelective(goodsClass,example);
@@ -178,15 +187,10 @@ public class GoodsServiceImp implements GoodsService{
     @Autowired
     ClassesMapper classesMapper;
 
-
-    @Autowired
-    PicturesMapper picturesMapper;
-    @Autowired
-    PriceMapper priceMapper;
-    @Autowired
-    StockMapper stockMapper;
     @Autowired
     UserGoodsMapper userGoodsMapper;
     @Autowired
     GoodsExMapper goodsExMapper;
+    @Autowired
+    AccessControlUtil accessControlUtil;
 }

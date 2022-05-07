@@ -8,8 +8,10 @@ import com.shopping.entity.management.CartItem;
 import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.CartItemMapper;
+import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
 import org.apache.catalina.User;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -32,9 +34,9 @@ public class CartServiceImp implements CartService{
 
     public int deleteCartGoods(Integer id){
         try{
-            Example example = new Example(UserGoods.class);
-            example.createCriteria().andEqualTo("propertyId",2).andEqualTo("id",id);
-            userGoodsMapper.deleteByExample(example);
+            if(!accessControlUtil.controlInId(id,2))return -1;
+
+            userGoodsMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -44,6 +46,8 @@ public class CartServiceImp implements CartService{
 
     public int updateCartGoods(Integer id,Integer num){
         try{
+            if(!accessControlUtil.controlInId(id,2))return -1;
+
             UserGoods userGoods = new UserGoods();
             userGoods.setId(id);userGoods.setPropertyValue(num+"");
             userGoodsMapper.updateByPrimaryKeySelective(userGoods);
@@ -67,4 +71,6 @@ public class CartServiceImp implements CartService{
     GoodsMapper goodsMapper;
     @Autowired
     UserGoodsMapper userGoodsMapper;
+    @Autowired
+    AccessControlUtil accessControlUtil;
 }
