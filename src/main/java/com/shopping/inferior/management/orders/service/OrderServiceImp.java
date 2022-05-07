@@ -11,7 +11,9 @@ import com.shopping.mapper.data.GoodsExMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.OrderItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
+import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -45,6 +47,8 @@ public class OrderServiceImp implements OrderService{
         try{
             //检验权限
             Orders orders = ordersMapper.selectByPrimaryKey(id);
+            Integer userId = TokenUtils.getLoginUser().getId();
+            if(orders.getUserId() != userId)return -1;
             if(orders.getStatus() > status)return 0;
 
             Example example = new Example(OrderItem.class);
@@ -79,6 +83,7 @@ public class OrderServiceImp implements OrderService{
 
     public int changeOrders(Orders orders){
         try{
+            if(!accessControlUtil.controlInOrder(orders.getId()))return -1;
             ordersMapper.updateByPrimaryKeySelective(orders);
         }catch (Exception e){
             e.printStackTrace();
@@ -160,4 +165,6 @@ public class OrderServiceImp implements OrderService{
     OrderItemMapper orderItemMapper;
     @Autowired
     GoodsExMapper goodsExMapper;
+    @Autowired
+    AccessControlUtil accessControlUtil;
 }

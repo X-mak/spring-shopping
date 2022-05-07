@@ -7,6 +7,7 @@ import com.shopping.entity.authentication.UserInfo;
 import com.shopping.entity.data.UserEx;
 import com.shopping.mapper.authentication.*;
 import com.shopping.mapper.data.UserExMapper;
+import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UserServiceImp implements UserService{
 
     public int changeBasicInfo(UserInfo userInfo){
         try{
+            if(!accessControlUtil.controlInUser(userInfo.getId()))return -1;
             userInfoMapper.updateByPrimaryKeySelective(userInfo);
         }catch (Exception e){
             e.printStackTrace();
@@ -34,6 +36,7 @@ public class UserServiceImp implements UserService{
     public int addAddress(Address address){
         try{
             Integer userId = TokenUtils.getLoginUser().getId();
+            if(userId != address.getUserId())return -1;
             userExMapper.insertSelective(new UserEx(userId,1,address.getContent(),address.getAddressStatus()));
         }catch (Exception e){
             e.printStackTrace();
@@ -46,6 +49,7 @@ public class UserServiceImp implements UserService{
     public int changeAddress(Address address) {
         try{
             Integer userId = TokenUtils.getLoginUser().getId();
+            if(userId != address.getUserId())return -1;
             userExMapper.updateByPrimaryKeySelective(new UserEx(address.getId(),userId,1,address.getContent(),address.getAddressStatus()));
         }catch (Exception e){
             e.printStackTrace();
@@ -64,8 +68,11 @@ public class UserServiceImp implements UserService{
 
     public int deleteAddress(Integer id){
         try{
+            Integer userId = TokenUtils.getLoginUser().getId();
+
             UserEx userEx = userExMapper.selectByPrimaryKey(id);
             if(userEx.getStatus()==1)return 0;
+            if(userEx.getUserId() != userId)return -1;
             userExMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
@@ -88,4 +95,6 @@ public class UserServiceImp implements UserService{
     UserInfoMapper userInfoMapper;
     @Autowired
     UserExMapper userExMapper;
+    @Autowired
+    AccessControlUtil accessControlUtil;
 }

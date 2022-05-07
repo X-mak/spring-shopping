@@ -22,4 +22,7 @@ public interface CollectedItemMapper extends Mapper<CollectedItem> {
                     one = @One(select = "com.shopping.mapper.goods.GoodsMapper.querySimpleGoodsById"))
     })
     List<CollectedItem> queryCollectedById(Integer userId);
+
+    @Select("SELECT COUNT(*) FROM user_goods WHERE user_id=#{userId} AND property_id=1")
+    Integer queryIsCollected(Integer userId);
 }

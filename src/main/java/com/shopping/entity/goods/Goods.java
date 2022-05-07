@@ -32,8 +32,7 @@ public class Goods {
     private String picture; //商品的默认图片
     @Transient
     private Integer num;    //商品的数量
-    @Transient
-    private Integer collected;  //商品收藏状态，1为已收藏，0为未收藏
+
 
     public Goods(String goodsName, Double price, Integer stock, Integer goodsStatus) {
         this.goodsName = goodsName;

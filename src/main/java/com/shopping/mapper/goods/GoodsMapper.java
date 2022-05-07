@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface GoodsMapper extends Mapper<Goods> {
 
-    @Select("select * from goods_vw")
+    @Select("select * from goods_vw where id=#{id}")
     @Results(id = "simpleGoods",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
@@ -87,7 +87,7 @@ public interface GoodsMapper extends Mapper<Goods> {
 //    })
 //    Goods queryGoodsById(Integer id);
 
-    @Select("SELECT * FROM goods_vw")
+    @Select("SELECT * FROM goods_vw where id=#{id}")
     @Results(id = "goods_vw",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),

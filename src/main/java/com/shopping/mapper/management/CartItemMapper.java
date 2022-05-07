@@ -20,8 +20,11 @@ public interface CartItemMapper extends Mapper<CartItem> {
             @Result(column = "user_id",property = "userId"),
             @Result(column = "goods_id",property = "goodsId"),
             @Result(column = "property_value",property = "num"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "goods_id",property = "goods",
-                one = @One(select = "com.shopping.mapper.goods.GoodsMapper.querySimpleGoodsById"))
+                one = @One(select = "com.shopping.mapper.goods.GoodsMapper.querySimpleGoodsById")),
+            @Result(column = "user_id",property = "collected",
+                one = @One(select = "com.shopping.mapper.management.CollectedItemMapper.queryIsCollected"))
     })
     List<CartItem> queryCartByUserId(Integer userId);
 }

@@ -50,6 +50,7 @@ public class CartItem implements Serializable{
     private int goodsId; //商品编号
     private int num; //购物车数量
     private Goods goods; //商品
+    private int collected; //商品收藏状态，1为已收藏，0为未收藏
 
     public int getId(){
         return id;
@@ -91,6 +92,14 @@ public class CartItem implements Serializable{
         this.goods = goods;
     }
 
+    public int getCollected(){
+        return collected;
+    }
+
+    public void setCollected(int collected){
+        this.collected = collected;
+    }
+
 }
 </pre>
 
@@ -110,7 +119,6 @@ public class Goods implements Serializable{
     private Pictures[] goodsPictures; //商品的所有图片
     private String picture; //商品的默认图片
     private int num; //商品的数量
-    private int collected; //商品收藏状态，1为已收藏，0为未收藏
 
     public int getId(){
         return id;
@@ -206,14 +214,6 @@ public class Goods implements Serializable{
 
     public void setNum(int num){
         this.num = num;
-    }
-
-    public int getCollected(){
-        return collected;
-    }
-
-    public void setCollected(int collected){
-        this.collected = collected;
     }
 
 }

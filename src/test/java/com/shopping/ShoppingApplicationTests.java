@@ -12,6 +12,7 @@ import com.shopping.mapper.authentication.UserInfoMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.goods.PicturesMapper;
 import com.shopping.mapper.management.CartItemMapper;
+import com.shopping.mapper.management.CollectedItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ class ShoppingApplicationTests {
 
     @Test
     void contextLoads() {
-        String res = logisticService.getLogisticInfo("10",1);
-        System.out.println(res);
+        List<CartItem> cartItems = cartItemMapper.queryCartByUserId(2);
+        System.out.println(cartItems);
     }
 
     @Autowired
@@ -42,5 +43,7 @@ class ShoppingApplicationTests {
     AddressMapper addressMapper;
     @Autowired
     LogisticService logisticService;
+    @Autowired
+    CollectedItemMapper collectedItemMapper;
 
 }

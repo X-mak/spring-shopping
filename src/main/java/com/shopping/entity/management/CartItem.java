@@ -23,6 +23,8 @@ public class CartItem {
     private Integer num;    //购物车数量
     @Transient
     private Goods goods;  //商品
+    @Transient
+    private Integer collected;  //商品收藏状态，1为已收藏，0为未收藏
 
     public CartItem(Integer userId, Integer goodsId, Integer num) {
         this.userId = userId;

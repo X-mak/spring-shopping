@@ -3,8 +3,10 @@ package com.shopping.utils;
 import com.shopping.entity.data.GoodsEx;
 import com.shopping.entity.data.UserEx;
 import com.shopping.entity.data.UserGoods;
+import com.shopping.entity.management.Orders;
 import com.shopping.mapper.data.GoodsExMapper;
 import com.shopping.mapper.data.UserGoodsMapper;
+import com.shopping.mapper.management.OrdersMapper;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,7 +49,21 @@ public class AccessControlUtil {
         return userId == userGoods.getUserId() && status == userGoods.getPropertyId();
     }
 
+    public boolean controlInOrder(Integer id){
+        Integer userId = TokenUtils.getLoginUser().getId();
+        Orders orders = ordersMapper.selectByPrimaryKey(id);
+        return userId == orders.getUserId();
+    }
+
+    public boolean controlInUser(Integer id){
+        Integer userId = TokenUtils.getLoginUser().getId();
+        return userId == id;
+    }
+
+
     @Autowired
     UserGoodsMapper userGoodsMapper;
+    @Autowired
+    OrdersMapper ordersMapper;
 
 }
