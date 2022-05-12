@@ -11,6 +11,7 @@ import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -50,6 +51,12 @@ public class UserServiceImp implements UserService{
         try{
             Integer userId = TokenUtils.getLoginUser().getId();
             if(userId != address.getUserId())return -1;
+            Example example = new Example(UserEx.class);
+            example.createCriteria().andEqualTo("userId",userId)
+                    .andEqualTo("status",1);
+            UserEx userEx = new UserEx();
+            userEx.setStatus(0);
+            userExMapper.updateByExampleSelective(userEx,example);
             userExMapper.updateByPrimaryKeySelective(new UserEx(address.getId(),userId,1,address.getContent(),address.getAddressStatus()));
         }catch (Exception e){
             e.printStackTrace();

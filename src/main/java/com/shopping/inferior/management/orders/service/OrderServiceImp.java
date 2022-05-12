@@ -27,9 +27,10 @@ public class OrderServiceImp implements OrderService{
         //是否有库存
         Goods goods = goodsMapper.selectByPrimaryKey(orderItem.getGoodsId());
         if(goods.getStock() < orderItem.getNum())return 0;
+        Orders orders = new Orders();
         try{
             Integer userId = TokenUtils.getLoginUser().getId();
-            Orders orders = new Orders(userId,0);
+            orders = new Orders(userId,0);
             ordersMapper.insertSelective(orders);
             goods.setStock(goods.getStock()-orderItem.getNum());
             orderItem.setOrderId(orders.getId());
@@ -40,7 +41,7 @@ public class OrderServiceImp implements OrderService{
             e.printStackTrace();
             return -1;
         }
-        return 1;
+        return orders.getId();
     }
 
     public int deleteOrders(Integer id,Integer status){
@@ -83,7 +84,6 @@ public class OrderServiceImp implements OrderService{
 
     public int changeOrders(Orders orders){
         try{
-            if(!accessControlUtil.controlInOrder(orders.getId()))return -1;
             ordersMapper.updateByPrimaryKeySelective(orders);
         }catch (Exception e){
             e.printStackTrace();
@@ -109,6 +109,7 @@ public class OrderServiceImp implements OrderService{
     }
 
     public int addOrders(List<OrderItem> ordersList){
+
         try{
 //            for(Orders orders:ordersList){
 //                Goods goods = goodsMapper.selectByPrimaryKey(orders.getGoodsId());
@@ -145,8 +146,8 @@ public class OrderServiceImp implements OrderService{
                     item.setOrderId(orders.getId());
                     Goods goods = goodsMapper.selectByPrimaryKey(item.getGoodsId());
                     goods.setStock(goods.getStock()-item.getNum());
-                    goodsMapper.insertSelective(goods);
-                    goodsExMapper.insertSelective(new GoodsEx(item.getGoodsId(), 1,goods.getStock()-item.getNum()+"",0));
+                    goodsMapper.updateByPrimaryKeySelective(goods);
+                    goodsExMapper.updateByPrimaryKeySelective(new GoodsEx(item.getGoodsId(), 1,goods.getStock()-item.getNum()+"",0));
                     orderItemMapper.insertSelective(item);
                 }
             }

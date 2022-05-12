@@ -14,6 +14,7 @@ public class PostSaleServiceImp implements PostSaleService{
 
     public int addRequisitionForm(PostSale postSale){
         try{
+            postSale.setStatus(0);
             postSaleMapper.insertSelective(postSale);
         }catch (Exception e){
             e.printStackTrace();

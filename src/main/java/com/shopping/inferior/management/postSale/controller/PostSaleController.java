@@ -74,9 +74,9 @@ public class PostSaleController {
         if(!authority.hasRights("buyer"))return Result.error("no way");
         PageInfo<PostSale> postSalePageInfo = new PageInfo<>();
         if(!buyerId.equals("") && sellerId.equals(""))
-            postSalePageInfo = postSaleService.getSellerRequisitionForm(pageNum,pageSize,Integer.parseInt(sellerId),status);
-        else if(buyerId.equals("") && !sellerId.equals(""))
             postSalePageInfo = postSaleService.getBuyerRequisitionForm(pageNum,pageSize,Integer.parseInt(buyerId),status);
+        else if(buyerId.equals("") && !sellerId.equals(""))
+            postSalePageInfo = postSaleService.getSellerRequisitionForm(pageNum,pageSize,Integer.parseInt(sellerId),status);
         else
             return Result.error("错误的请求格式!");
 

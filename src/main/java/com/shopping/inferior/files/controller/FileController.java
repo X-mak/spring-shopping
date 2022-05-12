@@ -7,6 +7,7 @@ import com.shopping.inferior.files.service.FileService;
 import com.shopping.utils.Authority;
 import io.github.yedaxia.apidocs.ApiDoc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/files")
 public class FileController {
+
+    @Value("${natapp}")
+    private String natapp;
     /**
      * 上传文件
      * @param file  文件流
@@ -30,7 +34,7 @@ public class FileController {
     public Result<?> upload(MultipartFile file,@PathVariable String type){
         try{
             String name = fileService.uploadImg(file,type);
-            name = "http://localhost:8980/files/"+type+"/"+name;
+            name = "/files/"+type+"/"+name;
             return Result.success(name,"上传成功!");
         } catch (IOException e) {
             e.printStackTrace();

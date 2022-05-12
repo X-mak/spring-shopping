@@ -7,5 +7,7 @@ public interface PayService {
 
     String goAliPay(String orderId) throws Exception;
 
-    public String alipay(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    String alipay(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+    String goUnionPay(String orderId,HttpServletResponse resp);
 }

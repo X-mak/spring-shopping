@@ -26,7 +26,7 @@ public class OrderController {
         if(!authority.hasRights("buyer"))return Result.error("no way");
         int res = orderService.addOrders(orderItem);
         if(res == -1)return Result.error("未知错误!");
-        else return Result.success("下单成功!");
+        else return Result.success(res,"下单成功!");
     }
 
     /**

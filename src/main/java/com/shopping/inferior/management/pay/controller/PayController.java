@@ -20,8 +20,8 @@ public class PayController {
      * @param orderId 订单编号
      */
     @ApiDoc(result = Result.class)
-    @GetMapping("")
-    public String payment(@RequestParam String orderId) throws Exception {
+    @GetMapping("/ali")
+    public String aliPayment(@RequestParam String orderId) throws Exception {
         String s = payService.goAliPay(orderId);
         return s;
     }
@@ -30,6 +30,12 @@ public class PayController {
     public void alipay(HttpServletRequest req,
                        HttpServletResponse resp) throws Exception {
         payService.alipay(req, resp);
+    }
+
+    @GetMapping("/union")
+    public String unionPay(@RequestParam String orderId,
+                           HttpServletResponse resp){
+        return payService.goUnionPay(orderId, resp);
     }
 
     @Autowired

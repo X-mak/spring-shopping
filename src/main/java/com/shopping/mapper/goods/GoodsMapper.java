@@ -15,7 +15,9 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Results(id = "simpleGoods",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "class_name",property = "className")
+            @Result(column = "class_name",property = "className"),
+            @Result(column = "status",property = "goodsStatus"),
+            @Result(column = "shop_id",property = "shopId")
     })
     Goods querySimpleGoodsById(Integer id);
 
@@ -29,7 +31,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "shop_id",property = "shopId"),
             @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "class_name",property = "className"),
             @Result(column = "address",property = "picture")
     })
@@ -92,6 +94,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "class_name",property = "className"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "id",property = "goodsPictures",
                     many = @Many(
                             select = "com.shopping.mapper.goods.PicturesMapper.queryPicturesByGoodsId"
@@ -108,7 +111,7 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Results(id = "goodsInCart",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "address",property = "picture"),
             @Result(column = "shop_id",property = "shopId")
     })
@@ -120,7 +123,7 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Results(id = "goodsInCollections",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "goods_status",property = "goodsStatus"),
+            @Result(column = "status",property = "goodsStatus"),
             @Result(column = "address",property = "picture")
     })
     List<Goods> queryGoodsInCollections(Integer userId);

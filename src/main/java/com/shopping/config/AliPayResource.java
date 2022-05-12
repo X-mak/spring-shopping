@@ -1,5 +1,6 @@
 package com.shopping.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
@@ -15,6 +16,9 @@ public class AliPayResource {
 //    // 支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
 //    public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnvecwFXRgdDes5uqtS0VnP1KKhfjzfpy0U+HEFvxJQBlykbt3QQrTqBpZgI3lhbG1hf1oQ9tg+utKfFyKt/n5KPlBWuBqFrljlRx0K8PhUxnahRgWpcI2QtB+f6qN7qcuh1+0AmEvMeOqE/v067fMM61O+I8QpRVqSrUHBhWiVJ45gZ6jFYm/c3s7NNL2Hh7w8KZ7acYxPI6GHsff/xAR5X+FO+BcD3PelXLvOMLUuATrFBeEdqTTzGBymZGOgikZndhegTkMyfrpIBaG+6kzYveajgiDaEtsBmZwmRdM7YCV14NP6VRrTdQKWyzxLYJnINmINS//FlHapLTIdpBiwIDAQAB";
 
+    @Value("${natapp}")
+    private String natapp;
+
     private String appId = "2021000119682421";//在后台获取（必须配置）
 
     //私钥直接使用工具的私钥
@@ -22,7 +26,7 @@ public class AliPayResource {
     //公钥需要先配置到支付宝平台。从平台获取
     private String alipayPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjldLjTd8KGwTxDfxHiIXoZbJVC6nZ6cyxt9Kq84bY4/6wO6HXTzqX7VKfnU3VVH91egijpKsGnpy3/Zpoj8cIPy+5u59q6s7MTnxZCWIUZp9LJH/qO6KvLYv8hSnXuf1tZFzu/dd/6dgl3tajSZpnMDhyWmsj2RQi7Dt3+LgIAqRXsj5ftcJ73Z+CzRp0nfb9jPnbopwp8GPhbnQQLxoX9K7f7t0/EC9pQGtndA1JTSsmU29OW1dNJkx0VeU0CAPQiKoztYnkFs+mwNWgTXBBy3v7lpQbV2CwFdjTpz8c3UiY3I1V4rvVPkYRdDdapQ4EAydMIkVdfEGIkvHYJjCJQIDAQAB";
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    private String notifyUrl= "localhost:8980/payment/backAlipay";
+    private String notifyUrl= natapp+"payment/backAlipay";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问(其实就是支付成功后返回的页面)
     private String returnUrl= "localhost:8081";

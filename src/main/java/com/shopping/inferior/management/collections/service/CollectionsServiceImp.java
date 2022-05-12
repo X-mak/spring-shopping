@@ -51,12 +51,14 @@ public class CollectionsServiceImp implements CollectionsService{
 
     public int isCollected(Integer goodsId){
         Integer id = TokenUtils.getLoginUser().getId();
-        Example example = new Example(CollectedItem.class);
+        Example example = new Example(UserGoods.class);
         try{
-            example.createCriteria().andEqualTo("userId",id).andEqualTo("goodsId",goodsId);
-            List<CollectedItem> collectedItems = collectedItemMapper.selectByExample(example);
-            if(collectedItems.size()>0)
-                return collectedItems.get(0).getId();
+            example.createCriteria().andEqualTo("userId",id)
+                    .andEqualTo("goodsId",goodsId)
+                    .andEqualTo("propertyId",1);
+            List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
+            if(userGoods.size()>0)
+                return userGoods.get(0).getId();
         }catch (Exception e){
             e.printStackTrace();
             return -1;

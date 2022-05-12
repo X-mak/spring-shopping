@@ -16,6 +16,7 @@ import com.shopping.mapper.management.CollectedItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -23,10 +24,11 @@ import java.util.List;
 @SpringBootTest
 class ShoppingApplicationTests {
 
+    @Value("${natapp}")
+    private String natapp;
     @Test
     void contextLoads() {
-        List<CartItem> cartItems = cartItemMapper.queryCartByUserId(2);
-        System.out.println(cartItems);
+        System.out.println(natapp);
     }
 
     @Autowired
