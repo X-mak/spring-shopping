@@ -22,8 +22,8 @@ public interface PostSaleMapper extends Mapper<PostSale> {
     List<PostSale> queryPostSalesByBuyer(Integer buyerId,String status);
 
     @Select("SELECT ps.*,oi.goods_id FROM post_sale ps LEFT JOIN order_item oi ON oi.id=ps.order_item_id " +
-            "LEFT JOIN shopgoods sg ON sg.goods_id=oi.goods_id " +
-            "WHERE sg.shop_id = #{sellerId} AND ps.status LIKE #{status}")
+            "            LEFT JOIN user_goods ug ON ug.goods_id=oi.goods_id " +
+            "            WHERE ug.property_id=3 AND ug.user_id = #{sellerId} AND ps.status LIKE #{status}")
     @ResultMap(value = "saleForm")
     List<PostSale> queryPostSalesBySeller(Integer sellerId,String status);
 }

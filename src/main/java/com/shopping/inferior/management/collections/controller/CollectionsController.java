@@ -29,14 +29,14 @@ public class CollectionsController {
     }
 
     /**
-     * 取消收藏
-     * @param id    收藏编号
+     * 批量取消收藏
+     * @param collects 收藏主键列表
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("")
-    public Result<?> cancelCollect(@RequestParam Integer id){
+    public Result<?> cancelCollect(@RequestBody List<Integer> collects){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        int res = collectionsService.cancelCollect(id);
+        int res = collectionsService.cancelMultiCollect(collects);
         if(res == 1)return Result.success("取消成功!");
         else return Result.error("取消失败!");
     }

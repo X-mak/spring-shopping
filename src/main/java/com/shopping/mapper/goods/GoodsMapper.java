@@ -25,7 +25,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "g.id = ge.goods_id LEFT JOIN user_goods ug ON ug.goods_id=g.id " +
             "LEFT JOIN goods_class gc ON gc.goods_id=g.id LEFT JOIN classes c " +
             "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=#{status} " +
-            "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} ) AND ug.property_id = 3 " +
+            "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} OR g.size like #{keyword} ) AND ug.property_id = 3 " +
             "AND ug.user_id like #{shopId} order by ug.date")
     @Results(id = "goodsInfo",value = {
             @Result(id = true,column = "id",property = "id"),
@@ -41,7 +41,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "g.id = ge.goods_id LEFT JOIN user_goods ug ON ug.goods_id=g.id " +
             "LEFT JOIN goods_class gc ON gc.goods_id=g.id LEFT JOIN classes c " +
             "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=#{status} " +
-            "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} ) AND ug.property_id = 3 " +
+            "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} OR g.size like #{keyword} ) AND ug.property_id = 3 " +
             "AND ug.user_id like #{shopId} order by g.sales")
     @ResultMap(value = "goodsInfo")
     List<Goods> querySelectedGoodsOrderBySales(String keyword,String shopId,String status);
@@ -98,6 +98,10 @@ public interface GoodsMapper extends Mapper<Goods> {
             @Result(column = "id",property = "goodsPictures",
                     many = @Many(
                             select = "com.shopping.mapper.goods.PicturesMapper.queryPicturesByGoodsId"
+                    )),
+            @Result(column = "id",property = "priceList",
+                    many = @Many(
+                            select = "com.shopping.mapper.goods.PriceMapper.queryPriceList"
                     ))
     })
     Goods queryGoodsById(Integer id);

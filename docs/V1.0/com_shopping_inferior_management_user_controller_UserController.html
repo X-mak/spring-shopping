@@ -113,7 +113,7 @@
                         购物车添加商品
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods">
-                        购物车删除商品
+                        批量删除购物车商品
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods">
                         更新购物车商品数量
@@ -133,7 +133,7 @@
                         收藏商品
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect">
-                        取消收藏
+                        批量取消收藏
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_collections_controller_CollectionsController.html#getMyCollections">
                         获取个人收藏列表
@@ -186,8 +186,11 @@
                 <i class="glyphicon glyphicon-align-justify"></i> PayController
             </div>
             <div id="collapse7" class="collapse " aria-labelledby="heading7">
-                    <a class="catalog-item" href="com_shopping_inferior_management_pay_controller_PayController.html#payment">
-                        支付接口
+                    <a class="catalog-item" href="com_shopping_inferior_management_pay_controller_PayController.html#aliPayment">
+                        支付宝支付接口
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_pay_controller_PayController.html#pay">
+                        银联支付接口
                     </a>
             </div>
         </div>
@@ -569,11 +572,11 @@
             {name: 'GoodsController.获取商品类别列表', url: 'com_shopping_inferior_goods_controller_GoodsController.html#getClass'},
             {name: 'GoodsController.新增图片', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addPictures'},
             {name: 'CartController.购物车添加商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#addCartGoods'},
-            {name: 'CartController.购物车删除商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods'},
+            {name: 'CartController.批量删除购物车商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods'},
             {name: 'CartController.更新购物车商品数量', url: 'com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods'},
             {name: 'CartController.获取购物车列表', url: 'com_shopping_inferior_management_cart_controller_CartController.html#getCartGoods'},
             {name: 'CollectionsController.收藏商品', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#collectGoods'},
-            {name: 'CollectionsController.取消收藏', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect'},
+            {name: 'CollectionsController.批量取消收藏', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#cancelCollect'},
             {name: 'CollectionsController.获取个人收藏列表', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#getMyCollections'},
             {name: 'CollectionsController.查看收藏权限', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#getOwnership'},
             {name: 'LogisticController.查询物流进程', url: 'com_shopping_inferior_management_logistic_controller_LogisticController.html#getLogisticInfo'},
@@ -583,7 +586,8 @@
             {name: 'OrderController.更新订单状态', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#changeOrders'},
             {name: 'OrderController.获取订单列表', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOrdersListByUser'},
             {name: 'OrderController.获取订单', url: 'com_shopping_inferior_management_orders_controller_OrderController.html#getOneOrder'},
-            {name: 'PayController.支付接口', url: 'com_shopping_inferior_management_pay_controller_PayController.html#payment'},
+            {name: 'PayController.支付宝支付接口', url: 'com_shopping_inferior_management_pay_controller_PayController.html#aliPayment'},
+            {name: 'PayController.银联支付接口', url: 'com_shopping_inferior_management_pay_controller_PayController.html#pay'},
             {name: 'PostSaleController.新增售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#addRequisition'},
             {name: 'PostSaleController.删除售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#deleteRequisition'},
             {name: 'PostSaleController.更新售后申请单', url: 'com_shopping_inferior_management_postSale_controller_PostSaleController.html#changeRequisition'},

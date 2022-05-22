@@ -1,11 +1,17 @@
-package com.shopping.utils;
-
+package com.shopping.utils.sdk;
 
 import javax.net.ssl.*;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.*;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Map;

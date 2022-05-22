@@ -20,7 +20,7 @@ public interface OrderItemMapper extends Mapper<OrderItem> {
             @Result(column = "goods_id",property = "goodsId"),
             @Result(column = "goods_name",property = "goodsName"),
             @Result(column = "status",property = "goodsStatus"),
-            @Result(column = "address",property = "picture")
+            @Result(column = "picture",property = "picture")
     })
     List<OrderItem> queryItemsByOrderId(Integer orderId);
 }

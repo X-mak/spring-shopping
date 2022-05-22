@@ -13,11 +13,14 @@
  *   xshu       2014-05-28      MPI工具类
  * =============================================================================
  */
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
+
+
+import static com.shopping.utils.sdk.SDKConstants.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,8 +32,6 @@ import java.util.*;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-import static com.shopping.utils.SDKConstants.CERTTYPE_01;
-import static com.shopping.utils.SDKConstants.CERTTYPE_02;
 /**
  * 
  * @ClassName SDKUtil

@@ -13,11 +13,15 @@
  *   xshu       2014-05-28       MPI基本参数工具类
  * =============================================================================
  */
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+
 
 /**
  * 
@@ -27,6 +31,7 @@ import java.util.Properties;
  * 声明：以下代码只是为了方便接入方测试而提供的样例代码，商户可以根据自己需要，按照技术文档编写。该代码仅供参考，不提供编码，性能，规范性等方面的保障
  */
 public class SDKConfig {
+
 
 	public static final String FILE_NAME = "acp_sdk.properties";
 	/** 前台请求URL. */

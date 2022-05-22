@@ -13,17 +13,18 @@
  *   xshu       2014-05-28     报文加密解密等操作的工具类
  * =============================================================================
  */
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 
-import org.apache.commons.codec.binary.Hex;
-import org.bouncycastle.crypto.digests.SM3Digest;
+import java.security.*;
+import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
-import java.security.*;
-import java.util.Arrays;
+
+import org.apache.commons.codec.binary.Hex;
+import org.bouncycastle.crypto.digests.SM3Digest;
 
 /**
  *
@@ -32,7 +33,6 @@ import java.util.Arrays;
  * @date 2016-7-22 下午4:08:32
  */
 public class SecureUtil {
-
 
     /**
      * @param bytes

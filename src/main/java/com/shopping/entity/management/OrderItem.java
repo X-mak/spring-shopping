@@ -20,6 +20,7 @@ public class OrderItem {
     private Integer goodsId;    //商品编号
     private Integer num;    //商品数量
     private Double price;   //单件商品价格
+    private String expiration;  //到期时间
     @Transient
     private String picture; //商品图片
     @Transient

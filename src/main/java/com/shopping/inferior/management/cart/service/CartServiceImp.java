@@ -32,11 +32,12 @@ public class CartServiceImp implements CartService{
         return 1;
     }
 
-    public int deleteCartGoods(Integer id){
+    public int deleteMultiCartGoods(List<Integer> carts){
         try{
-            if(!accessControlUtil.controlInId(id,2))return -1;
-
-            userGoodsMapper.deleteByPrimaryKey(id);
+            for(Integer id : carts){
+                if(!accessControlUtil.controlInId(id,2))return -1;
+                userGoodsMapper.deleteByPrimaryKey(id);
+            }
         }catch (Exception e){
             e.printStackTrace();
             return -1;

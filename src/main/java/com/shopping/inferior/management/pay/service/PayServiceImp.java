@@ -13,15 +13,23 @@ import com.shopping.entity.management.OrderItem;
 import com.shopping.entity.management.Orders;
 import com.shopping.mapper.management.OrderItemMapper;
 import com.shopping.mapper.management.OrdersMapper;
-import com.shopping.utils.AcpService;
-import com.shopping.utils.SDKConfig;
+import com.shopping.utils.sdk.AcpService;
+import com.shopping.utils.sdk.DemoBase;
+import com.shopping.utils.sdk.SDKConfig;
+import com.shopping.utils.sdk.SDKConstants;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import net.sf.json.JSONObject;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -44,13 +52,14 @@ public class PayServiceImp implements  PayService{
                 aliPayResource.getSignType());
 
         //设置请求参数
-        DecimalFormat df = new DecimalFormat("#.00");
 
-        String notifyUrl = natapp + "payment/backAlipay";
+
+        String notifyUrl = natapp + "/payment/backAlipay";
         System.out.println("---<notifyUrl>---"+notifyUrl);
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl(aliPayResource.getReturnUrl());
         alipayRequest.setNotifyUrl(notifyUrl);
+        DecimalFormat df = new DecimalFormat("#.00");
         Example example = new Example(OrderItem.class);
         example.createCriteria().andEqualTo("orderId",orderId);
         List<OrderItem> orderItems = orderItemMapper.selectByExample(example);
@@ -138,109 +147,101 @@ public class PayServiceImp implements  PayService{
     }
 
 
-    public Map alipayCreateOrderRefund(String orderId, String origQryId, String txnAmt) {
-        Map map = new LinkedHashMap();
+    @Override
+    public void goUnionPay(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("FrontRcvResponse前台接收报文返回开始");
+//        logger.info("FrontRcvResponse前台接收报文返回开始");
 
-        AlipayClient alipayClient = new DefaultAlipayClient(aliPayResource.getGatewayUrl(),
-                aliPayResource.getAppId(), aliPayResource.getMerchantPrivateKey(),
-                "json", aliPayResource.getCharset(), aliPayResource.getAlipayPublicKey(), "RSA2");
-        AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
-
-        AlipayTradeRefundModel model= new AlipayTradeRefundModel();
-        model.setOutTradeNo(orderId);//订单支付时传入的商户订单号
-        model.setTradeNo(origQryId);//支付宝交易号
-        model.setRefundAmount(txnAmt);//refund_amount    需要退款的金额，该金额不能大于订单金额,单位为元
-
-        request.setBizModel(model);//请求参数
-
-        AlipayTradeRefundResponse response=null;
-        try {
-            response = alipayClient.execute(request);
-            System.out.println(JSONObject.fromObject(response).toString());
-            Map tuiMap= JSONObject.fromObject(response);
-
-        }catch ( AlipayApiException e){
-            String massage = "alipay.trade.refund退款接口：订单签名错误";
-            System.out.println(massage);
-        }
-        if(response.isSuccess()){
-            System.out.println("调用成功");
-            map.put("status", 0);//订单退款  status：0 成功 1:失败
-            //log.info("支付宝：支付订单支付结果查询：订单out_trade_no----"+orderId+"---订单退款成功！");
-//            Pay pay=payMapper.getPayByOrderId(Integer.parseInt(orderId));
-//            pay=payMapper.getPayByOrigQryId(origQryId);//得到订单
-//            //修改订单状态为已退款
-//            historyOrderMapper.refundOrder(pay.getOrderId());
+        String encoding = req.getParameter(SDKConstants.param_encoding);
+        System.out.println("返回报文中encoding=[" + encoding + "]");
+//        logger.info("返回报文中encoding=[" + encoding + "]");
+        String pageResult = "";
+        if (DemoBase.encoding.equalsIgnoreCase(encoding)) {
+            pageResult = "/utf8_result.jsp";
         } else {
-            System.out.println("调用失败");
-            map.put("status",1);//订单退款  status：0 成功 1:失败
-            //log.info("支付宝：支付订单支付结果查询：订单out_trade_no----"+orderId+"---订单退款失败！");
+            pageResult = "/gbk_result.jsp";
         }
-        return map;
+        Map<String, String> respParam = getAllRequestParam(req);
+
+        // 打印请求报文
+        System.out.println(respParam);
+//        logger.info(respParam);
+
+        Map<String, String> valideData = null;
+        StringBuffer page = new StringBuffer();
+        if (null != respParam && !respParam.isEmpty()) {
+            Iterator<Map.Entry<String, String>> it = respParam.entrySet()
+                    .iterator();
+            valideData = new HashMap<String, String>(respParam.size());
+            while (it.hasNext()) {
+                Map.Entry<String, String> e = it.next();
+                String key = (String) e.getKey();
+                String value = (String) e.getValue();
+                value = new String(value.getBytes(encoding), encoding);
+                page.append("<tr><td width=\"30%\" align=\"right\">" + key
+                        + "(" + key + ")</td><td>" + value + "</td></tr>");
+                valideData.put(key, value);
+            }
+        }
+        if (!AcpService.validate(valideData, encoding)) {
+            page.append("<tr><td width=\"30%\" align=\"right\">验证签名结果</td><td>失败</td></tr>");
+            System.out.println("验证签名结果[失败].");
+//            logger.info("验证签名结果[失败].");
+//            resp.sendRedirect("http://localhost:8080/#/payfail");
+        } else {
+            page.append("<tr><td width=\"30%\" align=\"right\">验证签名结果</td><td>成功</td></tr>");
+            System.out.println("验证签名结果[成功].");
+//            logger.info("验证签名结果[成功].");
+            System.out.println(valideData.get("orderId")); //其他字段也可用类似方式获取
+
+            System.out.println(valideData.get("queryId"));
+
+            String respCode = valideData.get("respCode");
+            //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
+            resp.sendRedirect("http://localhost:8080/loginA");//正式要改成"http://localhost:8080/#/paysuccess"
+        }
+        req.setAttribute("result", page.toString());
+//        req.getRequestDispatcher(pageResult).forward(req, resp);
+        System.out.println("FrontRcvResponse前台接收报文返回结束");
+//        logger.info("FrontRcvResponse前台接收报文返回结束");
     }
 
 
-    @Override
-    public String goUnionPay(String orderId,HttpServletResponse resp) {
-        //修改订单状态为待支付
-        String orderIdUnion=getUUID();
-        String txnAmt = "1.0";
+    public void backUnionPay(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        System.out.println("BackRcvResponse接收后台通知开始");
+//        logger.info("BackRcvResponse接收后台通知开始");
 
-        //跳转至订单平台
-        resp.setContentType("text/html; charset=UTF-8");
-        txnAmt=(int)(Double.parseDouble(txnAmt)*100)+"";
+        String encoding = req.getParameter(SDKConstants.param_encoding);
+        // 获取银联通知服务器发送的后台通知参数
+        Map<String, String> reqParam = getAllRequestParam(req);
+        System.out.println(reqParam);
+//        logger.info(reqParam);
 
-        Map<String, String> requestData = new HashMap<String, String>();
-        /***银联全渠道系统，产品参数，除了encoding自行选择外其他不需修改***/
-        requestData.put("version", "5.0.0");   			  //版本号，全渠道默认值
-        requestData.put("encoding", "UTF-8"); 			  //字符集编码，可以使用UTF-8,GBK两种方式
-        requestData.put("signMethod", "01"); //签名方法
-        requestData.put("txnType", "01");               			  //交易类型 ，01：消费
-        requestData.put("txnSubType", "01");            			  //交易子类型， 01：自助消费
-        requestData.put("bizType", "000201");           			  //业务类型，B2C网关支付，手机wap支付
-        requestData.put("channelType", "07");           			  //渠道类型，这个字段区分B2C网关支付和手机wap支付；07：PC,平板  08：手机
+        //重要！验证签名前不要修改reqParam中的键值对的内容，否则会验签不过
+        if (!AcpService.validate(reqParam, encoding)) {
+            System.out.println("验证签名结果[失败].");
+//            logger.info("验证签名结果[失败].");
+            //验签失败，需解决验签问题
 
-        /***商户接入参数***/
-        requestData.put("merId", merId);    	          			  //商户号码，请改成自己申请的正式商户号或者open上注册得来的777测试商户号
-        requestData.put("accessType", "0");             			  //接入类型，0：直连商户
-        requestData.put("orderId", orderIdUnion);             //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
-        requestData.put("txnTime", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));        //订单发送时间，取系统时间，格式为yyyyMMddHHmmss，必须取当前时间，否则会报txnTime无效
-        requestData.put("currencyCode", "156");         			  //交易币种（境内商户一般是156 人民币）
-        requestData.put("txnAmt", txnAmt);             			      //交易金额，单位分，不要带小数点
-        requestData.put("riskRateInfo", "{commodityName=测试商品名称}");
+        } else {
+            System.out.println("验证签名结果[成功].");
+//            logger.info("验证签名结果[成功].");
+            //【注：为了安全验签成功才应该写商户的成功处理逻辑】交易成功，更新商户订单状态
+            String orderIdUnion =reqParam.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
+            orderIdUnion = orderIdUnion.substring(7);
+            String respCode = reqParam.get("respCode");
+            //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
+            //操作数据库
+            Orders orders = new Orders();
+            orders.setId(Integer.parseInt(orderIdUnion));orders.setStatus(1);
+            ordersMapper.updateByPrimaryKeySelective(orders);
 
-        //前台通知地址 （需设置为外网能访问 http https均可），支付成功后的页面 点击“返回商户”按钮的时候将异步通知报文post到该地址
-        //如果想要实现过几秒中自动跳转回商户页面权限，需联系银联业务申请开通自动返回商户权限
-        //异步通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
-        requestData.put("frontUrl", "");
 
-        //后台通知地址（需设置为【外网】能访问 http https均可），支付成功后银联会自动将异步通知报文post到商户上送的该地址，失败的交易银联不会发送后台通知
-        //后台通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
-        //注意:1.需设置为外网能访问，否则收不到通知    2.http https均可  3.收单后台通知后需要10秒内返回http200或302状态码
-        //    4.如果银联通知服务器发送通知后10秒内未收到返回状态码或者应答码非http200，那么银联会间隔一段时间再次发送。总共发送5次，每次的间隔时间为0,1,2,4分钟。
-        //    5.后台通知地址如果上送了带有？的参数，例如：http://abc/web?a=b&c=d 在后台通知处理程序验证签名之前需要编写逻辑将这些字段去掉再验签，否则将会验签失败
-        requestData.put("backUrl", "");
-
-        // 订单超时时间。
-        // 超过此时间后，除网银交易外，其他交易银联系统会拒绝受理，提示超时。 跳转银行网银交易如果超时后交易成功，会自动退款，大约5个工作日金额返还到持卡人账户。
-        // 此时间建议取支付时的北京时间加15分钟。
-        // 超过超时时间调查询接口应答origRespCode不是A6或者00的就可以判断为失败。
-        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date().getTime() + 15 * 60 * 1000));
-
-        //////////////////////////////////////////////////
-        //
-        //       报文中特殊用法请查看 special_use_purchase.txt
-        //
-        //////////////////////////////////////////////////
-
-        /**请求参数设置完毕，以下对请求参数进行签名并生成html表单，将表单写入浏览器跳转打开银联页面**/
-        Map<String, String> submitFromData = AcpService.sign(requestData,"UTF-8");  //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
-
-        String requestFrontUrl = "https://gateway.test.95516.com/gateway/api/frontTransReq.do";  //获取请求银联的前台地址：对应属性文件acp_sdk.properties文件中的acpsdk.frontTransUrl
-        String html = AcpService.createAutoFormHtml(requestFrontUrl, submitFromData,"UTF-8");   //生成自动跳转的Html表单
-
-        //将生成的html写到浏览器中完成自动跳转打开银联支付页面；这里调用signData之后，将html写到浏览器跳转到银联页面之前均不能对html中的表单项的名称和值进行修改，如果修改会导致验签不通过
-        return html;
+        }
+        System.out.println("BackRcvResponse接收后台通知结束");
+//        logger.info("BackRcvResponse接收后台通知结束");
+        //返回给银联服务器http 200  状态码
+        resp.getWriter().print("ok");
     }
 
     public static String getUUID(){
@@ -255,6 +256,113 @@ public class PayServiceImp implements  PayService{
         }
         String value = valueOf + String.format("%015d", hashCode);
         return value;
+    }
+
+
+    public String unionPayment(String orderId,HttpServletResponse resp)throws IOException{
+        String orderIdUnion="0000000"+orderId;
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        Example example = new Example(OrderItem.class);
+        example.createCriteria().andEqualTo("orderId",orderId);
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(example);
+        Double total = 0.0;
+        for(OrderItem item : orderItems){
+            total += item.getPrice()*item.getNum();
+        }
+        String txnAmt = df.format(total);
+        txnAmt=(int)(Double.parseDouble(txnAmt)*100)+"";
+        resp.setContentType("text/html; charset="+ DemoBase.encoding);
+        Map<String, String> requestData = new HashMap<String, String>();
+
+        requestData.put("version", DemoBase.version);   			  //版本号，全渠道默认值
+        requestData.put("encoding", DemoBase.encoding); 			  //字符集编码，可以使用UTF-8,GBK两种方式
+        requestData.put("signMethod", SDKConfig.getConfig().getSignMethod()); //签名方法
+        requestData.put("txnType", "01");               			  //交易类型 ，01：消费
+        requestData.put("txnSubType", "01");            			  //交易子类型， 01：自助消费
+        requestData.put("bizType", "000201");           			  //业务类型，B2C网关支付，手机wap支付
+        requestData.put("channelType", "07");
+
+        requestData.put("merId", merId);    	          			  //商户号码，请改成自己申请的正式商户号或者open上注册得来的777测试商户号
+        requestData.put("accessType", "0");             			  //接入类型，0：直连商户
+        requestData.put("orderId", orderIdUnion);             //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则
+        requestData.put("txnTime", DemoBase.getCurrentTime());        //订单发送时间，取系统时间，格式为yyyyMMddHHmmss，必须取当前时间，否则会报txnTime无效
+        requestData.put("currencyCode", "156");         			  //交易币种（境内商户一般是156 人民币）
+        requestData.put("txnAmt", txnAmt);             			      //交易金额，单位分，不要带小数点
+        requestData.put("riskRateInfo", "{commodityName=测试商品名称}");
+
+        requestData.put("frontUrl", DemoBase.frontUrl);
+        requestData.put("backUrl", DemoBase.backUrl);
+        requestData.put("payTimeout", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date().getTime() + 15 * 60 * 1000));
+
+        Map<String, String> submitFromData = AcpService.sign(requestData,DemoBase.encoding);  //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
+        String requestFrontUrl = SDKConfig.getConfig().getFrontRequestUrl();  //获取请求银联的前台地址：对应属性文件acp_sdk.properties文件中的acpsdk.frontTransUrl
+
+        String html = AcpService.createAutoFormHtml(requestFrontUrl, submitFromData,DemoBase.encoding);   //生成自动跳转的Html表单
+
+        //将生成的html写到浏览器中完成自动跳转打开银联支付页面；这里调用signData之后，将html写到浏览器跳转到银联页面之前均不能对html中的表单项的名称和值进行修改，如果修改会导致验签不通过
+        return html;
+    }
+
+
+    /**
+     * 获取请求参数中所有的信息
+     * 当商户上送frontUrl或backUrl地址中带有参数信息的时候，
+     * 这种方式会将url地址中的参数读到map中，会导多出来这些信息从而致验签失败，这个时候可以自行修改过滤掉url中的参数或者使用getAllRequestParamStream方法。
+     * @param request
+     * @return
+     */
+    public static Map<String, String> getAllRequestParam(
+            final HttpServletRequest request) {
+        Map<String, String> res = new HashMap<String, String>();
+        Enumeration<?> temp = request.getParameterNames();
+        if (null != temp) {
+            while (temp.hasMoreElements()) {
+                String en = (String) temp.nextElement();
+                String value = request.getParameter(en);
+                res.put(en, value);
+                // 在报文上送时，如果字段的值为空，则不上送<下面的处理为在获取所有参数数据时，判断若值为空，则删除这个字段>
+                if (res.get(en) == null || "".equals(res.get(en))) {
+                    // System.out.println("======为空的字段名===="+en);
+                    res.remove(en);
+                }
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 获取请求参数中所有的信息。
+     * 非struts可以改用此方法获取，好处是可以过滤掉request.getParameter方法过滤不掉的url中的参数。
+     * struts可能对某些content-type会提前读取参数导致从inputstream读不到信息，所以可能用不了这个方法。理论应该可以调整struts配置使不影响，但请自己去研究。
+     * 调用本方法之前不能调用req.getParameter("key");这种方法，否则会导致request取不到输入流。
+     * @param request
+     * @return
+     */
+    public static Map<String, String> getAllRequestParamStream(
+            final HttpServletRequest request) {
+        Map<String, String> res = new HashMap<String, String>();
+        try {
+            String notifyStr = new String(IOUtils.toByteArray(request.getInputStream()),DemoBase.encoding);
+            System.out.println("收到通知报文：" + notifyStr);
+//            logger.info("收到通知报文：" + notifyStr);
+            String[] kvs= notifyStr.split("&");
+            for(String kv : kvs){
+                String[] tmp = kv.split("=");
+                if(tmp.length >= 2){
+                    String key = tmp[0];
+                    String value = URLDecoder.decode(tmp[1],DemoBase.encoding);
+                    res.put(key, value);
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("getAllRequestParamStream.UnsupportedEncodingException error: " + e.getClass() + ":" + e.getMessage());
+//            logger.info("getAllRequestParamStream.UnsupportedEncodingException error: " + e.getClass() + ":" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("getAllRequestParamStream.IOException error: " + e.getClass() + ":" + e.getMessage());
+//            logger.info("getAllRequestParamStream.IOException error: " + e.getClass() + ":" + e.getMessage());
+        }
+        return res;
     }
 
     @Autowired

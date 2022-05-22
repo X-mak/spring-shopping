@@ -4,11 +4,13 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.entity.goods.Goods;
 import com.shopping.entity.management.CartItem;
 
+import java.util.List;
+
 public interface CartService {
 
     int addCartGoods(Integer goodsId,Integer num);
 
-    int deleteCartGoods(Integer id);
+    int deleteMultiCartGoods(List<Integer> carts);
 
     int updateCartGoods(Integer id,Integer num);
 

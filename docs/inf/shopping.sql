@@ -153,8 +153,8 @@ insert into user_goods_property(property) values('collection');
 insert into user_goods_property(property) values('cart');
 insert into user_goods_property(property) values('publish');
 
-CREATE VIEW goods_vw(id,goods_name,price,stock,`status`,introduction,sales,class_name,picture,shop_id) AS
-SELECT g.id,g.goods_name,g.price,g.stock,g.goods_status,g.introduction,g.sales,
+CREATE VIEW goods_vw(id,goods_name,price,size,stock,`status`,introduction,sales,class_name,picture,shop_id) AS
+SELECT g.id,g.goods_name,g.price,g.size,g.stock,g.goods_status,g.introduction,g.sales,
 	c.class_name,ge.value,ug.user_id AS shop_id
 	FROM goods g LEFT JOIN goods_class gc ON gc.goods_id=g.id
 	LEFT JOIN classes c ON c.id=gc.class_id LEFT JOIN goods_ex ge ON

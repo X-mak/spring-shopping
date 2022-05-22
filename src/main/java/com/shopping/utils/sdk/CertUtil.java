@@ -13,23 +13,35 @@
  *   xshu       2014-05-28       证书工具类.
  * =============================================================================
  */
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 
 
-import org.apache.commons.io.FileUtils;
+
+import static com.shopping.utils.sdk.SDKConstants.*;
+import static com.shopping.utils.sdk.SDKUtil.isEmpty;
 
 import java.io.*;
 import java.math.BigInteger;
-import java.security.*;
-import java.security.cert.*;
+import java.security.KeyFactory;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.Provider;
+import java.security.PublicKey;
+import java.security.Security;
+import java.security.cert.CertPathBuilder;
+import java.security.cert.CertStore;
+import java.security.cert.CertificateFactory;
+import java.security.cert.CollectionCertStoreParameters;
+import java.security.cert.PKIXBuilderParameters;
+import java.security.cert.PKIXCertPathBuilderResult;
+import java.security.cert.TrustAnchor;
+import java.security.cert.X509CertSelector;
+import java.security.cert.X509Certificate;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.shopping.utils.SDKConstants.POINT;
-import static com.shopping.utils.SDKConstants.UNIONPAY_CNNAME;
-import static com.shopping.utils.SDKUtil.isEmpty;
-
+import org.apache.commons.io.FileUtils;
 /**
  * @ClassName: CertUtil
  * @Description: acpsdk证书工具类，主要用于对证书的加载和使用
@@ -733,6 +745,7 @@ public class CertUtil {
 	 * 打印系统环境信息
 	 */
 	private static void printSysInfo() {
+
 		printProviders();
 	}
 	
@@ -742,7 +755,6 @@ public class CertUtil {
 	private static void printProviders() {
 		Provider[] providers = Security.getProviders();
 		for (int i = 0; i < providers.length; i++) {
-
 		}
 	}
 

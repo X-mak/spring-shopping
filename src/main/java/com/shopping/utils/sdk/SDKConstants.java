@@ -13,7 +13,7 @@
  *   xshu       2014-05-28       MPI插件包常量定义
  * =============================================================================
  */
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 /**
  * 
  * @ClassName SDKConstants

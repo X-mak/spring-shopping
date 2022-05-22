@@ -9,7 +9,7 @@ public interface CollectionsService {
 
     int collectMany(List<CollectedItem> collectedList);
 
-    int cancelCollect(Integer id);
+    int cancelMultiCollect(List<Integer> collects);
 
     PageInfo<CollectedItem> getSelectedCollections(Integer pageNum,Integer pageSize);
 

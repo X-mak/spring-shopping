@@ -30,11 +30,15 @@ public class CollectionsServiceImp implements CollectionsService{
         return 1;
     }
 
-    public int cancelCollect(Integer id){
-        try{
-            if(!accessControlUtil.controlInId(id,1))return -1;
 
-            userGoodsMapper.deleteByPrimaryKey(id);
+
+    public int cancelMultiCollect(List<Integer> collects){
+        try{
+            for(Integer id : collects){
+                if(!accessControlUtil.controlInId(id,1))return -1;
+
+                userGoodsMapper.deleteByPrimaryKey(id);
+            }
         }catch (Exception e){
             e.printStackTrace();
             return -1;

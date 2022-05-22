@@ -30,14 +30,14 @@ public class CartController {
     }
 
     /**
-     * 购物车删除商品
-     * @param id    购物车编号
+     * 批量删除购物车商品
+     * @param carts 购物车主键列表
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("")
-    public Result<?> deleteCartGoods(@RequestParam Integer id){
+    public Result<?> deleteCartGoods(@RequestBody List<Integer> carts){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        int res = cartService.deleteCartGoods(id);
+        int res = cartService.deleteMultiCartGoods(carts);
         if(res == 1)return Result.success("删除成功!");
         else return Result.error("删除失败!");
     }

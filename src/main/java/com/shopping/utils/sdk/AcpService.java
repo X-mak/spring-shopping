@@ -1,8 +1,15 @@
-package com.shopping.utils;
+package com.shopping.utils.sdk;
 
 import org.apache.commons.codec.binary.Base64;
 
-import java.io.*;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.PublicKey;
 import java.util.Iterator;
@@ -12,7 +19,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.shopping.utils.SDKConstants.*;
+import static com.shopping.utils.sdk.SDKConstants.*;
 
 /**
  * @ClassName AcpService
