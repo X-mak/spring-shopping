@@ -34,7 +34,7 @@ public class GoodsController {
      * @param pageSize  单页数量
      * @param pageNum   页码
      * @param order     排序方式，date/sales
-     * @param shopId    商铺编号
+     * @param classId    类别编号
      * @param status    商品状态
      * @return Result<List<Goods>>
      *
@@ -45,9 +45,9 @@ public class GoodsController {
                                       @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                       @PathVariable Integer pageNum,
                                       @RequestParam(required = false,defaultValue = "date") String order,
-                                      @RequestParam(required = false,defaultValue = "%") String shopId,
+                                      @RequestParam(required = false,defaultValue = "%") String classId,
                                       @RequestParam(required = false,defaultValue = "1") String status){
-        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, shopId,status);
+        PageInfo<Goods> goodsBySearch = goodsService.getGoodsBySearch(pageNum, pageSize, keyword, order, classId,status);
         if(goodsBySearch.getTotal() == 0)return Result.error("查询结果为空!");
         return Result.success(goodsBySearch.getList(),goodsBySearch.getTotal()+"");
     }

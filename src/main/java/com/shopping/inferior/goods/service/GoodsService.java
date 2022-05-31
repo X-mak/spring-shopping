@@ -15,7 +15,7 @@ public interface GoodsService {
 
     Goods getGoods(Integer goodsId);
 
-    PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order, String shopId,String status);
+    PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order, String classId,String status);
 
     int changePrice(Price price);
 
@@ -26,6 +26,5 @@ public interface GoodsService {
     List<Classes> getClasses(String classId);
 
     int addPictures(Integer goodsId,List<String> pictures);
-
 
 }

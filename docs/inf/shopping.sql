@@ -50,6 +50,7 @@ CREATE TABLE `goods`(
 	id INT(10) AUTO_INCREMENT NOT NULL,
 	goods_name VARCHAR(30),
 	price DOUBLE,
+	size varchar(10),
 	stock INT(10),
 	goods_status INT(1),
 	introduction VARCHAR(120),
@@ -109,6 +110,7 @@ CREATE TABLE `order_item`(
 	goods_id INT(10),
 	num INT(10),
 	price DOUBLE,
+	expiration varchar(20),
 	PRIMARY KEY(id),
 	FOREIGN KEY(order_id) REFERENCES orders(id),
 	FOREIGN KEY(goods_id) REFERENCES goods(id)

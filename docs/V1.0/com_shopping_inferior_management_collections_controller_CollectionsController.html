@@ -24,6 +24,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V1.0<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                             <li><a href="../inf/index.html">inf</a></li>
+                            <li><a href="../V1.0.7z/index.html">V1.0.7z</a></li>
                     </ul>
                 </li>
             </ul>
@@ -114,6 +115,9 @@
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods">
                         批量删除购物车商品
+                    </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#deleteOntCart">
+                        删除单个购物车商品
                     </a>
                     <a class="catalog-item" href="com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods">
                         更新购物车商品数量
@@ -241,6 +245,9 @@
                     <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#getUserList">
                         获取用户列表
                     </a>
+                    <a class="catalog-item" href="com_shopping_inferior_management_user_controller_UserController.html#banUser">
+                        禁用账号
+                    </a>
             </div>
         </div>
 </div>    </div>
@@ -272,6 +279,7 @@
 		"id":"int //主键，商品编号",
 		"goodsName":"string //商品名",
 		"price":"double //商品价格",
+		"size":"string //尺寸大小",
 		"stock":"int //商品库存",
 		"goodsStatus":"int //商品状态，1为销售中，0为已下架",
 		"introduction":"string //商品简介",
@@ -285,7 +293,13 @@
 			"status":"int //图片状态，1为默认地址，0为备用地址"
 		}],
 		"picture":"string //商品的默认图片",
-		"num":"int //商品的数量"
+		"num":"int //商品的数量",
+		"priceList":[{
+			"id":"int //主键，价格编号",
+			"goodsId":"int //商品编号",
+			"price":"double //价格",
+			"date":"string //变动日期"
+		}]
 	}
 }]</pre>
     <p><strong>返回结果</strong></p>
@@ -368,6 +382,7 @@
 			"id":"int //主键，商品编号",
 			"goodsName":"string //商品名",
 			"price":"double //商品价格",
+			"size":"string //尺寸大小",
 			"stock":"int //商品库存",
 			"goodsStatus":"int //商品状态，1为销售中，0为已下架",
 			"introduction":"string //商品简介",
@@ -381,7 +396,13 @@
 				"status":"int //图片状态，1为默认地址，0为备用地址"
 			}],
 			"picture":"string //商品的默认图片",
-			"num":"int //商品的数量"
+			"num":"int //商品的数量",
+			"priceList":[{
+				"id":"int //主键，价格编号",
+				"goodsId":"int //商品编号",
+				"price":"double //价格",
+				"date":"string //变动日期"
+			}]
 		}
 	}]
 }</pre>
@@ -460,6 +481,7 @@
             {name: 'GoodsController.新增图片', url: 'com_shopping_inferior_goods_controller_GoodsController.html#addPictures'},
             {name: 'CartController.购物车添加商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#addCartGoods'},
             {name: 'CartController.批量删除购物车商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#deleteCartGoods'},
+            {name: 'CartController.删除单个购物车商品', url: 'com_shopping_inferior_management_cart_controller_CartController.html#deleteOntCart'},
             {name: 'CartController.更新购物车商品数量', url: 'com_shopping_inferior_management_cart_controller_CartController.html#updateCartGoods'},
             {name: 'CartController.获取购物车列表', url: 'com_shopping_inferior_management_cart_controller_CartController.html#getCartGoods'},
             {name: 'CollectionsController.收藏商品', url: 'com_shopping_inferior_management_collections_controller_CollectionsController.html#collectGoods'},
@@ -486,6 +508,7 @@
             {name: 'UserController.获取用户地址列表', url: 'com_shopping_inferior_management_user_controller_UserController.html#getAddressList'},
             {name: 'UserController.删除地址', url: 'com_shopping_inferior_management_user_controller_UserController.html#deleteAddress'},
             {name: 'UserController.获取用户列表', url: 'com_shopping_inferior_management_user_controller_UserController.html#getUserList'},
+            {name: 'UserController.禁用账号', url: 'com_shopping_inferior_management_user_controller_UserController.html#banUser'},
     ];
 
 

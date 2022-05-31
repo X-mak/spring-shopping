@@ -121,6 +121,7 @@ public class OrderItem implements Serializable{
     private int goodsId; //商品编号
     private int num; //商品数量
     private double price; //单件商品价格
+    private String expiration; //到期时间
     private String picture; //商品图片
     private int shopId; //店铺编号
     private String goodsName; //商品名
@@ -164,6 +165,14 @@ public class OrderItem implements Serializable{
 
     public void setPrice(double price){
         this.price = price;
+    }
+
+    public String getExpiration(){
+        return expiration;
+    }
+
+    public void setExpiration(String expiration){
+        this.expiration = expiration;
     }
 
     public String getPicture(){

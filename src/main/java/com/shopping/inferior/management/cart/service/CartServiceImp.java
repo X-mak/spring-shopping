@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.entity.data.UserGoods;
 import com.shopping.entity.goods.Goods;
 import com.shopping.entity.management.CartItem;
+import com.shopping.entity.management.OrderItem;
 import com.shopping.mapper.data.UserGoodsMapper;
 import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.mapper.management.CartItemMapper;
@@ -24,6 +25,15 @@ public class CartServiceImp implements CartService{
     public int addCartGoods(Integer goodsId,Integer num){
         Integer userId = TokenUtils.getLoginUser().getId();
         try{
+            Example example = new Example(UserGoods.class);
+            example.createCriteria().andEqualTo("userId",userId)
+                    .andEqualTo("goodsId",goodsId)
+                    .andEqualTo("propertyId",2);
+            List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
+            if(userGoods.size()>0){
+                UserGoods ug = userGoods.get(0);ug.setPropertyValue(Integer.parseInt(ug.getPropertyValue())+num+"");
+                userGoodsMapper.updateByPrimaryKeySelective(ug);
+            }else
             userGoodsMapper.insertSelective(new UserGoods(userId,goodsId,2,num+""));
         }catch (Exception e){
             e.printStackTrace();
@@ -32,12 +42,30 @@ public class CartServiceImp implements CartService{
         return 1;
     }
 
-    public int deleteMultiCartGoods(List<Integer> carts){
+    public int deleteMultiCartGoods(List<OrderItem> ordersList){
         try{
-            for(Integer id : carts){
-                if(!accessControlUtil.controlInId(id,2))return -1;
-                userGoodsMapper.deleteByPrimaryKey(id);
+
+            Integer userId = TokenUtils.getLoginUser().getId();
+            for(OrderItem item : ordersList){
+                Example example = new Example(UserGoods.class);
+                Example.Criteria criteria = example.createCriteria();
+                Integer id = item.getGoodsId();
+                criteria.andEqualTo("goodsId",item.getGoodsId())
+                        .andEqualTo("userId",userId)
+                        .andEqualTo("propertyId",2);
+                userGoodsMapper.deleteByExample(example);
             }
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return 1;
+    }
+
+    public int deleteCartGoods(Integer id){
+        try{
+            if(!accessControlUtil.controlInId(id,2))return -1;
+            userGoodsMapper.deleteByPrimaryKey(id);
         }catch (Exception e){
             e.printStackTrace();
             return -1;

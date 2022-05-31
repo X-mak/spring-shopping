@@ -21,6 +21,12 @@ public class CollectionsServiceImp implements CollectionsService{
         try{
             for(CollectedItem c : collectedList){
                 Integer id = TokenUtils.getLoginUser().getId();
+//                Example example = new Example(UserGoods.class);
+//                example.createCriteria().andEqualTo("userId",id)
+//                        .andEqualTo("goodsId",c.getGoodsId())
+//                        .andEqualTo("propertyId",1);
+//                List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
+//                if(userGoods.size()>0)continue;
                 userGoodsMapper.insertSelective(new UserGoods(id,c.getGoodsId(),1,null));
             }
         }catch (Exception e){

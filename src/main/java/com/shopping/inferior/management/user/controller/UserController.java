@@ -119,6 +119,19 @@ public class UserController {
         return Result.success(users.getList(),users.getTotal()+"");
     }
 
+    /**
+     * 禁用账号
+     * @param userId    被禁用账户编号
+     */
+    @ApiDoc(result = Result.class)
+    @DeleteMapping("/{userId}")
+    public Result<?> banUser(@PathVariable Integer userId){
+        if(!authority.hasRights("admin"))return Result.error("no way");
+        int res = userService.banUser(userId);
+        if(res == -1)return Result.error("封禁失败!");
+        return Result.success("封禁成功!");
+    }
+
     @Autowired
     UserService userService;
     @Autowired

@@ -5,10 +5,15 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.entity.authentication.Address;
 import com.shopping.entity.authentication.UserInfo;
 import com.shopping.entity.data.UserEx;
+import com.shopping.entity.data.UserGoods;
+import com.shopping.entity.goods.Goods;
 import com.shopping.mapper.authentication.*;
 import com.shopping.mapper.data.UserExMapper;
+import com.shopping.mapper.data.UserGoodsMapper;
+import com.shopping.mapper.goods.GoodsMapper;
 import com.shopping.utils.AccessControlUtil;
 import com.shopping.utils.TokenUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -96,12 +101,37 @@ public class UserServiceImp implements UserService{
         return new PageInfo<>(userInfos);
     }
 
+    public int banUser(Integer userId){
+        try{
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(userId);userInfo.setUserStatus(-1);
+            userInfoMapper.updateByPrimaryKeySelective(userInfo);
+            Example example = new Example(UserGoods.class);
+            example.createCriteria().andEqualTo("userId",userId)
+                    .andEqualTo("propertyId",3);
+            List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
+            for(UserGoods ug:userGoods){
+                Integer goodsId = ug.getGoodsId();
+                Goods goods = new Goods();goods.setId(goodsId);goods.setGoodsStatus(-1);
+                goodsMapper.updateByPrimaryKeySelective(goods);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return  1;
+    }
+
     @Autowired
     AddressMapper addressMapper;
     @Autowired
     UserInfoMapper userInfoMapper;
     @Autowired
     UserExMapper userExMapper;
+    @Autowired
+    GoodsMapper goodsMapper;
+    @Autowired
+    UserGoodsMapper userGoodsMapper;
     @Autowired
     AccessControlUtil accessControlUtil;
 }

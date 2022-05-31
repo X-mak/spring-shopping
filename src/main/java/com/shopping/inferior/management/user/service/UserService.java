@@ -21,4 +21,6 @@ public interface UserService {
     int deleteAddress(Integer id);
 
     PageInfo<UserInfo> getUsers(Integer pageNum,Integer pageSize);
+
+    int banUser(Integer userId);
 }

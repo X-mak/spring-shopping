@@ -110,6 +110,7 @@ public class Goods implements Serializable{
     private int id; //主键，商品编号
     private String goodsName; //商品名
     private double price; //商品价格
+    private String size; //尺寸大小
     private int stock; //商品库存
     private int goodsStatus; //商品状态，1为销售中，0为已下架
     private String introduction; //商品简介
@@ -119,6 +120,7 @@ public class Goods implements Serializable{
     private Pictures[] goodsPictures; //商品的所有图片
     private String picture; //商品的默认图片
     private int num; //商品的数量
+    private Price[] priceList; //价格变化
 
     public int getId(){
         return id;
@@ -142,6 +144,14 @@ public class Goods implements Serializable{
 
     public void setPrice(double price){
         this.price = price;
+    }
+
+    public String getSize(){
+        return size;
+    }
+
+    public void setSize(String size){
+        this.size = size;
     }
 
     public int getStock(){
@@ -216,6 +226,14 @@ public class Goods implements Serializable{
         this.num = num;
     }
 
+    public Price[] getPriceList(){
+        return priceList;
+    }
+
+    public void setPriceList(Price[] priceList){
+        this.priceList = priceList;
+    }
+
 }
 </pre>
 
@@ -258,6 +276,50 @@ public class Pictures implements Serializable{
 
     public void setStatus(int status){
         this.status = status;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class Price implements Serializable{
+
+    private int id; //主键，价格编号
+    private int goodsId; //商品编号
+    private double price; //价格
+    private String date; //变动日期
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getGoodsId(){
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId){
+        this.goodsId = goodsId;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public String getDate(){
+        return date;
+    }
+
+    public void setDate(String date){
+        this.date = date;
     }
 
 }

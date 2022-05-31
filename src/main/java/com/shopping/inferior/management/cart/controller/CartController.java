@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.common.Result;
 import com.shopping.entity.goods.Goods;
 import com.shopping.entity.management.CartItem;
+import com.shopping.entity.management.OrderItem;
 import com.shopping.inferior.management.cart.service.CartService;
 import com.shopping.utils.Authority;
 import io.github.yedaxia.apidocs.ApiDoc;
@@ -31,13 +32,26 @@ public class CartController {
 
     /**
      * 批量删除购物车商品
-     * @param carts 购物车主键列表
+     * @param ordersList 订单项列表
+     */
+    @ApiDoc(result = Result.class)
+    @DeleteMapping("/list")
+    public Result<?> deleteCartGoods(@RequestBody List<OrderItem> ordersList){
+        if(!authority.hasRights("buyer"))return Result.error("no way");
+        int res = cartService.deleteMultiCartGoods(ordersList);
+        if(res == 1)return Result.success("删除成功!");
+        else return Result.error("删除失败!");
+    }
+
+    /**
+     * 删除单个购物车商品
+     * @param id    购物车主键
      */
     @ApiDoc(result = Result.class)
     @DeleteMapping("")
-    public Result<?> deleteCartGoods(@RequestBody List<Integer> carts){
+    public Result<?> deleteOntCart(@RequestParam Integer id){
         if(!authority.hasRights("buyer"))return Result.error("no way");
-        int res = cartService.deleteMultiCartGoods(carts);
+        int res = cartService.deleteCartGoods(id);
         if(res == 1)return Result.success("删除成功!");
         else return Result.error("删除失败!");
     }

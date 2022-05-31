@@ -24,27 +24,27 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Select("SELECT g.*,ge.value AS address,c.class_name FROM goods g LEFT JOIN goods_ex ge ON " +
             "g.id = ge.goods_id LEFT JOIN user_goods ug ON ug.goods_id=g.id " +
             "LEFT JOIN goods_class gc ON gc.goods_id=g.id LEFT JOIN classes c " +
-            "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=#{status} " +
+            "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=1 AND g.goods_status=#{status} " +
             "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} OR g.size like #{keyword} ) AND ug.property_id = 3 " +
-            "AND ug.user_id like #{shopId} order by ug.date")
+            "AND c.id like #{classId} order by ug.date ")
     @Results(id = "goodsInfo",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "shop_id",property = "shopId"),
             @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "status",property = "goodsStatus"),
+            @Result(column = "goods_status",property = "goodsStatus"),
             @Result(column = "class_name",property = "className"),
             @Result(column = "address",property = "picture")
     })
-    List<Goods> querySelectedGoodsOrderByDate(String keyword,String shopId,String status);
+    List<Goods> querySelectedGoodsOrderByDate(String keyword,String classId,String status);
 
     @Select("SELECT g.*,ge.value AS address,c.class_name FROM goods g LEFT JOIN goods_ex ge ON " +
             "g.id = ge.goods_id LEFT JOIN user_goods ug ON ug.goods_id=g.id " +
             "LEFT JOIN goods_class gc ON gc.goods_id=g.id LEFT JOIN classes c " +
-            "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=#{status} " +
+            "ON c.id = gc.class_id WHERE ge.property_id=3 AND ge.status=1 AND g.goods_status=#{status}  " +
             "AND(g.goods_name LIKE #{keyword} OR c.class_name LIKE #{keyword} OR g.size like #{keyword} ) AND ug.property_id = 3 " +
-            "AND ug.user_id like #{shopId} order by g.sales")
+            "AND c.id like #{classId} order by g.sales")
     @ResultMap(value = "goodsInfo")
-    List<Goods> querySelectedGoodsOrderBySales(String keyword,String shopId,String status);
+    List<Goods> querySelectedGoodsOrderBySales(String keyword,String classId,String status);
 
 //    @Select("select sh.id AS shop_id,g.*,c.class_name from goods g left join goodsclass gc on gc.goods_id=g.id " +
 //            "left join classes c on c.id=gc.class_id left join shopgoods sg on sg.goods_id=g.id left join " +
@@ -122,15 +122,15 @@ public interface GoodsMapper extends Mapper<Goods> {
     List<Goods> queryGoodsInCart(Integer userId);
 
 
-    @Select("SELECT g.*,p.address FROM collecteditem c LEFT JOIN goods g ON g.id = c.goods_id LEFT JOIN " +
-            "pictures p ON p.goods_id = g.id WHERE c.user_id = #{userId}")
-    @Results(id = "goodsInCollections",value = {
-            @Result(id = true,column = "id",property = "id"),
-            @Result(column = "goods_name",property = "goodsName"),
-            @Result(column = "status",property = "goodsStatus"),
-            @Result(column = "address",property = "picture")
-    })
-    List<Goods> queryGoodsInCollections(Integer userId);
+//    @Select("SELECT g.*,p.address FROM collecteditem c LEFT JOIN goods g ON g.id = c.goods_id LEFT JOIN " +
+//            "pictures p ON p.goods_id = g.id WHERE c.user_id = #{userId}")
+//    @Results(id = "goodsInCollections",value = {
+//            @Result(id = true,column = "id",property = "id"),
+//            @Result(column = "goods_name",property = "goodsName"),
+//            @Result(column = "status",property = "goodsStatus"),
+//            @Result(column = "address",property = "picture")
+//    })
+//    List<Goods> queryGoodsInCollections(Integer userId);
 
     @Select("SELECT * FROM goods_vw")
     @Results({

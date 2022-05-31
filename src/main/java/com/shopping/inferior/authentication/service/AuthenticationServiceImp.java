@@ -41,6 +41,7 @@ public class AuthenticationServiceImp implements AuthenticationService{
                 userInfo.setUserStatus(1);
                 accountRoleMapper.insertSelective(new AccountRole(2,userId));
             }else if(registerUser.getUserRole().equals("admin")){
+                accountRoleMapper.insertSelective(new AccountRole(2,userId));
                 accountRoleMapper.insertSelective(new AccountRole(3,userId));
             }
             userInfoMapper.insertSelective(userInfo);
@@ -62,6 +63,8 @@ public class AuthenticationServiceImp implements AuthenticationService{
         UserAccount selectedAccount = new UserAccount();
         try{
             selectedAccount = userAccountMapper.selectByExample(example).get(0);
+            UserInfo userInfo = userInfoMapper.selectByPrimaryKey(selectedAccount.getId());
+            if(userInfo.getUserStatus() != 1 )return null;
         }catch (Exception e){
             return null;
         }

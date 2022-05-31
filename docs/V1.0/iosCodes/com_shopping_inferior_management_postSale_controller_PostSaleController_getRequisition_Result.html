@@ -63,6 +63,8 @@
 @property (nonatomic, assign) NSString goodsName;
 //商品价格
 @property (nonatomic, strong) double price;
+//尺寸大小
+@property (nonatomic, assign) NSString size;
 //商品库存
 @property (nonatomic, strong) NSInteger stock;
 //商品状态，1为销售中，0为已下架
@@ -81,6 +83,8 @@
 @property (nonatomic, assign) NSString picture;
 //商品的数量
 @property (nonatomic, strong) NSInteger num;
+//价格变化
+@property (nonatomic, strong) Price[] priceList;
 
 
 @end
@@ -101,6 +105,26 @@
 @property (nonatomic, assign) NSString address;
 //图片状态，1为默认地址，0为备用地址
 @property (nonatomic, strong) NSInteger status;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface Price : NSObject
+
+//主键，价格编号
+@property (nonatomic, strong) NSInteger id;
+//商品编号
+@property (nonatomic, strong) NSInteger goodsId;
+//价格
+@property (nonatomic, strong) double price;
+//变动日期
+@property (nonatomic, assign) NSString date;
 
 
 @end

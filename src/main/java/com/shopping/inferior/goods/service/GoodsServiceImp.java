@@ -74,7 +74,7 @@ public class GoodsServiceImp implements GoodsService{
 
     public int changeGoodsBasicInfo(Goods goods){
         try{
-            if(!accessControlUtil.controlInUserGoods(goods.getId(),3))return -1;
+            //if(!accessControlUtil.controlInUserGoods(goods.getId(),3))return -1;
             goodsMapper.updateByPrimaryKeySelective(goods);
         }catch (Exception e){
             e.printStackTrace();
@@ -90,19 +90,19 @@ public class GoodsServiceImp implements GoodsService{
 
 
     public PageInfo<Goods> getGoodsBySearch(Integer pageNum, Integer pageSize, String keyword, String order,
-                                            String shopId,String status){
+                                            String classId,String status){
         List<Goods> goods = new ArrayList<>();
         //处理参数
         if(!keyword.equals("%"))keyword = "%"+keyword+"%";
-
+        if(!classId.equals("%"))classId = classId+"%";
         //分页
         PageHelper.startPage(pageNum,pageSize,true);
 
         //根据排序方式使用mapper
         if(order.equals("date")){
-            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, shopId,status);
+            goods = goodsMapper.querySelectedGoodsOrderByDate(keyword, classId,status);
         }else if(order.equals("sales")){
-            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, shopId,status);
+            goods = goodsMapper.querySelectedGoodsOrderBySales(keyword, classId,status);
         }
 
         return new PageInfo<>(goods);
@@ -179,6 +179,7 @@ public class GoodsServiceImp implements GoodsService{
         }
         return 1;
     }
+
 
     @Autowired
     GoodsMapper goodsMapper;
