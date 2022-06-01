@@ -23,4 +23,6 @@ public interface UserService {
     PageInfo<UserInfo> getUsers(Integer pageNum,Integer pageSize);
 
     int banUser(Integer userId);
+
+    int restoreUser(Integer userId);
 }

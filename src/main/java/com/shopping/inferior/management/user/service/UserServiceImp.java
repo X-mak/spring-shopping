@@ -104,7 +104,7 @@ public class UserServiceImp implements UserService{
     public int banUser(Integer userId){
         try{
             UserInfo userInfo = new UserInfo();
-            userInfo.setId(userId);userInfo.setUserStatus(-1);
+            userInfo.setId(userId);userInfo.setUserStatus(0);
             userInfoMapper.updateByPrimaryKeySelective(userInfo);
             Example example = new Example(UserGoods.class);
             example.createCriteria().andEqualTo("userId",userId)
@@ -112,7 +112,7 @@ public class UserServiceImp implements UserService{
             List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
             for(UserGoods ug:userGoods){
                 Integer goodsId = ug.getGoodsId();
-                Goods goods = new Goods();goods.setId(goodsId);goods.setGoodsStatus(-1);
+                Goods goods = new Goods();goods.setId(goodsId);goods.setGoodsStatus(0);
                 goodsMapper.updateByPrimaryKeySelective(goods);
             }
         }catch (Exception e){
@@ -120,6 +120,27 @@ public class UserServiceImp implements UserService{
             return -1;
         }
         return  1;
+    }
+
+    public int restoreUser(Integer userId){
+        try{
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(userId);userInfo.setUserStatus(1);
+            userInfoMapper.updateByPrimaryKeySelective(userInfo);
+            Example example = new Example(UserGoods.class);
+            example.createCriteria().andEqualTo("userId",userId)
+                    .andEqualTo("propertyId",3);
+            List<UserGoods> userGoods = userGoodsMapper.selectByExample(example);
+            for(UserGoods ug:userGoods){
+                Integer goodsId = ug.getGoodsId();
+                Goods goods = new Goods();goods.setId(goodsId);goods.setGoodsStatus(1);
+                goodsMapper.updateByPrimaryKeySelective(goods);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+        return 1;
     }
 
     @Autowired

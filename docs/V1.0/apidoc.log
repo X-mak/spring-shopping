@@ -1,238 +1,242 @@
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:20 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find java src paths:  [D:\project\shopping\src\main\java\]
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:20 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: project type not set, try to figure out...
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:20 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start find controllers in path : D:\project\shopping\src\main\java\
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : AuthenticationController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : FileController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : GoodsController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : CartController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : CollectionsController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : LogisticController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : OrderController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : PayController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : PostSaleController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : UserController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : AuthenticationController.java
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:43 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : AuthenticationController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : FileController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : FileController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : GoodsController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : GoodsController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : CartController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:22 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : CartController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : CollectionsController.java
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:44 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : CollectionsController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : LogisticController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : LogisticController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : OrderController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : OrderController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : PayController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : PayController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : PostSaleController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : PostSaleController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : UserController.java
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:45 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils warn
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\project\shopping\src\main\java\com\shopping\common\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : UserController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs start...
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:23 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\authentication\controller\AuthenticationController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\authentication\controller\AuthenticationController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\files\controller\FileController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\files\controller\FileController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\goods\controller\GoodsController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\goods\controller\GoodsController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\cart\controller\CartController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\cart\controller\CartController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\collections\controller\CollectionsController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\collections\controller\CollectionsController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\logistic\controller\LogisticController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\logistic\controller\LogisticController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\orders\controller\OrderController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\orders\controller\OrderController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\pay\controller\PayController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\pay\controller\PayController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\postSale\controller\PostSaleController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\postSale\controller\PostSaleController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\user\controller\UserController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : D:\project\shopping\src\main\java\com\shopping\inferior\management\user\controller\UserController.java
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate index start !!!
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate index done !!!
-五月 31, 2022 10:23:46 上午 io.github.yedaxia.apidocs.LogUtils info
+六月 01, 2022 4:07:24 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs done !!!

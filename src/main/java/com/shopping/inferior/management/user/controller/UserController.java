@@ -132,6 +132,19 @@ public class UserController {
         return Result.success("封禁成功!");
     }
 
+    /**
+     * 恢复账号
+     * @param userId    被禁用账户编号
+     */
+    @ApiDoc(result = Result.class)
+    @PutMapping("/{userId}")
+    public Result<?> restoreUser(@PathVariable Integer userId){
+        if(!authority.hasRights("admin"))return Result.error("no way");
+        int res = userService.restoreUser(userId);
+        if(res == -1)return Result.error("恢复失败!");
+        return Result.success("恢复成功!");
+    }
+
     @Autowired
     UserService userService;
     @Autowired
