@@ -30,10 +30,11 @@ public interface UserInfoMapper extends Mapper<UserInfo> {
     @ResultMap(value = "loginUserInfo")
     UserInfo queryLoginUserInfoById(Integer userId);
 
-    @Select("SELECT ua.id,ua.account,u.user_name FROM user_info u LEFT JOIN user_account ua ON u.id=ua.id ")
+    @Select("SELECT ua.id,ua.account,u.user_name,u.user_status FROM user_info u LEFT JOIN user_account ua ON u.id=ua.id ")
     @Results(id = "basicUser",value = {
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "user_name",property = "userName"),
+            @Result(column = "user_status",property = "userStatus"),
             @Result(column = "id",property = "roleList",
                     many = @Many(select = "com.shopping.mapper.authentication.AccountRoleMapper.selectAccountRoleByAccount"))
     })

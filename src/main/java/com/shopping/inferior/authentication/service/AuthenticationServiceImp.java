@@ -35,8 +35,8 @@ public class AuthenticationServiceImp implements AuthenticationService{
             userAccountMapper.insertSelective(userAccount);
             int userId = userAccount.getId();
             UserInfo userInfo = new UserInfo(userId,registerUser.getUserName(), registerUser.getUserPhone());
+            userInfo.setUserStatus(1);
             accountRoleMapper.insertSelective(new AccountRole(1,userId));
-            userInfo.setUserStatus(-1);
             if(registerUser.getUserRole().equals("seller")){
                 userInfo.setUserStatus(1);
                 accountRoleMapper.insertSelective(new AccountRole(2,userId));
